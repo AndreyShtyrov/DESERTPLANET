@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvjefighmi5l"]
+
+[ext_resource type="Script" path="res://PathLine.cs" id="1_1vado"]
+
+[node name="PathLine" type="Node2D"]
+visible = false
+script = ExtResource("1_1vado")
+
+[node name="EnergyValue" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

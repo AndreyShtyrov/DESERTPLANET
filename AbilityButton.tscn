@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkoyjt3n4lmnc"]
+
+[ext_resource type="Script" path="res://AbilityButton.cs" id="1_vhbj5"]
+
+[node name="AbilityButton" type="Button"]
+script = ExtResource("1_vhbj5")
+
+[node name="AbilityName" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_right = 140.0
+offset_bottom = 23.0
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[connection signal="mouse_entered" from="." to="." method="OnInitArea"]
+[connection signal="mouse_exited" from="." to="." method="OnOutArea"]
+[connection signal="pressed" from="." to="." method="OnPress"]
+[connection signal="timeout" from="Timer" to="." method="OnEndTimer"]

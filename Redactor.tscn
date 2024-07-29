@@ -1,0 +1,377 @@
+[gd_scene load_steps=10 format=3 uid="uid://bboyg4thfisyy"]
+
+[ext_resource type="Script" path="res://Redactor.cs" id="1_hh0qj"]
+[ext_resource type="PackedScene" uid="uid://dmdgnm43iov7t" path="res://ResourceUi.tscn" id="2_dt4ga"]
+[ext_resource type="Texture2D" uid="uid://bb8bdwvt73asi" path="res://source/Assets/DesertPlanet.png" id="2_vny6m"]
+[ext_resource type="Texture2D" uid="uid://ceeh2ybuf7i27" path="res://source/Assets/GroundSource.png" id="4_34u78"]
+[ext_resource type="Texture2D" uid="uid://scq6ovjo067i" path="res://source/Assets/Borders/Borders.png" id="5_kg4ql"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lhpsb"]
+texture = ExtResource("2_vny6m")
+margins = Vector2i(6, 137)
+texture_region_size = Vector2i(315, 270)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_juxxu"]
+texture = ExtResource("4_34u78")
+texture_region_size = Vector2i(315, 270)
+0:0/0 = 0
+1:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+3:2/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uubrt"]
+texture = ExtResource("5_kg4ql")
+margins = Vector2i(5, 137)
+texture_region_size = Vector2i(315, 270)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+0:1/0 = 0
+2:4/0 = 0
+4:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_52skn"]
+tile_shape = 3
+tile_layout = 1
+tile_offset_axis = 1
+tile_size = Vector2i(315, 270)
+sources/0 = SubResource("TileSetAtlasSource_lhpsb")
+sources/1 = SubResource("TileSetAtlasSource_juxxu")
+sources/2 = SubResource("TileSetAtlasSource_uubrt")
+
+[node name="Redactor" type="Node2D"]
+script = ExtResource("1_hh0qj")
+ResourceUIPacked = ExtResource("2_dt4ga")
+
+[node name="PlanetField" type="TileMap" parent="."]
+position = Vector2(81, 69)
+scale = Vector2(0.3, 0.3)
+tile_set = SubResource("TileSet_52skn")
+format = 2
+layer_0/name = "Ground"
+layer_1/name = "Building"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "GRS"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 2
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Borders"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 3
+layer_3/tile_data = PackedInt32Array()
+
+[node name="HB" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Save" type="Button" parent="HB"]
+layout_mode = 2
+text = "Save"
+
+[node name="Load" type="Button" parent="HB"]
+layout_mode = 2
+text = "Load"
+
+[node name="OutPut" type="LineEdit" parent="HB"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="HB"]
+layout_mode = 2
+text = "X:"
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="LX" type="LineEdit" parent="HB"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="LineEdit2" type="LineEdit" parent="HB"]
+layout_mode = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+text = "Y:"
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="LY" type="LineEdit" parent="HB"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HB"]
+layout_mode = 2
+text = "Create"
+
+[node name="Width" type="LineEdit" parent="HB"]
+layout_mode = 2
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="Height" type="LineEdit" parent="HB"]
+layout_mode = 2
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="ToolsPalit" type="GridContainer" parent="."]
+offset_left = 965.0
+offset_top = 37.0
+offset_right = 1098.0
+offset_bottom = 138.0
+columns = 2
+
+[node name="Button6" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Unlock"
+
+[node name="Button" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Sand"
+
+[node name="Button2" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Stone"
+
+[node name="Button3" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Water"
+
+[node name="Button4" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "CosmoP"
+
+[node name="Button5" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Empty"
+
+[node name="Button7" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Boskit
+"
+
+[node name="Button8" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Lime
+"
+
+[node name="Button9" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "StoneIron"
+
+[node name="Button10" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "StoneOil
+"
+
+[node name="Button11" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "WaterOil"
+
+[node name="Button15" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Blocked"
+
+[node name="HSeparator2" type="HSeparator" parent="ToolsPalit"]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="ToolsPalit"]
+layout_mode = 2
+
+[node name="Button12" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Iron
+"
+
+[node name="Button13" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Uran"
+
+[node name="Button14" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Oil
+"
+
+[node name="Control" type="Control" parent="ToolsPalit"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="ToolsPalit"]
+layout_mode = 2
+
+[node name="HSeparator4" type="HSeparator" parent="ToolsPalit"]
+layout_mode = 2
+
+[node name="SaveFile" type="FileDialog" parent="."]
+size = Vector2i(450, 300)
+access = 2
+filters = PackedStringArray("*.json")
+
+[node name="LoadFile" type="FileDialog" parent="."]
+title = "Open a File"
+size = Vector2i(450, 300)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.json")
+
+[node name="SetBorders" type="VBoxContainer" parent="."]
+offset_left = 966.0
+offset_top = 332.0
+offset_right = 1033.0
+offset_bottom = 387.0
+
+[node name="Postion" type="LineEdit" parent="SetBorders"]
+layout_mode = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="OptionButton" type="OptionButton" parent="SetBorders"]
+layout_mode = 2
+alignment = 1
+item_count = 20
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+popup/item_3/text = "3"
+popup/item_3/id = 3
+popup/item_4/text = "4"
+popup/item_4/id = 4
+popup/item_5/text = "5"
+popup/item_5/id = 5
+popup/item_6/text = "6"
+popup/item_6/id = 6
+popup/item_7/text = "1,2"
+popup/item_7/id = 7
+popup/item_8/text = "2,3"
+popup/item_8/id = 8
+popup/item_9/text = "3,4"
+popup/item_9/id = 9
+popup/item_10/text = "4,5"
+popup/item_10/id = 10
+popup/item_11/text = "5,6"
+popup/item_11/id = 11
+popup/item_12/text = "1,6"
+popup/item_12/id = 12
+popup/item_13/text = "1,2,3"
+popup/item_13/id = 13
+popup/item_14/text = "2,3,4"
+popup/item_14/id = 14
+popup/item_15/text = "3,4,5"
+popup/item_15/id = 15
+popup/item_16/text = "4,5,6"
+popup/item_16/id = 16
+popup/item_17/text = "1,5,6"
+popup/item_17/id = 17
+popup/item_18/text = "1,2,6"
+popup/item_18/id = 18
+popup/item_19/text = "All"
+popup/item_19/id = 19
+
+[node name="Button" type="Button" parent="SetBorders"]
+layout_mode = 2
+text = "Create Borders
+"
+
+[node name="Button2" type="Button" parent="SetBorders"]
+layout_mode = 2
+text = "Clean Borders"
+
+[connection signal="pressed" from="HB/Save" to="." method="OnSaveFile"]
+[connection signal="pressed" from="HB/Load" to="." method="OnLoadFile"]
+[connection signal="pressed" from="HB/Button" to="." method="CreateMap"]
+[connection signal="pressed" from="ToolsPalit/Button6" to="." method="Unselect"]
+[connection signal="pressed" from="ToolsPalit/Button" to="." method="SelectSand"]
+[connection signal="pressed" from="ToolsPalit/Button2" to="." method="SelectStone"]
+[connection signal="pressed" from="ToolsPalit/Button3" to="." method="SelectWater"]
+[connection signal="pressed" from="ToolsPalit/Button4" to="." method="SelectCosmo"]
+[connection signal="pressed" from="ToolsPalit/Button5" to="." method="SelectEmpty"]
+[connection signal="pressed" from="ToolsPalit/Button7" to="." method="SelectBoskit"]
+[connection signal="pressed" from="ToolsPalit/Button8" to="." method="SelectLim"]
+[connection signal="pressed" from="ToolsPalit/Button9" to="." method="SelectStoneIron"]
+[connection signal="pressed" from="ToolsPalit/Button10" to="." method="SelectStoneOil"]
+[connection signal="pressed" from="ToolsPalit/Button11" to="." method="SelectWaterOil"]
+[connection signal="pressed" from="ToolsPalit/Button15" to="." method="SelectBlocked"]
+[connection signal="pressed" from="ToolsPalit/Button12" to="." method="SelectIron"]
+[connection signal="pressed" from="ToolsPalit/Button13" to="." method="SelectUran"]
+[connection signal="pressed" from="ToolsPalit/Button14" to="." method="SelectOil"]
+[connection signal="file_selected" from="SaveFile" to="." method="SaveFile"]
+[connection signal="file_selected" from="LoadFile" to="." method="LoadFile"]
+[connection signal="pressed" from="SetBorders/Button" to="." method="OnSetBorders"]
+[connection signal="pressed" from="SetBorders/Button2" to="." method="OnCleanBorders"]

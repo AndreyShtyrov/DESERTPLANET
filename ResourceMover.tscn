@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://cm7qgjxn1y2rl"]
+
+[ext_resource type="Script" path="res://ResourceMover.cs" id="1_674it"]
+[ext_resource type="Texture2D" uid="uid://fql8lhufat7g" path="res://source/Assets/ResArrowUp.png" id="2_7tm6g"]
+[ext_resource type="Texture2D" uid="uid://covt6tlqo3tpc" path="res://source/Assets/ResArrowDown.png" id="3_aep7q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_15duo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wt374"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ksmrl"]
+
+[node name="ResourceMover" type="HBoxContainer"]
+alignment = 1
+script = ExtResource("1_674it")
+
+[node name="ResImage" type="TextureRect" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="BUp" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_7tm6g")
+
+[node name="Value" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(18, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_15duo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wt374")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_ksmrl")
+text = "1"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+caret_type = 1
+
+[node name="BDown" type="TextureButton" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("3_aep7q")
+
+[connection signal="pressed" from="VBoxContainer/BUp" to="." method="OnUpDown"]
+[connection signal="pressed" from="VBoxContainer/BDown" to="." method="OnDownDown"]

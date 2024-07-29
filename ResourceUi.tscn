@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmdgnm43iov7t"]
+
+[ext_resource type="Script" path="res://ResourceUi.cs" id="1_7o045"]
+
+[node name="ResourceUI" type="HBoxContainer"]
+script = ExtResource("1_7o045")
+
+[node name="ResourceList" type="VBoxContainer" parent="."]
+layout_mode = 2

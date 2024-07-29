@@ -1,0 +1,1738 @@
+[gd_scene load_steps=70 format=3 uid="uid://jugyy6wgr5cs"]
+
+[ext_resource type="Script" path="res://PlanetScene.cs" id="1_qgbts"]
+[ext_resource type="PackedScene" uid="uid://dkoyjt3n4lmnc" path="res://AbilityButton.tscn" id="2_1487e"]
+[ext_resource type="Texture2D" uid="uid://bb8bdwvt73asi" path="res://source/Assets/DesertPlanet.png" id="2_tb7yq"]
+[ext_resource type="Texture2D" uid="uid://ceeh2ybuf7i27" path="res://source/Assets/GroundSource.png" id="3_srjop"]
+[ext_resource type="Texture2D" uid="uid://bkaj4kln2fta3" path="res://source/Assets/TestCompany1.png" id="4_5up0u"]
+[ext_resource type="Texture2D" uid="uid://vw2tqyy142yo" path="res://source/Assets/BuildingCompany1.png" id="6_ti15g"]
+[ext_resource type="Texture2D" uid="uid://dn456acda5420" path="res://source/Assets/iron.png" id="7_2i6kr"]
+[ext_resource type="Texture2D" uid="uid://bpp33u1prgdyy" path="res://source/Assets/AnimatedTiles/AnimatedTiles.png" id="7_4m2tk"]
+[ext_resource type="Texture2D" uid="uid://scq6ovjo067i" path="res://source/Assets/Borders/Borders.png" id="8_kayfa"]
+[ext_resource type="Texture2D" uid="uid://clvtf5r7kjta5" path="res://source/Assets/ResourceIcons/Energy.png" id="8_xa04d"]
+[ext_resource type="Texture2D" uid="uid://2vqmutlexg8p" path="res://source/Assets/ResourceIcons/Plastic.png" id="9_23nc8"]
+[ext_resource type="Texture2D" uid="uid://cs100gmrv6iy5" path="res://source/Assets/ResourceIcons/Aliminium.png" id="10_44hh3"]
+[ext_resource type="Texture2D" uid="uid://yhl5wk2ujhau" path="res://source/Assets/ResourceIcons/Uran.png" id="11_1k86o"]
+[ext_resource type="Texture2D" uid="uid://bkgl8gii8jx0e" path="res://source/Assets/ResourceIcons/Cement.png" id="12_c717b"]
+[ext_resource type="Texture2D" uid="uid://i0d3lg2levca" path="res://source/Assets/ResourceIcons/iron.png" id="13_endgw"]
+[ext_resource type="Texture2D" uid="uid://s57v6o1136qa" path="res://source/Assets/ResourceIcons/oil.png" id="14_wboah"]
+[ext_resource type="Texture2D" uid="uid://4tpr4w4eggp0" path="res://source/Assets/ResourceIcons/Baskit.png" id="15_mbsg7"]
+[ext_resource type="Texture2D" uid="uid://cft3godxn8u2j" path="res://source/Assets/ResourceIcons/Glass.png" id="16_7ymfg"]
+[ext_resource type="Texture2D" uid="uid://677miw362km" path="res://source/Assets/ResourceIcons/Lime.png" id="17_uggac"]
+[ext_resource type="Script" path="res://MoveResource.cs" id="18_jp3ya"]
+[ext_resource type="Texture2D" uid="uid://cympr28hb1qv3" path="res://source/Assets/ResArrowDownSmall.png" id="18_pba01"]
+[ext_resource type="Texture2D" uid="uid://bb34vemhb35wx" path="res://source/Assets/ResArrowUpSmall.png" id="19_cegk6"]
+[ext_resource type="Script" path="res://SelectTarget.cs" id="21_cbial"]
+[ext_resource type="PackedScene" uid="uid://cm7qgjxn1y2rl" path="res://ResourceMover.tscn" id="23_6rjah"]
+[ext_resource type="Script" path="res://DecideRecipe.cs" id="23_108ym"]
+[ext_resource type="Script" path="res://StartGameResourceMover.cs" id="25_5ouci"]
+[ext_resource type="Script" path="res://DecideNotInvariantRecipe.cs" id="25_8uum3"]
+[ext_resource type="Texture2D" uid="uid://b1pq0s786b6ik" path="res://source/Assets/AnimatedTiles/empty.png" id="27_5lwci"]
+[ext_resource type="Texture2D" uid="uid://ccyc8tdqgdt2p" path="res://source/Assets/AnimatedTiles/purple.png" id="28_7uqpu"]
+[ext_resource type="Texture2D" uid="uid://bvl2scucorkkb" path="res://source/Assets/AnimatedTiles/blue.png" id="29_b01vr"]
+[ext_resource type="PackedScene" uid="uid://bvjefighmi5l" path="res://PathLine.tscn" id="30_7c17n"]
+[ext_resource type="Script" path="res://TransportResource.cs" id="32_f87dd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3pyf"]
+texture = ExtResource("2_tb7yq")
+margins = Vector2i(5, 137)
+texture_region_size = Vector2i(315, 270)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6flo"]
+texture = ExtResource("3_srjop")
+texture_region_size = Vector2i(315, 270)
+0:0/0 = 0
+1:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+3:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j1dw3"]
+texture = ExtResource("4_5up0u")
+margins = Vector2i(5, 138)
+texture_region_size = Vector2i(315, 270)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ns4gl"]
+texture = ExtResource("6_ti15g")
+margins = Vector2i(5, 137)
+texture_region_size = Vector2i(315, 270)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21hta"]
+texture = ExtResource("7_4m2tk")
+margins = Vector2i(2, 3)
+texture_region_size = Vector2i(315, 270)
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/0 = 0
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4wub"]
+texture = ExtResource("8_kayfa")
+margins = Vector2i(5, 137)
+texture_region_size = Vector2i(315, 270)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_afaeu"]
+tile_shape = 3
+tile_layout = 1
+tile_offset_axis = 1
+tile_size = Vector2i(315, 270)
+sources/0 = SubResource("TileSetAtlasSource_i3pyf")
+sources/3 = SubResource("TileSetAtlasSource_ns4gl")
+sources/4 = SubResource("TileSetAtlasSource_21hta")
+sources/1 = SubResource("TileSetAtlasSource_q6flo")
+sources/2 = SubResource("TileSetAtlasSource_j1dw3")
+sources/5 = SubResource("TileSetAtlasSource_u4wub")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bm5d7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8b2pb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s160h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mn744"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fbhiu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2omvr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iiym8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pa702"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_devd6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wnieh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fu5mv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lf67p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2gjxo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pxxjp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfgd5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phcbs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w6c8y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cduaq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppmt7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2ai4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_snwuh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wc3i0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ptfw0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gslwn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wtkw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_if3u7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wamct"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hqlfd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_abi2r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wnprd"]
+
+[node name="PlanetScene" type="Node2D"]
+script = ExtResource("1_qgbts")
+AbilityScene = ExtResource("2_1487e")
+
+[node name="PlanetField" type="TileMap" parent="."]
+position = Vector2(78, 120)
+scale = Vector2(0.4, 0.4)
+tile_set = SubResource("TileSet_afaeu")
+format = 2
+layer_0/name = "Ground"
+layer_1/name = "Building"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "Grs"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 2
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Selections"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 3
+layer_3/tile_data = PackedInt32Array()
+layer_4/name = "Borders"
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 1)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 4
+layer_4/tile_data = PackedInt32Array()
+layer_5/name = "AreaSelection"
+layer_5/enabled = true
+layer_5/modulate = Color(1, 1, 1, 1)
+layer_5/y_sort_enabled = false
+layer_5/y_sort_origin = 0
+layer_5/z_index = 5
+layer_5/tile_data = PackedInt32Array()
+layer_6/name = "Borders"
+layer_6/enabled = true
+layer_6/modulate = Color(1, 1, 1, 1)
+layer_6/y_sort_enabled = false
+layer_6/y_sort_origin = 0
+layer_6/z_index = 6
+layer_6/tile_data = PackedInt32Array()
+
+[node name="FileDialog" type="FileDialog" parent="."]
+
+[node name="UpToolBar" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LineEdit" type="LineEdit" parent="UpToolBar"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="BuildingRecipt" type="GridContainer" parent="."]
+offset_left = 1609.0
+offset_top = 18.0
+offset_right = 1649.0
+offset_bottom = 58.0
+columns = 2
+
+[node name="AbilityPanel" type="HBoxContainer" parent="."]
+offset_left = 1598.0
+offset_top = 558.0
+offset_right = 1687.0
+offset_bottom = 598.0
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1627.0
+offset_top = 981.0
+offset_right = 1705.0
+offset_bottom = 1012.0
+text = "End Turn"
+
+[node name="Window" type="Window" parent="."]
+position = Vector2i(215, 200)
+size = Vector2i(450, 300)
+visible = false
+borderless = true
+
+[node name="VB" type="VBoxContainer" parent="Window"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Window/VB"]
+layout_mode = 2
+text = "Resource"
+
+[node name="RVar1" type="HBoxContainer" parent="Window/VB"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/VB/RVar1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Window/VB/RVar1/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("7_2i6kr")
+
+[node name="OptionButton" type="LineEdit" parent="Window/VB/RVar1/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+
+[node name="RVar2" type="HBoxContainer" parent="Window/VB"]
+layout_mode = 2
+
+[node name="RBar" type="GridContainer" parent="."]
+offset_left = 404.0
+offset_top = 2.0
+offset_right = 444.0
+offset_bottom = 42.0
+columns = 5
+
+[node name="I1" type="HBoxContainer" parent="RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RBar/I1"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("8_xa04d")
+
+[node name="TextEdit" type="TextEdit" parent="RBar/I1"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bm5d7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8b2pb")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_s160h")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I2" type="HBoxContainer" parent="RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RBar/I2"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("9_23nc8")
+
+[node name="TextEdit" type="TextEdit" parent="RBar/I2"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mn744")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fbhiu")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_2omvr")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I3" type="HBoxContainer" parent="RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RBar/I3"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("10_44hh3")
+
+[node name="TextEdit" type="TextEdit" parent="RBar/I3"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iiym8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pa702")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_devd6")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I4" type="HBoxContainer" parent="RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RBar/I4"]
+layout_mode = 2
+texture = ExtResource("11_1k86o")
+
+[node name="TextEdit" type="TextEdit" parent="RBar/I4"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wnieh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fu5mv")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_lf67p")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I5" type="HBoxContainer" parent="RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RBar/I5"]
+layout_mode = 2
+texture = ExtResource("12_c717b")
+
+[node name="TextEdit" type="TextEdit" parent="RBar/I5"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2gjxo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pxxjp")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_kfgd5")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I6" type="HBoxContainer" parent="RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RBar/I6"]
+layout_mode = 2
+texture = ExtResource("13_endgw")
+
+[node name="TextEdit" type="TextEdit" parent="RBar/I6"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_phcbs")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w6c8y")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_cduaq")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I7" type="HBoxContainer" parent="RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RBar/I7"]
+layout_mode = 2
+texture = ExtResource("14_wboah")
+
+[node name="TextEdit" type="TextEdit" parent="RBar/I7"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ppmt7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t2ai4")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_snwuh")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I8" type="HBoxContainer" parent="RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RBar/I8"]
+layout_mode = 2
+texture = ExtResource("15_mbsg7")
+
+[node name="TextEdit" type="TextEdit" parent="RBar/I8"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wc3i0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ptfw0")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_gslwn")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I9" type="HBoxContainer" parent="RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RBar/I9"]
+layout_mode = 2
+texture = ExtResource("16_7ymfg")
+
+[node name="TextEdit" type="TextEdit" parent="RBar/I9"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6wtkw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_if3u7")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_wamct")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I10" type="HBoxContainer" parent="RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RBar/I10"]
+layout_mode = 2
+texture = ExtResource("17_uggac")
+
+[node name="TextEdit" type="TextEdit" parent="RBar/I10"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hqlfd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_abi2r")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_wnprd")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="MoveResource" type="Window" parent="."]
+position = Vector2i(239, 5)
+size = Vector2i(800, 300)
+visible = false
+borderless = true
+script = ExtResource("18_jp3ya")
+
+[node name="LineEdit" type="LineEdit" parent="MoveResource"]
+offset_top = 46.0
+offset_right = 120.0
+offset_bottom = 77.0
+mouse_filter = 2
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="LineEdit2" type="LineEdit" parent="MoveResource"]
+offset_top = 105.0
+offset_right = 120.0
+offset_bottom = 136.0
+mouse_filter = 2
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="Button4" type="Button" parent="MoveResource"]
+offset_left = 400.0
+offset_top = 150.0
+offset_right = 460.0
+offset_bottom = 181.0
+text = "Cancel"
+
+[node name="HB" type="HBoxContainer" parent="MoveResource"]
+layout_direction = 1
+offset_left = 122.0
+offset_right = 586.0
+offset_bottom = 139.0
+
+[node name="I1" type="VBoxContainer" parent="MoveResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoveResource/HB/I1"]
+layout_mode = 2
+texture = ExtResource("13_endgw")
+
+[node name="TextEdit" type="TextEdit" parent="MoveResource/HB/I1"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoveResource/HB/I1"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MoveResource/HB/I1/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="MoveResource/HB/I1/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="MoveResource/HB/I1"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I2" type="VBoxContainer" parent="MoveResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoveResource/HB/I2"]
+layout_mode = 2
+texture = ExtResource("9_23nc8")
+
+[node name="TextEdit" type="TextEdit" parent="MoveResource/HB/I2"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoveResource/HB/I2"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MoveResource/HB/I2/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="MoveResource/HB/I2/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="MoveResource/HB/I2"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I3" type="VBoxContainer" parent="MoveResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoveResource/HB/I3"]
+layout_mode = 2
+texture = ExtResource("16_7ymfg")
+
+[node name="TextEdit" type="TextEdit" parent="MoveResource/HB/I3"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoveResource/HB/I3"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MoveResource/HB/I3/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="MoveResource/HB/I3/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="MoveResource/HB/I3"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I8" type="VBoxContainer" parent="MoveResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoveResource/HB/I8"]
+layout_mode = 2
+texture = ExtResource("10_44hh3")
+
+[node name="TextEdit" type="TextEdit" parent="MoveResource/HB/I8"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoveResource/HB/I8"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MoveResource/HB/I8/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="MoveResource/HB/I8/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="MoveResource/HB/I8"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I4" type="VBoxContainer" parent="MoveResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoveResource/HB/I4"]
+layout_mode = 2
+texture = ExtResource("14_wboah")
+
+[node name="TextEdit" type="TextEdit" parent="MoveResource/HB/I4"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoveResource/HB/I4"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MoveResource/HB/I4/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="MoveResource/HB/I4/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="MoveResource/HB/I4"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I5" type="VBoxContainer" parent="MoveResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoveResource/HB/I5"]
+layout_mode = 2
+texture = ExtResource("11_1k86o")
+
+[node name="TextEdit" type="TextEdit" parent="MoveResource/HB/I5"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoveResource/HB/I5"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MoveResource/HB/I5/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="MoveResource/HB/I5/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="MoveResource/HB/I5"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I6" type="VBoxContainer" parent="MoveResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoveResource/HB/I6"]
+layout_mode = 2
+texture = ExtResource("12_c717b")
+
+[node name="TextEdit" type="TextEdit" parent="MoveResource/HB/I6"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoveResource/HB/I6"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MoveResource/HB/I6/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="MoveResource/HB/I6/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="MoveResource/HB/I6"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I7" type="VBoxContainer" parent="MoveResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoveResource/HB/I7"]
+layout_mode = 2
+texture = ExtResource("17_uggac")
+
+[node name="TextEdit" type="TextEdit" parent="MoveResource/HB/I7"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoveResource/HB/I7"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MoveResource/HB/I7/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="MoveResource/HB/I7/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="MoveResource/HB/I7"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I9" type="VBoxContainer" parent="MoveResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MoveResource/HB/I9"]
+layout_mode = 2
+texture = ExtResource("15_mbsg7")
+
+[node name="TextEdit" type="TextEdit" parent="MoveResource/HB/I9"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MoveResource/HB/I9"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MoveResource/HB/I9/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="MoveResource/HB/I9/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="MoveResource/HB/I9"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="Button" type="Button" parent="MoveResource"]
+offset_left = 600.0
+offset_top = 45.0
+offset_right = 677.0
+offset_bottom = 80.0
+text = "All Down"
+
+[node name="Button2" type="Button" parent="MoveResource"]
+offset_left = 600.0
+offset_top = 105.0
+offset_right = 662.0
+offset_bottom = 136.0
+text = "All   Up
+"
+
+[node name="Button3" type="Button" parent="MoveResource"]
+offset_left = 250.0
+offset_top = 150.0
+offset_right = 321.0
+offset_bottom = 181.0
+text = "Confirm
+"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 1605.0
+offset_top = 940.0
+offset_right = 1740.0
+offset_bottom = 971.0
+text = "Switch Resource
+"
+
+[node name="SelectTarget" type="Window" parent="."]
+position = Vector2i(300, 300)
+size = Vector2i(140, 300)
+visible = false
+borderless = true
+always_on_top = true
+script = ExtResource("21_cbial")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectTarget"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DecideRecipe" type="Window" parent="."]
+position = Vector2i(300, 300)
+size = Vector2i(400, 150)
+visible = false
+always_on_top = true
+script = ExtResource("23_108ym")
+ResourceButton = ExtResource("23_6rjah")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DecideRecipe"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 45.0
+
+[node name="Button" type="Button" parent="DecideRecipe"]
+offset_left = 100.0
+offset_top = 110.0
+offset_right = 171.0
+offset_bottom = 141.0
+text = "Confirm
+"
+
+[node name="DecideNotInvariantRecipe" type="Window" parent="."]
+position = Vector2i(300, 300)
+size = Vector2i(200, 150)
+visible = false
+script = ExtResource("25_8uum3")
+ResourceButton = ExtResource("23_6rjah")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DecideNotInvariantRecipe"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+
+[node name="Button" type="Button" parent="DecideNotInvariantRecipe"]
+offset_left = 100.0
+offset_top = 110.0
+offset_right = 171.0
+offset_bottom = 141.0
+text = "Confirm"
+
+[node name="StartGameResourceMover" type="Window" parent="."]
+position = Vector2i(1000, 100)
+size = Vector2i(800, 500)
+visible = false
+always_on_top = true
+script = ExtResource("25_5ouci")
+ResourceButtonScene = ExtResource("23_6rjah")
+
+[node name="VB" type="VBoxContainer" parent="StartGameResourceMover"]
+offset_left = 30.0
+offset_top = 100.0
+offset_right = 330.0
+offset_bottom = 600.0
+
+[node name="Line1" type="HBoxContainer" parent="StartGameResourceMover/VB"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="StartGameResourceMover/VB/Line1"]
+layout_mode = 2
+texture = ExtResource("27_5lwci")
+
+[node name="Line2" type="HBoxContainer" parent="StartGameResourceMover/VB"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="StartGameResourceMover/VB/Line2"]
+layout_mode = 2
+texture = ExtResource("28_7uqpu")
+
+[node name="Line3" type="HBoxContainer" parent="StartGameResourceMover/VB"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="StartGameResourceMover/VB/Line3"]
+layout_mode = 2
+texture = ExtResource("29_b01vr")
+
+[node name="Line4" type="HBoxContainer" parent="StartGameResourceMover/VB"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="StartGameResourceMover"]
+offset_left = 350.0
+offset_top = 450.0
+offset_right = 440.0
+offset_bottom = 490.0
+text = "Confirm"
+
+[node name="DebugShowArea" type="Button" parent="."]
+visible = false
+offset_left = 1611.0
+offset_top = 883.0
+offset_right = 1701.0
+offset_bottom = 914.0
+text = "Show Area"
+
+[node name="PathLine" parent="." instance=ExtResource("30_7c17n")]
+
+[node name="TransportResource" type="Window" parent="."]
+position = Vector2i(239, 5)
+size = Vector2i(800, 300)
+visible = false
+borderless = true
+script = ExtResource("32_f87dd")
+
+[node name="LineEdit" type="LineEdit" parent="TransportResource"]
+offset_left = 80.0
+offset_top = 46.0
+offset_right = 200.0
+offset_bottom = 77.0
+mouse_filter = 2
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="LineEdit2" type="LineEdit" parent="TransportResource"]
+offset_left = 80.0
+offset_top = 105.0
+offset_right = 200.0
+offset_bottom = 136.0
+mouse_filter = 2
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="Button4" type="Button" parent="TransportResource"]
+offset_left = 400.0
+offset_top = 150.0
+offset_right = 460.0
+offset_bottom = 181.0
+text = "Cancel"
+
+[node name="HB" type="HBoxContainer" parent="TransportResource"]
+layout_direction = 1
+offset_left = 202.0
+offset_right = 666.0
+offset_bottom = 139.0
+
+[node name="I1" type="VBoxContainer" parent="TransportResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TransportResource/HB/I1"]
+layout_mode = 2
+texture = ExtResource("13_endgw")
+
+[node name="TextEdit" type="TextEdit" parent="TransportResource/HB/I1"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TransportResource/HB/I1"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="TransportResource/HB/I1/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="TransportResource/HB/I1/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="TransportResource/HB/I1"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I2" type="VBoxContainer" parent="TransportResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TransportResource/HB/I2"]
+layout_mode = 2
+texture = ExtResource("9_23nc8")
+
+[node name="TextEdit" type="TextEdit" parent="TransportResource/HB/I2"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TransportResource/HB/I2"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="TransportResource/HB/I2/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="TransportResource/HB/I2/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="TransportResource/HB/I2"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I3" type="VBoxContainer" parent="TransportResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TransportResource/HB/I3"]
+layout_mode = 2
+texture = ExtResource("16_7ymfg")
+
+[node name="TextEdit" type="TextEdit" parent="TransportResource/HB/I3"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TransportResource/HB/I3"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="TransportResource/HB/I3/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="TransportResource/HB/I3/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="TransportResource/HB/I3"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I8" type="VBoxContainer" parent="TransportResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TransportResource/HB/I8"]
+layout_mode = 2
+texture = ExtResource("10_44hh3")
+
+[node name="TextEdit" type="TextEdit" parent="TransportResource/HB/I8"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TransportResource/HB/I8"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="TransportResource/HB/I8/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="TransportResource/HB/I8/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="TransportResource/HB/I8"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I4" type="VBoxContainer" parent="TransportResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TransportResource/HB/I4"]
+layout_mode = 2
+texture = ExtResource("14_wboah")
+
+[node name="TextEdit" type="TextEdit" parent="TransportResource/HB/I4"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TransportResource/HB/I4"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="TransportResource/HB/I4/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="TransportResource/HB/I4/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="TransportResource/HB/I4"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I5" type="VBoxContainer" parent="TransportResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TransportResource/HB/I5"]
+layout_mode = 2
+texture = ExtResource("11_1k86o")
+
+[node name="TextEdit" type="TextEdit" parent="TransportResource/HB/I5"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TransportResource/HB/I5"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="TransportResource/HB/I5/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="TransportResource/HB/I5/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="TransportResource/HB/I5"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I6" type="VBoxContainer" parent="TransportResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TransportResource/HB/I6"]
+layout_mode = 2
+texture = ExtResource("12_c717b")
+
+[node name="TextEdit" type="TextEdit" parent="TransportResource/HB/I6"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TransportResource/HB/I6"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="TransportResource/HB/I6/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="TransportResource/HB/I6/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="TransportResource/HB/I6"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I7" type="VBoxContainer" parent="TransportResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TransportResource/HB/I7"]
+layout_mode = 2
+texture = ExtResource("17_uggac")
+
+[node name="TextEdit" type="TextEdit" parent="TransportResource/HB/I7"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TransportResource/HB/I7"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="TransportResource/HB/I7/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="TransportResource/HB/I7/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="TransportResource/HB/I7"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="I9" type="VBoxContainer" parent="TransportResource/HB"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TransportResource/HB/I9"]
+layout_mode = 2
+texture = ExtResource("15_mbsg7")
+
+[node name="TextEdit" type="TextEdit" parent="TransportResource/HB/I9"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TransportResource/HB/I9"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="TransportResource/HB/I9/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("18_pba01")
+
+[node name="TextureButton2" type="TextureButton" parent="TransportResource/HB/I9/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_cegk6")
+
+[node name="TextEdit2" type="TextEdit" parent="TransportResource/HB/I9"]
+custom_minimum_size = Vector2(42, 35)
+layout_mode = 2
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+scroll_fit_content_height = true
+
+[node name="Button" type="Button" parent="TransportResource"]
+offset_left = 670.0
+offset_top = 45.0
+offset_right = 747.0
+offset_bottom = 80.0
+text = "All Down"
+
+[node name="Button2" type="Button" parent="TransportResource"]
+offset_left = 670.0
+offset_top = 105.0
+offset_right = 732.0
+offset_bottom = 136.0
+text = "All   Up
+"
+
+[node name="Button3" type="Button" parent="TransportResource"]
+offset_left = 250.0
+offset_top = 150.0
+offset_right = 321.0
+offset_bottom = 181.0
+text = "Confirm
+"
+
+[node name="TextureRect" type="TextureRect" parent="TransportResource"]
+texture_filter = 1
+offset_top = 70.0
+offset_right = 42.0
+offset_bottom = 112.0
+texture = ExtResource("8_xa04d")
+
+[node name="TextEdit" type="TextEdit" parent="TransportResource"]
+custom_minimum_size = Vector2(26, 24)
+offset_left = 60.0
+offset_top = 75.0
+offset_right = 86.0
+offset_bottom = 99.0
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bm5d7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8b2pb")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_s160h")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[connection signal="pressed" from="Button" to="." method="OnEndTurn"]
+[connection signal="pressed" from="MoveResource/Button4" to="MoveResource" method="OnCancel"]
+[connection signal="pressed" from="MoveResource/Button3" to="MoveResource" method="OnConfirm"]
+[connection signal="pressed" from="Button2" to="." method="OnMoveResource"]
+[connection signal="pressed" from="DecideRecipe/Button" to="DecideRecipe" method="OnConfirm"]
+[connection signal="pressed" from="DecideNotInvariantRecipe/Button" to="DecideNotInvariantRecipe" method="OnConfirm"]
+[connection signal="pressed" from="StartGameResourceMover/Button" to="StartGameResourceMover" method="OnConfirm"]
+[connection signal="pressed" from="DebugShowArea" to="." method="OnShowArea"]
+[connection signal="pressed" from="TransportResource/Button4" to="TransportResource" method="OnCancel"]
+[connection signal="pressed" from="TransportResource/Button3" to="TransportResource" method="OnConfirm"]

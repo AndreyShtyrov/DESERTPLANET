@@ -1,0 +1,20 @@
+{
+  "profiles": {
+    "DesertPlanet": {
+      "commandName": "Project"
+    },
+    "RunDP": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\Andronet\\Documents\\Godot_v4.1.1-stable_mono_win64\\Godot_v4.1.1-stable_mono_win64.exe",
+      "commandLineArgs": "--path . --verbose",
+      "workingDirectory": "C:\\Users\\Andronet\\source\\repos\\DP",
+      "nativeDebugging": true
+    },
+    "RunDPD": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\WorkPlace\\Desktop\\Godot_v4.1.1-stable_mono_win64\\Godot_v4.1.1-stable_mono_win64\\Godot_v4.1.1-stable_mono_win64.exe",
+      "commandLineArgs": "--path . --verbose",
+      "workingDirectory": "C:\\Users\\WorkPlace\\source\\repos\\DP"
+    }
+  }
+}
