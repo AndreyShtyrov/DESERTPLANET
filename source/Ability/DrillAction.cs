@@ -57,5 +57,6 @@ namespace DesertPlanet.source.Ability
             Unit = token;
             Name = "Dig";
         }
+
     }
 }

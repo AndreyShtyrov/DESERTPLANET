@@ -1,4 +1,5 @@
 ﻿using DesertPlanet.source.Buildings;
+using DesertPlanet.source.Companies.Projects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,15 @@ namespace DesertPlanet.source
 
         public int Id { get; }
 
-        public ResourceContainer Repos { get; }
+        public int Repos { get; set; }
 
+        public List<CompanyProject> Projects { get; }
         public int AmountStartHarvesters { get; set; } = 2;
+
+        public Player()
+        {
+            Projects = new List<CompanyProject>();
+
+        }
     }
 }

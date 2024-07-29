@@ -1,5 +1,6 @@
 ﻿using DesertPlanet.source.Ability;
 using DesertPlanet.source.Action;
+using DesertPlanet.source.Companies.Projects;
 using DesertPlanet.source.Field;
 using DesertPlanet.source.Interfaces;
 using Godot;
@@ -71,7 +72,15 @@ namespace DesertPlanet.source
             return result;
         }
 
-
+        public List<IAction> BuyProject(Player player, CompanyProject project)
+        {
+            var result = new List<IAction>();
+            if (player.Repos < project.Repo)
+                return result;
+            result.Add(new ChangeRepo(player.Id, project.Repo));
+            result.Add(new BuyProject(player.Id, project.Id));
+            return result;
+        }
         public List<IAction> CreateBuilding(int code, int x, int y, Player player)
         {
             if (Game.ActivePlayer != Game.Player)

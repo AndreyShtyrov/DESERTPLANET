@@ -1,6 +1,7 @@
 ﻿using DesertPlanet.source.Ability;
 using DesertPlanet.source.Ability.Constructs;
 using DesertPlanet.source.Buildings;
+using DesertPlanet.source.Companies.Projects;
 using DesertPlanet.source.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,8 @@ namespace DesertPlanet.source.Companies
 
         public int BuildingLevel = 3;
 
+        public List<CompanyProject> Projects { get; }
+
         public virtual PlanetResource GetAlignResource(ResourceType type)
         {
             return new PlanetResource(type, Player.Id);
@@ -36,12 +39,15 @@ namespace DesertPlanet.source.Companies
         {
             Name = name;
             Player = player;
+            Player.Repos = 2;
             Recepts = new Dictionary<int, BuildingRecipe>();
             AbilityRecepts = new Dictionary<string, AbilityRecipe>();
             StartResources = new List<PlanetResource>();
             Mode = mode;
+            Projects = new List<CompanyProject>();
             InitRecepts();
             InitStartResources();
+
         }
 
         internal virtual void InitStartResources()
@@ -58,8 +64,19 @@ namespace DesertPlanet.source.Companies
             StartResources.Add(new PlanetResource(ResourceType.Aliminium, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Uran, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Uran, Player.Id));
+
+            Projects.Add(new ManipulatorDrill());
         }
 
+
+        public CompanyProject GetCompanyProject(int id)
+        {
+            foreach (var project in Projects)
+            {
+                if (project.Id == id) return project;
+            }
+            return null;
+        }
         public void InitRecepts()
         {
             Recepts.Add(0, new ElectroMillRecept(Player));
@@ -102,7 +119,7 @@ namespace DesertPlanet.source.Companies
                 case 11: return new PowerStation(x, y, BuildingLevel, unitId, player);
                 case 12: return new ThermalPowerPlant(x, y, BuildingLevel, unitId, player, Mode);
                 case 13: return new Helicopter(x, y, BuildingLevel, unitId, player);
-                case 14: return new Manipulator(x, y, BuildingLevel, unitId, player);
+                case 14: return new Manipulator(x, y, BuildingLevel, unitId, player, Mode);
             }
             throw new NotImplementedException();
         }

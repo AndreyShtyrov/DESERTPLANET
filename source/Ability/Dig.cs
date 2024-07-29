@@ -14,7 +14,16 @@ namespace DesertPlanet.source.Ability
     {
         public override List<Vector2I> Area(GameMode mode)
         {
-            throw new NotImplementedException();
+            var result = new List<Vector2I>();
+            if (!NeedSelecTarget)
+                return new List<Vector2I>() { new Vector2I(Unit.X, Unit.Y) };
+            foreach (var point in mode.Map[Unit.X, Unit.Y].Neighbors)
+            {
+                var field = mode.Map[point.X, point.Y];
+                if (field is SandLime && field is SandBoskit)
+                    result.Add(point);
+            }
+            return result;
         }
 
         public override bool IsReadyToUse(GameMode mode)
@@ -35,7 +44,7 @@ namespace DesertPlanet.source.Ability
         public override List<IAction> Use(GameMode mode, Vector2I target)
         {
             var result = new List<IAction>();
-            var field = mode.Map[Unit.X, Unit.Y];
+            var field = mode.Map[target.X, target.Y];
             if (field.Resources.CountMinerals > 0)
             {
                 var type = new Nullable<ResourceType>();
@@ -76,6 +85,13 @@ namespace DesertPlanet.source.Ability
         }
 
         public Dig(IOwnedTokenWithAbilites token, int id): base(id, false)
+        {
+            Unit = token;
+            Name = "Dig";
+            AbilityPanelId = 0;
+        }
+
+        public Dig(IOwnedTokenWithAbilites token, int id, bool needSelectTarget) : base(id, needSelectTarget)
         {
             Unit = token;
             Name = "Dig";

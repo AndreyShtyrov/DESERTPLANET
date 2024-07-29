@@ -42,6 +42,7 @@ public partial class PlanetScene : Node2D
     private TextEdit BaskitText;
     private TextEdit GlassText;
     private TextEdit LimeText;
+    private TextEdit RepoAmount;
 
     private PathLine Path { get; set; }
     private SelectTarget SelectWindow { get; set; }
@@ -54,6 +55,8 @@ public partial class PlanetScene : Node2D
     private StartGameResourceMover StartGameResourceMoverWindow { get; set; }
 
     private TransportResource TransportResourceWindow { get; set; }
+
+    private ProjectMarket ProjectMarketWindow { get; set; }
     public override void _Ready()
 	{
         needUpdateResources = false;
@@ -69,6 +72,7 @@ public partial class PlanetScene : Node2D
         StartGameResourceMoverWindow = GetNode<StartGameResourceMover>("StartGameResourceMover");
         TransportResourceWindow = GetNode<TransportResource>("TransportResource");
         Path = GetNode<PathLine>("PathLine");
+        ProjectMarketWindow = GetNode<ProjectMarket>("ProjectMarket");
 
         InitMap("D://map.json");
         SetResBarOut();
@@ -87,6 +91,7 @@ public partial class PlanetScene : Node2D
         BaskitText = GetNode<TextEdit>("RBar/I8/TextEdit");
         GlassText = GetNode<TextEdit>("RBar/I9/TextEdit");
         LimeText = GetNode<TextEdit>("RBar/I10/TextEdit");
+        RepoAmount = GetNode<TextEdit>("RepoTolbar/I1/TextEdit");
     }
 
     public void DrawArea(List<Vector2I> area)
@@ -175,12 +180,15 @@ public partial class PlanetScene : Node2D
         if (GameMode != null)
         {
             string toOutput = "MP: " + tilePos.X + " " + tilePos.Y + " " + GameMode.StringState();
+
             var hex = GameMode.HexalTools.CubeToHex(tilePos.X - 6, tilePos.Y - 4);
             toOutput += " " + Selector.StringState + " H.P. " + hex.Q + " " + hex.R + " " + hex.S;
             if (Selector.UnitId > -1)
                 toOutput += " Un S.: " + Selector.UnitId;
             outputLine.Text =  toOutput;
         }
+        if (ProjectMarketWindow.Visible)
+            return;
 
         if (GameMode.State == GameState.ChooseStartResource && !StartGameResourceMoverWindow.Visible)
         {
@@ -282,6 +290,7 @@ public partial class PlanetScene : Node2D
         BaskitText.Text = Selector.Baskit.ToString();
         CementText.Text = Selector.Cement.ToString();
         LimeText.Text = Selector.Lime.ToString();
+        RepoAmount.Text = GameMode.Player.Repos.ToString();
     }
     public void ProceedInputData(int X, int Y, float globalX, float globalY)
     {
@@ -428,6 +437,7 @@ public partial class PlanetScene : Node2D
         Path.TileMap = tileMap;
         TransportResourceWindow.GameMode = GameMode;
         TransportResourceWindow.Selector = Selector;
+        ProjectMarketWindow.GameMode = GameMode;
     }
 
     public void AddAndPreloadAbilitiButtons()
@@ -596,6 +606,11 @@ public partial class PlanetScene : Node2D
                     units.Add(unit);
             SelectWindow.SetData(units, PreformOnMoveResource, true);
         }
+    }
+
+    public void OnShowProjectMarket()
+    {
+        ProjectMarketWindow.Show();
     }
 
     public void OnShowArea() => DebugFlagShowArea = !DebugFlagShowArea;
