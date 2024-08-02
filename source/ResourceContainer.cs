@@ -34,6 +34,7 @@ namespace DesertPlanet.source
 
         private List<PlanetResource> resources = new List<PlanetResource>();
 
+        [JsonIgnore]
         public PlanetResource this[int i]
         {
             get  { return resources[i]; }
@@ -180,6 +181,8 @@ namespace DesertPlanet.source
                 }
             return new Nullable<PlanetResource>();
         }
+
+        [JsonIgnore]
         public int Count { get { return resources.Count; } }
 
         public bool HasSubSeq(ResourceContainer other)
@@ -284,6 +287,7 @@ namespace DesertPlanet.source
            return false;
         }
 
+        [JsonIgnore]
         public int CountMinerals { get
             {
                 var res = 0;
@@ -412,4 +416,6 @@ namespace DesertPlanet.source
             writer.WriteStringValue(line);
         }
     }
+
+
 }

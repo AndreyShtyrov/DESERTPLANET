@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DesertPlanet.source.Action
@@ -37,6 +38,8 @@ namespace DesertPlanet.source.Action
                     field.Resources.Add(new PlanetResource(ResourceType.Energy, source.Owner.Id));
         }
 
+        [JsonConstructor]
+        public IncreaseEnergy() { }
         public IncreaseEnergy(int id, int energy): base()
         {
             SourceId = id;

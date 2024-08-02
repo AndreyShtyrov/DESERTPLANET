@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DesertPlanet.source.Action
@@ -32,6 +33,10 @@ namespace DesertPlanet.source.Action
             Map.NeedLoadAbilityGUI = true;
             Map.UpdateAbilitiesGuiTargets.Add(building.Id);
         }
+
+        [JsonConstructor]
+
+        public CreateBulding() { }
 
         public CreateBulding(int unitId, int x, int y, int code, Player player): base()
         {

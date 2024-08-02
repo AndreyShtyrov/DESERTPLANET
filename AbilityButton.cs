@@ -43,6 +43,15 @@ public partial class AbilityButton : Button
 		PostAction = postAction;
     }
 
+	public void Despose()
+	{
+        PostAction = null;
+        Ability = null;
+        Selector = null;
+        GameMode = null;
+        PostAction = null;
+    }
+
     public void OnPress()
 	{
 		if (Selector.AbilityId == Ability.Id)
@@ -61,6 +70,7 @@ public partial class AbilityButton : Button
 		{
 			GameMode.Logic.UseAbility(Ability);
 			Selector.DeselectUnit();
+			return;
 		}
 		GameMode.NeedDrawAbilityArea = true;
 		if (Ability.Name == "Move")

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DesertPlanet.source.Action
@@ -24,6 +25,9 @@ namespace DesertPlanet.source.Action
             field.Resources.Remove(new PlanetResource(Type, -1));
             Map.NeedRedraw = true;
         }
+
+        [JsonConstructor]
+        public DigResource() { }
 
         public DigResource(int x, int y, ResourceType type): base()
         {

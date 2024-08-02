@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DesertPlanet.source.Action
@@ -23,6 +24,8 @@ namespace DesertPlanet.source.Action
 
         public ResourceType Type2 { get; set; }
 
+        [JsonConstructor]
+        public IncomeResource() { }
         public IncomeResource(int unitId, int x, int y ,ResourceType type1, ResourceType type2): base()
         {
             UnitId = unitId;

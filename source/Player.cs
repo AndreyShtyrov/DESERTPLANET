@@ -20,10 +20,10 @@ namespace DesertPlanet.source
         public List<CompanyProject> Projects { get; }
         public int AmountStartHarvesters { get; set; } = 2;
 
-        public Player()
+        public Player(int id)
         {
             Projects = new List<CompanyProject>();
-
+            Id = id;
         }
     }
 }

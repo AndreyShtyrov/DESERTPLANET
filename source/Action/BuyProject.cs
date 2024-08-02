@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DesertPlanet.source.Action
@@ -24,6 +25,9 @@ namespace DesertPlanet.source.Action
             player.Projects.Add(project);
             project.IsSold = true;
         }
+
+        [JsonConstructor]
+        public BuyProject() { }
 
         public BuyProject(int PlayerId, int ProjectId)
         {

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DesertPlanet.source.Action
@@ -23,6 +24,8 @@ namespace DesertPlanet.source.Action
             unit.Counter.Refresh();
         }
 
+        [JsonConstructor]
+        public RefreshActionCounter() { }
         public RefreshActionCounter(IOwnedTokenWithAbilites unit)
         {
             UnitId = unit.Id;

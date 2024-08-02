@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DesertPlanet.source.Interfaces;
+using Newtonsoft.Json;
 
 namespace DesertPlanet.source.Action
 {
     public abstract class Action : IAction
     {
         private static GameMode map { get; set; }
+        [JsonIgnore]
         public GameMode Map { get; }
         public int Idx { get; set; }
 

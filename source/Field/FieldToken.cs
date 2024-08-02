@@ -158,6 +158,8 @@ namespace DesertPlanet.source.Field
             }
             throw new Exception("Not such Border type " + N);
         }
+
+        [JsonIgnore]
         public Vector2I TileShift
         {
             get
@@ -189,6 +191,7 @@ namespace DesertPlanet.source.Field
             }
         }
 
+        [JsonIgnore]
         public List<Vector2I> ConnectedFields
         {
             get
@@ -271,6 +274,7 @@ namespace DesertPlanet.source.Field
             }
         }
 
+        [JsonIgnore]
         public List<Vector2I> Neighbors
         {
             get

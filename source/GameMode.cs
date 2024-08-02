@@ -7,10 +7,15 @@ using DesertPlanet.source.Interfaces;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
 
 namespace DesertPlanet.source
 {
@@ -35,6 +40,7 @@ namespace DesertPlanet.source
         public Dictionary<int, Harvester> Harvesters { get; }
         public MapField Map { get; }
 
+        private MapField StartMap { get; }
         public ResourceContainer[,] Resources { get; }
         public int UnitId { get; set; }
         public ActionManager ActionManager { get; }
@@ -80,9 +86,35 @@ namespace DesertPlanet.source
             Companies.Add(Player.Id, new Company("base", Player, this));
             HexalTools = new CubeHexalTools();
             pathFields = new Dictionary<int, PathNode[,]>();
-
+            StartMap = Map.Copy();
         }
 
+        public GameMode(Player player, MapField map)
+        {
+            Player = player;
+            State = GameState.AwaitSytem;
+            Map = map;
+            Harvesters = new Dictionary<int, Harvester>();
+            Buildings = new Dictionary<int, Building>();
+            PlayerList = new List<Player>() { player };
+            ActionManager = new ActionManager(this);
+            UnitId = 0;
+            NeedRedraw = false;
+            Electosity = new ElectrosityGraph(this);
+            UpdateAbilitiesGuiTargets = new List<int>();
+            Resources = new ResourceContainer[Map.Horizontal, Map.Vertical];
+            for (int i = 0; i < Map.Horizontal; i++)
+                for (int j = 0; j < Map.Vertical; j++)
+                {
+                    Resources[i, j] = new ResourceContainer();
+                }
+            Logic = new GameLogic(this);
+            Companies = new Dictionary<int, Company>();
+            Companies.Add(Player.Id, new Company("base", Player, this));
+            HexalTools = new CubeHexalTools();
+            pathFields = new Dictionary<int, PathNode[,]>();
+            StartMap = Map.Copy();
+        }
         public void RebuildElectrisity()
         {
             RebuildElectrisityTask = new Task(() => { Electosity.Rebuild(); });
@@ -360,6 +392,46 @@ namespace DesertPlanet.source
             return result;
         }
 
+        public void Save(string file)
+        {
+            var saveGame = new SaveGame();
+            saveGame.MapFile = StartMap.Name;
+            saveGame.Actions = new List<IAction>();
+            saveGame.Player = Player.Id;
+            foreach (var action in ActionManager.PreviousStates)
+            {
+                saveGame.Actions.Add(action);
+            }
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(saveGame,
+                new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto
+                });
+            using (StreamWriter fw = new StreamWriter(file))
+                fw.WriteLine(json);
+        }
+
+        public static GameMode Load(string file)
+        {
+            string jsonLine = "";
+
+            using (StreamReader fs = new StreamReader(file))
+                jsonLine = fs.ReadToEnd();
+            var data = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveGame>(jsonLine, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+            var map = MapField.Load(data.MapFile);
+            var player = new Player(data.Player);
+            var result = new GameMode(player, map);
+            data = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveGame>(jsonLine, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+            result.ActionManager.ApplyActions(data.Actions);
+            return result;
+        }
+
         public string StringState()
         {
             var result = "";
@@ -389,6 +461,16 @@ namespace DesertPlanet.source
             result += " AM: " + ActionManager.ActionIdx;
             return result;
         }
+    }
+
+    public class SaveGame
+    {
+        public string MapFile { get; set; }
+        public string Name { get; set; }
+
+        public int Player { get; set; }
+        public List<IAction> Actions { get; set; }
+
     }
 
     public delegate void ResMoverButtonDown();

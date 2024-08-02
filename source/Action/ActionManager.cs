@@ -11,7 +11,7 @@ namespace DesertPlanet.source.Action
 {
     public class ActionManager
     {
-        private List<IAction> PreviousStates = new List<IAction>();
+        public List<IAction> PreviousStates = new List<IAction>();
         private List<IAction> CashedActions = new List<IAction>();
         private List<IAction> FullActions = new List<IAction>();
         public int ActionIdx => _ActionIdx;

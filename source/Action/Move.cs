@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DesertPlanet.source.Action
@@ -28,6 +29,8 @@ namespace DesertPlanet.source.Action
             Map.CleanPaths();
         }
 
+        [JsonConstructor]
+        public Move() { }
         public Move(int sourceId, int X, int Y): base()
         {
             SourceId = sourceId;

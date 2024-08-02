@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DesertPlanet.source.Action
@@ -27,6 +28,9 @@ namespace DesertPlanet.source.Action
             Map.UnitId = HarvesterId + 1;
         }
 
+        [JsonConstructor]
+
+        public CreateHarvester() { }
         public CreateHarvester(int harvesterId, int x, int y, Player player): base() { 
             HarvesterId = harvesterId;
             X = x;

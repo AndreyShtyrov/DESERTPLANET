@@ -17,6 +17,8 @@ public partial class PlanetScene : Node2D
     public PackedScene AbilityScene { get; set; }
 
     private static object _lock = new object();
+
+    private static object _loadLock = new object();
     private LineEdit outputLine { get; set; }
     private SimpleField[,] resFields { get; set; }
     private SimpleField[,] prevResFields { get; set; }
@@ -30,6 +32,8 @@ public partial class PlanetScene : Node2D
     public GameMode GameMode { get; set; }
 
     public bool IsInit = false;
+
+    public bool IsReady = false;
 
     private bool DebugFlagShowArea = false;
     private TextEdit EnergyText;
@@ -59,6 +63,7 @@ public partial class PlanetScene : Node2D
     private ProjectMarket ProjectMarketWindow { get; set; }
     public override void _Ready()
 	{
+        IsInit = false;
         needUpdateResources = false;
         prevResFields = null;
         outputLine = GetNode<LineEdit>("UpToolBar/LineEdit");
@@ -77,6 +82,7 @@ public partial class PlanetScene : Node2D
         InitMap("D://map.json");
         SetResBarOut();
         IsInit = true;
+        IsReady = true;
     }
 
     private void SetResBarOut()
@@ -166,6 +172,8 @@ public partial class PlanetScene : Node2D
 
     public override void _Process(double delta)
 	{
+        if (!IsReady)
+            return;
         if (Map == null)
             return;
         if (IsInit)
@@ -248,6 +256,10 @@ public partial class PlanetScene : Node2D
         }
         
         UpdateResourceBar();
+        if (Selector.State == SelectorState.SelectUnit && GameMode.NeedDrawAbilityArea)
+        {
+            GameMode.NeedDrawAbilityArea = false;
+        }
         if (GameMode.NeedDrawAbilityArea)
         {
             var ability = (GameMode.GetObjectById(Selector.UnitId) as IHasAbilities).GetAbilityById(Selector.AbilityId);
@@ -413,7 +425,7 @@ public partial class PlanetScene : Node2D
     public void InitMap(string path)
     {
         GD.Print("Init Map");
-        GameMode = new GameMode(new Player(), path);
+        GameMode = new GameMode(new Player(1), path);
         Map = GameMode.Map;
         LoadMap();
         InitResFieldsFromMap(Map);
@@ -554,7 +566,8 @@ public partial class PlanetScene : Node2D
                 var resField = new SimpleField();
                 foreach (var res in map[i, j].Resources)
                 {
-                    if (res.Type == ResourceType.Iron) resField.Iron++;
+                    if (res.Type == ResourceType.Iron) 
+                        resField.Iron++;
                     if (res.Type == ResourceType.Oil) resField.Oil++;
                     if (res.Type == ResourceType.Uran) resField.Uran++;
                 }
@@ -616,6 +629,69 @@ public partial class PlanetScene : Node2D
 
     public void OnShowArea() => DebugFlagShowArea = !DebugFlagShowArea;
 
+    public void OnSaveWindows() => GetNode<FileDialog>("MenuBar/SaveWindow").Visible = true;
+
+    public void OnSaveGame(string path)
+    {
+        GameMode.Save(path);
+    }
+
+    public void OnLoadGame(string path)
+    {
+        IsInit = true;
+        lock (_loadLock)
+        {
+            IsReady = false;
+            GameMode newGame = null;
+            try
+            {
+                newGame = GameMode.Load(path);
+            }
+            catch
+            {
+                GD.Print("Cannot load game");
+                return;
+            }
+            CleanMap();
+            GameMode = newGame;
+            Map = GameMode.Map;
+            foreach(var unit in PreloadAbilities.Values)
+                foreach (var ability in unit.Values)
+                    ability.Despose();
+            
+            PreloadAbilities.Clear();
+            LoadMap();
+            InitResFieldsFromMap(Map);
+            Selector = new SelectorTools(GameMode);
+            PreloadAbilities = new Dictionary<int, Dictionary<int, AbilityButton>>();
+
+            MoveResourceWindow.GameMode = GameMode;
+            MoveResourceWindow.Selector = Selector;
+            SelectWindow.Selector = Selector;
+            SelectReceptWindow.Selector = Selector;
+            SelectReceptWindow.GameMode = GameMode;
+            SelectRecept2Window.Selector = Selector;
+            SelectRecept2Window.GameMode = GameMode;
+            StartGameResourceMoverWindow.GameMode = GameMode;
+            Path.GameMode = GameMode;
+            Path.TileMap = tileMap;
+            TransportResourceWindow.GameMode = GameMode;
+            TransportResourceWindow.Selector = Selector;
+            ProjectMarketWindow.GameMode = GameMode;
+            prevResFields = null;
+            ProjectMarketWindow.SetData();
+            SetResBarOut();
+            GameMode.ActivePlayer = GameMode.Player;
+            GameMode.NeedRedraw = true;
+            needUpdateResources = true;
+            DrawResourceUI();
+            DrawDynamicObjects();
+            IsReady = true;
+        }
+    }
+
+    public void OnLoadWindows() => GetNode<FileDialog>("MenuBar/LoadWindow").Visible = true;
+
     private void PreformOnMoveResource(int id)
     {
         var unit = GameMode.GetObjectById(Selector.UnitId);
@@ -663,4 +739,5 @@ public partial class PlanetScene : Node2D
         }
         SelectRecept2Window.SetData(ability.Recipe, ability);
     }
+
 }

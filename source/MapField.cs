@@ -98,7 +98,7 @@ namespace DesertPlanet.source
                 Converters = { new ResourceContainerJsonConverter() }
             };
             var data = JsonSerializer.Deserialize<SaveMap>(jsonLine, options);
-            var result = new MapField(data.Name, data.Horizontal, data.Vertical);
+            var result = new MapField(file, data.Horizontal, data.Vertical);
             for (int i = 0; i < data.Horizontal; i++)
                 for (int j = 0; j < data.Vertical; j++)
                     result[i, j] = FieldToken.CastAsType(data.Fields[i][j]);
@@ -131,6 +131,14 @@ namespace DesertPlanet.source
                 fw.WriteLine(json);
         }
 
+        public MapField Copy()
+        {
+            var result = new MapField(Name, Horizontal, Vertical);
+            for (int i = 0; i < Horizontal; i++)
+                for (int j = 0; j < Vertical; j++)
+                    result[i, j] = FieldToken.CastAsType(this[i, j]);
+            return result;
+        }
     }
 
     public class SaveMap
