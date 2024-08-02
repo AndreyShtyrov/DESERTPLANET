@@ -15,13 +15,13 @@ namespace DesertPlanet.source.Action
 
         public override void Backward()
         {
-            var player = Map.GetPlayer(Player);
-            player.Repos = Repo + player.Repos;
+            throw new NotImplementedException();
         }
 
         public override void Forward()
         {
-            throw new NotImplementedException();
+            var player = Map.GetPlayer(Player);
+            player.Repos = Repo + player.Repos;
         }
 
         public ChangeRepo(int PlayerId, int RepoChange)

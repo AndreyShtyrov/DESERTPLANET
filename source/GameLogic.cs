@@ -77,8 +77,9 @@ namespace DesertPlanet.source
             var result = new List<IAction>();
             if (player.Repos < project.Repo)
                 return result;
-            result.Add(new ChangeRepo(player.Id, project.Repo));
+            result.Add(new ChangeRepo(player.Id, -project.Repo));
             result.Add(new BuyProject(player.Id, project.Id));
+            result.Add(new ApplySpecificProjectSettings(player, project));
             return result;
         }
         public List<IAction> CreateBuilding(int code, int x, int y, Player player)

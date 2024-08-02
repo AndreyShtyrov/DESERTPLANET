@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://jugyy6wgr5cs"]
+[gd_scene load_steps=75 format=3 uid="uid://jugyy6wgr5cs"]
 
 [ext_resource type="Script" path="res://PlanetScene.cs" id="1_qgbts"]
 [ext_resource type="PackedScene" uid="uid://dkoyjt3n4lmnc" path="res://AbilityButton.tscn" id="2_1487e"]
@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://dhpko60880soj" path="res://source/Assets/ResourceIcons/Repo.png" id="33_olthy"]
 [ext_resource type="Texture2D" uid="uid://cktf2rybmogsy" path="res://source/Assets/ResourceIcons/ProjectsMarket.png" id="33_yhblk"]
 [ext_resource type="Script" path="res://ProjectMarket.cs" id="35_wsh2p"]
+[ext_resource type="PackedScene" uid="uid://xrhcs5od2w7f" path="res://ProjectFile.tscn" id="36_l8cru"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3pyf"]
 texture = ExtResource("2_tb7yq")
@@ -1770,9 +1771,11 @@ middle_mouse_paste_enabled = false
 scroll_past_end_of_file = true
 
 [node name="ProjectMarket" type="Window" parent="."]
-position = Vector2i(100, 200)
+position = Vector2i(0, 36)
 size = Vector2i(1200, 800)
+visible = false
 script = ExtResource("35_wsh2p")
+ProjectCardTemplate = ExtResource("36_l8cru")
 
 [node name="Projects" type="GridContainer" parent="ProjectMarket"]
 offset_right = 40.0
@@ -1789,3 +1792,5 @@ columns = 4
 [connection signal="pressed" from="DebugShowArea" to="." method="OnShowArea"]
 [connection signal="pressed" from="TransportResource/Button4" to="TransportResource" method="OnCancel"]
 [connection signal="pressed" from="TransportResource/Button3" to="TransportResource" method="OnConfirm"]
+[connection signal="pressed" from="RepoTolbar/TextureButton" to="." method="OnShowProjectMarket"]
+[connection signal="close_requested" from="ProjectMarket" to="ProjectMarket" method="OnExiteClick"]

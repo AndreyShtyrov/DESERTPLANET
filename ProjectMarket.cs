@@ -1,6 +1,5 @@
 using DesertPlanet.source;
 using Godot;
-using Godot.Collections;
 using System;
 using System.Collections.Generic;
 
@@ -10,24 +9,18 @@ public partial class ProjectMarket : Window
 
 	[Export]
 	public PackedScene ProjectCardTemplate { get; set; }
-	public List<ProjectFile> ProjectCards { get; set; }
+	public Dictionary<int, ProjectFile> ProjectCards { get; set; }
 
 	public GameMode GameMode { get; set; }
 	private GridContainer ProjectsGrid { get; set; }
 	public override void _Ready()
 	{
 		ProjectsGrid = GetNode<GridContainer>("Projects");
-		ProjectCards = new List<ProjectFile>();
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+		ProjectCards = new Dictionary<int, ProjectFile>();
 	}
 
 	public void Update()
 	{
-        ProjectCards.Clear();
 		var projects = GameMode.GetCompany(GameMode.Player.Id).Projects;
         for (int i = 0; i < ProjectCards.Count; i++)
         {
@@ -40,7 +33,7 @@ public partial class ProjectMarket : Window
 
 	public void SetData()
 	{
-		foreach(var project in ProjectCards)
+		foreach(var project in ProjectCards.Values)
 		{
 			project.BuyProject -= BuyProject;
 		}
@@ -57,11 +50,18 @@ public partial class ProjectMarket : Window
 
 	private void BuyProject(int i)
 	{
+		if (GameMode.State == GameState.Deploy || GameMode.State == GameState.AwaitPlayers || GameMode.State == GameState.ChooseStartResource)
+			return;
 		var player = GameMode.Player;
 		var actions = GameMode.Logic.BuyProject(player, ProjectCards[i].Data);
 		if (actions.Count == 0)
 			return;
 		GameMode.ActionManager.ApplyActions(actions);
 		Update();
+	}
+
+	public void OnExiteClick()
+	{
+		Visible = false;
 	}
 }

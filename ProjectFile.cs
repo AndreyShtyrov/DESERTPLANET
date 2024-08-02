@@ -14,11 +14,16 @@ public partial class ProjectFile : Control
 
 	public override void _Ready()
 	{
-		GetNode<TextureRect>("VBoxContainer/HBoxContainer/ProjectImage").Texture = Data.Texture;
-		GetNode<TextEdit>("VBoxContainer/HBoxContainer/Container/I1/TextEdit").Text = Data.Repo.ToString();
-		GetNode<TextEdit>("VBoxContainer/Description").Text = Data.Description;
-		BuyButton = GetNode<Button>("VBoxContainer/Button");
+		GetNode<TextureRect>("Container/VBoxContainer/HBoxContainer/ProjectImage").Texture = Data.Texture;
+		GetNode<TextEdit>("Container/VBoxContainer/HBoxContainer/Container/I1/TextEdit").Text = Data.Repo.ToString();
+		GetNode<TextEdit>("Container/VBoxContainer/Description").Text = Data.Description;
+		BuyButton = GetNode<Button>("Container/VBoxContainer/Button");
 
+	}
+
+	public void OnClick()
+	{
+		BuyProject?.Invoke(-1);
 	}
 
 }

@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://xrhcs5od2w7f"]
+[gd_scene load_steps=8 format=3 uid="uid://xrhcs5od2w7f"]
 
 [ext_resource type="Script" path="res://ProjectFile.cs" id="1_q2rjd"]
 [ext_resource type="Texture2D" uid="uid://dhpko60880soj" path="res://source/Assets/ResourceIcons/Repo.png" id="1_t7rhr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ybr67"]
 
 [sub_resource type="SystemFont" id="SystemFont_4ge66"]
 msdf_pixel_range = 19
@@ -17,31 +19,36 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_q2rjd")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 250.0
-offset_bottom = 300.0
+[node name="Container" type="PanelContainer" parent="."]
+material = SubResource("CanvasItemMaterial_ybr67")
+layout_mode = 0
+offset_right = 249.0
+offset_bottom = 255.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
 layout_mode = 2
 
-[node name="ProjectImage" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(128, 128)
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/VBoxContainer"]
 layout_mode = 2
 
-[node name="Container" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="ProjectImage" type="TextureRect" parent="Container/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 98)
+layout_mode = 2
+
+[node name="Container" type="PanelContainer" parent="Container/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="I1" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Container"]
+[node name="I1" type="HBoxContainer" parent="Container/VBoxContainer/HBoxContainer/Container"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Container/I1"]
+[node name="TextureRect" type="TextureRect" parent="Container/VBoxContainer/HBoxContainer/Container/I1"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("1_t7rhr")
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/Container/I1"]
+[node name="TextEdit" type="TextEdit" parent="Container/VBoxContainer/HBoxContainer/Container/I1"]
 custom_minimum_size = Vector2(26, 24)
 layout_mode = 2
 size_flags_vertical = 4
@@ -61,19 +68,27 @@ virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
 scroll_past_end_of_file = true
 
-[node name="Description" type="LineEdit" parent="VBoxContainer"]
+[node name="Description" type="TextEdit" parent="Container/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
+text = "None"
+placeholder_text = "None
+"
 editable = false
 context_menu_enabled = false
-virtual_keyboard_enabled = false
 shortcut_keys_enabled = false
-middle_mouse_paste_enabled = false
 selecting_enabled = false
 deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Buy"
+
+[connection signal="pressed" from="Container/VBoxContainer/Button" to="." method="OnClick"]

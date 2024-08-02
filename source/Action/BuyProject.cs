@@ -13,15 +13,16 @@ namespace DesertPlanet.source.Action
         public int Project { get; set; }
         public override void Backward()
         {
-            var project = Map.GetCompany(Player).GetCompanyProject(Project);
-            var player = Map.GetPlayer(Player);
-            player.Projects.Add(project);
-            project.IsSold = true;
+            throw new NotImplementedException();
         }
 
         public override void Forward()
         {
-            throw new NotImplementedException();
+
+            var project = Map.GetCompany(Player).GetCompanyProject(Project);
+            var player = Map.GetPlayer(Player);
+            player.Projects.Add(project);
+            project.IsSold = true;
         }
 
         public BuyProject(int PlayerId, int ProjectId)

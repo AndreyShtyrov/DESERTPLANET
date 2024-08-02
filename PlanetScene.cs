@@ -438,6 +438,7 @@ public partial class PlanetScene : Node2D
         TransportResourceWindow.GameMode = GameMode;
         TransportResourceWindow.Selector = Selector;
         ProjectMarketWindow.GameMode = GameMode;
+        ProjectMarketWindow.SetData();
     }
 
     public void AddAndPreloadAbilitiButtons()
