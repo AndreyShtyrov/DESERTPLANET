@@ -64,6 +64,7 @@ namespace DesertPlanet.source.Ability
                 result.Add(new IncomeResource(token, res.Type, res.Alternative, Unit.Owner));
             for (int i = 0; i < ConversionFabric; i++)
                 result.Add(new IncomeResource(token, res.Type, res.Alternative, Unit.Owner));
+            result.Add(new ForceUpdateUI(true, false));
             return result;
         }
 

@@ -36,6 +36,7 @@ namespace DesertPlanet.source.Action
             else
                 for(int i = 0; i < Energy; i++)
                     field.Resources.Add(new PlanetResource(ResourceType.Energy, source.Owner.Id));
+            Map.NeedLoadAbilityGUI = true;
         }
 
         [JsonConstructor]

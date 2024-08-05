@@ -69,6 +69,7 @@ namespace DesertPlanet.source
             var result = new List<IAction>() { new CreateHarvester(Game.UnitId, x, y, player) };
             result.Add(new RemoveStartHarvester(player.Id));
             Game.UnitId++;
+            result.Add(new ForceUpdateUI(true, false));
             return result;
         }
 

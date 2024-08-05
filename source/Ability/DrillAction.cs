@@ -49,6 +49,7 @@ namespace DesertPlanet.source.Ability
                 result.Add(new IncomeResource(token, res.Type, res.Alternative, Unit.Owner));
             }
             result.AddRange(base.Use(mode, target));
+            result.Add(new ForceUpdateUI(true, false));
             return result;
         }
 

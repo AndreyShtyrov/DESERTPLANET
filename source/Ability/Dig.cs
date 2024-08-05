@@ -81,6 +81,7 @@ namespace DesertPlanet.source.Ability
                 }
             }
             result.AddRange(base.Use(mode, target));
+            result.Add(new ForceUpdateUI(true, false));
             return result;
         }
 

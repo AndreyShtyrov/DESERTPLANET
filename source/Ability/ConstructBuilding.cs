@@ -127,6 +127,7 @@ namespace DesertPlanet.source.Ability
             {
                 var rs = mode.GetCompany(Unit.Owner.Id).GetAlignResource(res.Type);
                 result.Add(new SpendResource(Unit.Id, Unit.X, Unit.Y, rs.Type, rs.Alternative));
+                result.Add(new ForceUpdateUI(true, false));
             }
             return result;
         }

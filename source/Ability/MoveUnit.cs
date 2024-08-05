@@ -30,6 +30,7 @@ namespace DesertPlanet.source.Ability
                 return new List<IAction>();
             var result = new List<IAction> { new Move(Unit.Id, target.X, target.Y) };
             result.AddRange(base.Use(mode, target));
+            result.Add(new ForceUpdateUI(true, true));
             return result;
         }
          

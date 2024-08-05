@@ -33,6 +33,7 @@ namespace DesertPlanet.source.Ability
                 }
             }
             result.Add(new IncreaseEnergy(Unit.Id, 6));
+            result.Add(new ForceUpdateUI(true, false));
             return result;
         }
     }
