@@ -63,7 +63,7 @@ namespace DesertPlanet.source.Action
                     PreviousStates.Add(action);
                 }
             }
-            GameMode.TriggerUpdateActions();
+            //GameMode.TriggerUpdateActions();
         }
 
         public List<IAction> GetMissedActions(int clientActionIndx)

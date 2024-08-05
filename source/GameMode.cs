@@ -131,6 +131,8 @@ namespace DesertPlanet.source
 
         public void RebuildContainers()
         {
+            if (RebuildContainersTask != null)
+                RebuildContainersTask.Wait();
             RebuildContainersTask = new Task(() => { UpdateContainers(); });
             RebuildContainersTask.Start();
         }
@@ -162,8 +164,17 @@ namespace DesertPlanet.source
             for (int i = 0; i < Map.Horizontal; i++)
                 for (int j = 0;  j < Map.Vertical; j++)
                 {
-                    Resources[i, j].Clean();
-                    Resources[i, j].AddRange(Map[i, j].Resources);
+                    
+                    try
+                    {
+                        Resources[i, j].Clean();
+                        Resources[i, j].AddRange(Map[i, j].Resources);
+                    }
+                    catch
+                    {
+                        GD.Print(i, j);
+                    }
+                    
                     if (units[i, j] == null)
                         continue;
                     foreach (var resource in units[i, j])

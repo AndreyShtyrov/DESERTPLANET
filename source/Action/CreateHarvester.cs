@@ -12,7 +12,7 @@ namespace DesertPlanet.source.Action
         public int HarvesterId { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public Player Player { get; set; }
+        public int PlayerId { get; set; }
         public override void Backward()
         {
             throw new NotImplementedException();
@@ -20,7 +20,8 @@ namespace DesertPlanet.source.Action
 
         public override void Forward()
         {
-            Map.Harvesters.Add(HarvesterId, new Harvester(HarvesterId, X, Y, Player, Map.GetCompany(Player.Id)));
+            var player = Map.GetPlayer(PlayerId);
+            Map.Harvesters.Add(HarvesterId, new Harvester(HarvesterId, X, Y, player, Map.GetCompany(PlayerId)));
             Map.NeedRedraw = true;
             Map.NeedLoadAbilityGUI = true;
             Map.NeedLoadAbilityGUI = true;
@@ -35,7 +36,7 @@ namespace DesertPlanet.source.Action
             HarvesterId = harvesterId;
             X = x;
             Y = y;
-            Player = player;
+            PlayerId = player.Id;
         }
     }
 }

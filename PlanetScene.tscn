@@ -1813,6 +1813,10 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.json")
 
+[node name="Button" type="Button" parent="MenuBar"]
+layout_mode = 2
+text = "Sync"
+
 [connection signal="pressed" from="Button" to="." method="OnEndTurn"]
 [connection signal="pressed" from="MoveResource/Button4" to="MoveResource" method="OnCancel"]
 [connection signal="pressed" from="MoveResource/Button3" to="MoveResource" method="OnConfirm"]
@@ -1829,3 +1833,4 @@ filters = PackedStringArray("*.json")
 [connection signal="pressed" from="MenuBar/LoadButton" to="." method="OnLoadWindows"]
 [connection signal="file_selected" from="MenuBar/SaveWindow" to="." method="OnSaveGame"]
 [connection signal="file_selected" from="MenuBar/LoadWindow" to="." method="OnLoadGame"]
+[connection signal="pressed" from="MenuBar/Button" to="." method="BroadCastMapChange"]

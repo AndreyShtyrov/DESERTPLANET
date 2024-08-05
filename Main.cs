@@ -10,7 +10,7 @@ public partial class Main : Node2D
     {
 		var player = new Player(1);
         var data = new ProgramData();
-		data.Players.Add(0, new Player(1));
+		data.Players.Add(0, player);
 		data.Companies = new Dictionary<int, string> { { 1, "base" } };
 		data.CurrentPlayer = player;
     }
