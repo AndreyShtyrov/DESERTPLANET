@@ -78,8 +78,7 @@ public partial class PlanetScene : Node2D
         TransportResourceWindow = GetNode<TransportResource>("TransportResource");
         Path = GetNode<PathLine>("PathLine");
         ProjectMarketWindow = GetNode<ProjectMarket>("ProjectMarket");
-
-        InitMap("D://map.json");
+        InitMap(ProjectSettings.GlobalizePath("res://Maps/") + "/map1.json");
         SetResBarOut();
         IsInit = true;
         IsReady = true;
@@ -425,7 +424,9 @@ public partial class PlanetScene : Node2D
     public void InitMap(string path)
     {
         GD.Print("Init Map");
-        GameMode = new GameMode(new Player(1), path);
+        var players = new List<Player> { new Player(1) };
+        var companies = new Dictionary<int, string> { { 1, "base" } };
+        GameMode = new GameMode(players, companies, players[0], path);
         Map = GameMode.Map;
         LoadMap();
         InitResFieldsFromMap(Map);

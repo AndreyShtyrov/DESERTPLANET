@@ -1,0 +1,1815 @@
+{
+  "Fields": [
+    [
+      {
+        "X": 0,
+        "Y": 0,
+        "Name": "Empty",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 0,
+        "Y": 1,
+        "Name": "SandLime",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 0,
+        "Y": 2,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 0,
+        "Y": 3,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 0,
+        "Y": 4,
+        "Name": "Sand",
+        "BlockSeds": 4,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 0,
+        "Y": 5,
+        "Name": "Stone",
+        "BlockSeds": 7,
+        "Resources": "RT*0*8*-1|RT*0*8*-1|RT*0*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 0,
+        "Y": 6,
+        "Name": "Stone",
+        "BlockSeds": 0,
+        "Resources": "RT*0*8*-1|RT*0*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 0,
+        "Y": 7,
+        "Name": "Empty",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      }
+    ],
+    [
+      {
+        "X": 1,
+        "Y": 0,
+        "Name": "Empty",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 1,
+        "Y": 1,
+        "Name": "Stone",
+        "BlockSeds": 0,
+        "Resources": "RT*0*8*-1|RT*0*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 1,
+        "Y": 2,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 1,
+        "Y": 3,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "RT*2*8*-1|RT*2*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 1,
+        "Y": 4,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 1,
+        "Y": 5,
+        "Name": "Sand",
+        "BlockSeds": 10,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 1,
+        "Y": 6,
+        "Name": "Stone",
+        "BlockSeds": 1,
+        "Resources": "RT*0*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 1,
+        "Y": 7,
+        "Name": "Stone",
+        "BlockSeds": 0,
+        "Resources": "RT*0*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      }
+    ],
+    [
+      {
+        "X": 2,
+        "Y": 0,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 2,
+        "Y": 1,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 2,
+        "Y": 2,
+        "Name": "StoneIron",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 2,
+        "Y": 3,
+        "Name": "StoneIron",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 2,
+        "Y": 4,
+        "Name": "SandLime",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 2,
+        "Y": 5,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 2,
+        "Y": 6,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "RT*2*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 2,
+        "Y": 7,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      }
+    ],
+    [
+      {
+        "X": 3,
+        "Y": 0,
+        "Name": "Empty",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 3,
+        "Y": 1,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 3,
+        "Y": 2,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 3,
+        "Y": 3,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 3,
+        "Y": 4,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 3,
+        "Y": 5,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 3,
+        "Y": 6,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "RT*2*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 3,
+        "Y": 7,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      }
+    ],
+    [
+      {
+        "X": 4,
+        "Y": 0,
+        "Name": "Stone",
+        "BlockSeds": 0,
+        "Resources": "RT*0*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 4,
+        "Y": 1,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 4,
+        "Y": 2,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 4,
+        "Y": 3,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 4,
+        "Y": 4,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 4,
+        "Y": 5,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 4,
+        "Y": 6,
+        "Name": "SandBoskit",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 4,
+        "Y": 7,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      }
+    ],
+    [
+      {
+        "X": 5,
+        "Y": 0,
+        "Name": "Empty",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 5,
+        "Y": 1,
+        "Name": "Stone",
+        "BlockSeds": 0,
+        "Resources": "RT*0*8*-1|RT*0*8*-1|RT*0*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 5,
+        "Y": 2,
+        "Name": "Stone",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 5,
+        "Y": 3,
+        "Name": "SandLime",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 5,
+        "Y": 4,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 5,
+        "Y": 5,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "RT*2*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 5,
+        "Y": 6,
+        "Name": "Stone",
+        "BlockSeds": 0,
+        "Resources": "RT*0*8*-1|RT*0*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 5,
+        "Y": 7,
+        "Name": "Sand",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      }
+    ],
+    [
+      {
+        "X": 6,
+        "Y": 0,
+        "Name": "Water",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 6,
+        "Y": 1,
+        "Name": "WaterOil",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 6,
+        "Y": 2,
+        "Name": "Water",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 6,
+        "Y": 3,
+        "Name": "Water",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 6,
+        "Y": 4,
+        "Name": "Stone",
+        "BlockSeds": 9,
+        "Resources": "RT*0*8*-1|RT*0*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 6,
+        "Y": 5,
+        "Name": "Sand",
+        "BlockSeds": 1,
+        "Resources": "RT*2*8*-1|RT*2*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 6,
+        "Y": 6,
+        "Name": "SandBoskit",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 6,
+        "Y": 7,
+        "Name": "Stone",
+        "BlockSeds": 0,
+        "Resources": "RT*0*8*-1|RT*0*8*-1",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      }
+    ],
+    [
+      {
+        "X": 7,
+        "Y": 0,
+        "Name": "Empty",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 7,
+        "Y": 1,
+        "Name": "Water",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 7,
+        "Y": 2,
+        "Name": "Water",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 7,
+        "Y": 3,
+        "Name": "Water",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 7,
+        "Y": 4,
+        "Name": "Water",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 7,
+        "Y": 5,
+        "Name": "Water",
+        "BlockSeds": 6,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 7,
+        "Y": 6,
+        "Name": "StaticCosmoport",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 7,
+        "Y": 7,
+        "Name": "SandLime",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      }
+    ],
+    [
+      {
+        "X": 8,
+        "Y": 0,
+        "Name": "Empty",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 8,
+        "Y": 1,
+        "Name": "Water",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 8,
+        "Y": 2,
+        "Name": "Water",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 8,
+        "Y": 3,
+        "Name": "WaterOil",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 8,
+        "Y": 4,
+        "Name": "Water",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 8,
+        "Y": 5,
+        "Name": "Water",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 8,
+        "Y": 6,
+        "Name": "StaticCosmoport",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      },
+      {
+        "X": 8,
+        "Y": 7,
+        "Name": "Empty",
+        "BlockSeds": 0,
+        "Resources": "",
+        "TileShift": {},
+        "ConnectedFields": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "Neighbors": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "BorderTileShift": {}
+      }
+    ]
+  ],
+  "Vertical": 8,
+  "Horizontal": 9,
+  "Name": "NewMap"
+}

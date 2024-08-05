@@ -15,10 +15,15 @@ offset_bottom = 247.0
 layout_mode = 2
 text = "Play"
 
+[node name="Button3" type="Button" parent="VBC"]
+layout_mode = 2
+text = "Network"
+
 [node name="Button" type="Button" parent="VBC"]
 layout_mode = 2
 text = "Redactor
 "
 
 [connection signal="pressed" from="VBC/Button2" to="." method="SelectPlay"]
+[connection signal="pressed" from="VBC/Button3" to="." method="SelectNetwork"]
 [connection signal="pressed" from="VBC/Button" to="." method="SelectRedactor"]

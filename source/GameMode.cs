@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
+using static Godot.Projection;
 
 namespace DesertPlanet.source
 {
@@ -35,7 +36,7 @@ namespace DesertPlanet.source
         public Dictionary<int, Building> Buildings { get; }
         public List<Player> PlayerList { get; }
 
-        public ElectrosityGraph Electosity { get; }
+        public ElectrosityGraph Electrosity { get; }
         public GameState State { get; set; }
         public Dictionary<int, Harvester> Harvesters { get; }
         public MapField Map { get; }
@@ -63,17 +64,17 @@ namespace DesertPlanet.source
         public CubeHexalTools HexalTools { get; set; }
         public List<int> UpdateAbilitiesGuiTargets { get; }
 
-        public GameMode(Player player, string path) {
-            Player = player;
+        public GameMode(List<Player> players, Dictionary<int, string> companies, Player currentPlayer, string path) {
+            Player = currentPlayer;
             State = GameState.AwaitSytem;
             Map = MapField.Load(path);
             Harvesters = new Dictionary<int, Harvester>();
             Buildings = new Dictionary<int, Building>();
-            PlayerList = new List<Player>() { player};
+            PlayerList = players;
             ActionManager = new ActionManager(this);
             UnitId = 0;
             NeedRedraw = false;
-            Electosity = new ElectrosityGraph(this);
+            Electrosity = new ElectrosityGraph(this);
             UpdateAbilitiesGuiTargets = new List<int>();
             Resources = new ResourceContainer[Map.Horizontal, Map.Vertical];
             for (int i = 0; i < Map.Horizontal; i++)
@@ -83,24 +84,25 @@ namespace DesertPlanet.source
                 }
             Logic = new GameLogic(this);
             Companies = new Dictionary<int, Company>();
-            Companies.Add(Player.Id, new Company("base", Player, this));
+            foreach (var player in players)
+                Companies.Add(player.Id, Company.CreateFromName("base", player, this));
             HexalTools = new CubeHexalTools();
             pathFields = new Dictionary<int, PathNode[,]>();
             StartMap = Map.Copy();
         }
 
-        public GameMode(Player player, MapField map)
+        public GameMode(List<Player> players, Dictionary<int, string> companies, Player currentPlayer, MapField map)
         {
-            Player = player;
+            Player = currentPlayer;
             State = GameState.AwaitSytem;
             Map = map;
             Harvesters = new Dictionary<int, Harvester>();
             Buildings = new Dictionary<int, Building>();
-            PlayerList = new List<Player>() { player };
+            PlayerList = players;
             ActionManager = new ActionManager(this);
             UnitId = 0;
             NeedRedraw = false;
-            Electosity = new ElectrosityGraph(this);
+            Electrosity = new ElectrosityGraph(this);
             UpdateAbilitiesGuiTargets = new List<int>();
             Resources = new ResourceContainer[Map.Horizontal, Map.Vertical];
             for (int i = 0; i < Map.Horizontal; i++)
@@ -110,14 +112,16 @@ namespace DesertPlanet.source
                 }
             Logic = new GameLogic(this);
             Companies = new Dictionary<int, Company>();
-            Companies.Add(Player.Id, new Company("base", Player, this));
+            foreach (var player in players)   
+               Companies.Add(player.Id, Company.CreateFromName("base", player, this));
             HexalTools = new CubeHexalTools();
             pathFields = new Dictionary<int, PathNode[,]>();
             StartMap = Map.Copy();
         }
+
         public void RebuildElectrisity()
         {
-            RebuildElectrisityTask = new Task(() => { Electosity.Rebuild(); });
+            RebuildElectrisityTask = new Task(() => { Electrosity.Rebuild(); });
             RebuildElectrisityTask.Start();
         }
 
@@ -170,7 +174,7 @@ namespace DesertPlanet.source
                 return new List<IHasResource>();
             }
             RebuildElectrisityTask.Wait();
-            return Electosity.GetEnergy(token);
+            return Electrosity.GetEnergy(token);
         }
         public List<IOwnedToken> GetTokensByPos(int X, int Y)
         {
@@ -398,6 +402,12 @@ namespace DesertPlanet.source
             saveGame.MapFile = StartMap.Name;
             saveGame.Actions = new List<IAction>();
             saveGame.Player = Player.Id;
+            saveGame.Players = new List<int>();
+            foreach (var player in PlayerList)
+                saveGame.Players.Add(player.Id);
+            saveGame.Companies = new Dictionary<int, string>();
+            foreach (var player in PlayerList)
+                saveGame.Companies.Add(player.Id, GetCompany(player).Name);
             foreach (var action in ActionManager.PreviousStates)
             {
                 saveGame.Actions.Add(action);
@@ -422,8 +432,20 @@ namespace DesertPlanet.source
                 TypeNameHandling = TypeNameHandling.Auto
             });
             var map = MapField.Load(data.MapFile);
-            var player = new Player(data.Player);
-            var result = new GameMode(player, map);
+            Player currentPlayer = null;
+            var players = new List<Player>();
+            foreach (var player in data.Players)
+                if (player == data.Player)
+                {
+                    var p = new Player(player);
+                    players.Add(p);
+                    currentPlayer = p;
+                }
+                else
+                {
+                    players.Add(new Player(player));
+                }
+            var result = new GameMode(players, data.Companies, currentPlayer, map);
             data = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveGame>(jsonLine, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto
@@ -468,6 +490,8 @@ namespace DesertPlanet.source
         public string MapFile { get; set; }
         public string Name { get; set; }
 
+        public Dictionary<int, string> Companies { get; set; }
+        public List<int> Players { get; set; }
         public int Player { get; set; }
         public List<IAction> Actions { get; set; }
 

@@ -155,5 +155,12 @@ namespace DesertPlanet.source.Companies
             result.Add(new ConstructManipulator(Recepts[14], unit, startId));
             return result;
         }
+
+        public static Company CreateFromName(string name, Player player, GameMode gameMode)
+        {
+            if (name == "base")
+                return new Company("base", player, gameMode);
+            throw new NotImplementedException("--------Unknown company name");
+        }
     }
 }

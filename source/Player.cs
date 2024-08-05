@@ -11,6 +11,7 @@ namespace DesertPlanet.source
 {
     public class Player
     {
+        public string Name { get; set; }
         public List<Building> Buildings { get; }
 
         public int Id { get; }
@@ -24,6 +25,30 @@ namespace DesertPlanet.source
         {
             Projects = new List<CompanyProject>();
             Id = id;
+        }
+
+        public Player(string name, int id)
+        {
+            Projects = new List<CompanyProject>();
+            Id = id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Player player)
+            {
+                if (player.Id == Id)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
         }
     }
 }
