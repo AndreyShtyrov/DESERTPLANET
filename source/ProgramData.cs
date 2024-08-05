@@ -13,6 +13,9 @@ namespace DesertPlanet.source
     public class ProgramData
     {
         [JsonIgnore]
+        public static ProgramData Data = null;
+
+        [JsonIgnore]
         public ClientStatus Status { get; set; } = ClientStatus.Offline;
 
         [JsonIgnore]
@@ -21,6 +24,9 @@ namespace DesertPlanet.source
                 System.Environment.SpecialFolder.ApplicationData), "DesertPlanet");
 
         public string PlayerName { get; set; } = "Player";
+
+        [JsonIgnore]
+        public Player CurrentPlayer { get; set; }
 
         public ProgramData()
         {
@@ -36,7 +42,19 @@ namespace DesertPlanet.source
                 var data = Load(path);
                 PlayerName = data.PlayerName;
             }
+            Data = this;
         }
+
+        private ProgramData(string Name)
+        {
+            PlayerName = Name;
+        }
+
+        [JsonIgnore]
+        public Dictionary<long, Player> Players = new Dictionary<long, Player>();
+
+        [JsonIgnore]
+        public Dictionary<int, string> Companies = new Dictionary<int, string>();
 
         public void ChangeName(string name)
         {
@@ -50,7 +68,9 @@ namespace DesertPlanet.source
         public void Save()
         {
             var path = Path.Combine(ProjectSettingPath, "DP.json");
-            string json = JsonSerializer.Serialize(this);
+            var data = new ProgramDataSave();
+            data.Name = PlayerName;
+            string json = JsonSerializer.Serialize(data);
             using (StreamWriter sw = new StreamWriter(path))
                 sw.WriteLine(json);
         }
@@ -60,16 +80,24 @@ namespace DesertPlanet.source
             string json = "";
             using (StreamReader sr = new StreamReader(path))
                 json = sr.ReadLine();
-            var data = JsonSerializer.Deserialize<ProgramData>(json);
-            return data;
+            var data = JsonSerializer.Deserialize<ProgramDataSave>(json);
+            var result = new ProgramData(data.Name);
+            return result;
         }
 
     }
 
+    public class ProgramDataSave
+    {
+        public string Name { get; set; }
+    }
+
+
     public enum ClientStatus
     {
         Host = 1,
-        Client = 2,
-        Offline = 3,
+        Multiplayer = 2,
+        Client = 3,
+        Offline = 4,
     }
 }

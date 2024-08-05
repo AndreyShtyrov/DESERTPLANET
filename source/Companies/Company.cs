@@ -18,6 +18,7 @@ namespace DesertPlanet.source.Companies
 
         public GameMode Mode { get; }
 
+        public static List<string> Avalialve = new List<string> { "base", "base1" };
         public virtual bool CanHarvestorMoveOnWater => false;
         public string Description { get; }
         public Player Player { get; }
@@ -159,6 +160,8 @@ namespace DesertPlanet.source.Companies
         public static Company CreateFromName(string name, Player player, GameMode gameMode)
         {
             if (name == "base")
+                return new Company("base", player, gameMode);
+            if (name == "base1")
                 return new Company("base", player, gameMode);
             throw new NotImplementedException("--------Unknown company name");
         }

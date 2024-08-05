@@ -1,10 +1,12 @@
 ﻿using DesertPlanet.source.Interfaces;
 using Godot;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Godot.HttpRequest;
 using static System.Collections.Specialized.BitVector32;
 
 namespace DesertPlanet.source.Action
@@ -15,6 +17,8 @@ namespace DesertPlanet.source.Action
         private List<IAction> CashedActions = new List<IAction>();
         private List<IAction> FullActions = new List<IAction>();
         public int ActionIdx => _ActionIdx;
+
+        private GameMode GameMode;
 
         public int CurrentActionIdx = 0;
 
@@ -59,6 +63,7 @@ namespace DesertPlanet.source.Action
                     PreviousStates.Add(action);
                 }
             }
+            GameMode.TriggerUpdateActions();
         }
 
         public List<IAction> GetMissedActions(int clientActionIndx)
@@ -105,6 +110,40 @@ namespace DesertPlanet.source.Action
         public ActionManager(GameMode map)
         {
             Action.SetPlanteMap(map);
+            GameMode = map;
         }
+
+        public string GetStringForLastActions(int prevState)
+        {
+            var tail = new ActionsList();
+            tail.Actions = new List<IAction>();
+            foreach (var action in PreviousStates)
+            {
+                if (action.Idx < prevState)
+                    continue;
+                tail.Actions.Add(action);
+            }
+            
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(tail,
+            new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+            return json;
+        }
+
+        public void ApplyActionsFromJson(string json)
+        {
+            var data = Newtonsoft.Json.JsonConvert.DeserializeObject<ActionsList>(json, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+            ApplyActions(data.Actions);
+        }
+    }
+
+    public class ActionsList
+    {
+        public List<IAction> Actions { get; set; }
     }
 }

@@ -119,6 +119,10 @@ namespace DesertPlanet.source
             StartMap = Map.Copy();
         }
 
+        public int LastSendedAction = -1;
+
+        public event System.Action SendLastActions;
+
         public void RebuildElectrisity()
         {
             RebuildElectrisityTask = new Task(() => { Electrosity.Rebuild(); });
@@ -424,7 +428,7 @@ namespace DesertPlanet.source
         public static GameMode Load(string file)
         {
             string jsonLine = "";
-
+            var programData = ProgramData.Data;
             using (StreamReader fs = new StreamReader(file))
                 jsonLine = fs.ReadToEnd();
             var data = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveGame>(jsonLine, new JsonSerializerSettings
@@ -454,6 +458,10 @@ namespace DesertPlanet.source
             return result;
         }
 
+        public void TriggerUpdateActions()
+        {
+            SendLastActions?.Invoke();
+        }
         public string StringState()
         {
             var result = "";

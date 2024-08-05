@@ -48,12 +48,30 @@ text = "Connect"
 layout_mode = 2
 text = "Host Game"
 
+[node name="Button3" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Test"
+
+[node name="OutPut" type="LineEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+editable = false
+expand_to_text_length = true
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
 [node name="Button" type="Button" parent="."]
-offset_left = 650.0
-offset_top = 1016.0
-offset_right = 658.0
-offset_bottom = 1024.0
+offset_left = 670.0
+offset_top = 880.0
+offset_right = 766.0
+offset_bottom = 911.0
 text = "Start Game"
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="Connect"]
 [connection signal="pressed" from="HBoxContainer/Button2" to="." method="Host"]
+[connection signal="pressed" from="HBoxContainer/Button3" to="." method="OnTest"]
+[connection signal="pressed" from="Button" to="." method="OnStart"]

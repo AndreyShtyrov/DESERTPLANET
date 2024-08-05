@@ -424,9 +424,10 @@ public partial class PlanetScene : Node2D
     public void InitMap(string path)
     {
         GD.Print("Init Map");
-        var players = new List<Player> { new Player(1) };
-        var companies = new Dictionary<int, string> { { 1, "base" } };
-        GameMode = new GameMode(players, companies, players[0], path);
+        var data = ProgramData.Data;
+        GameMode = new GameMode(data.Players.Values.ToList(), data.Companies, data.CurrentPlayer, path);
+        if (data.Status == ClientStatus.Multiplayer)
+            GameMode.SendLastActions += BroadCastMapChange;
         Map = GameMode.Map;
         LoadMap();
         InitResFieldsFromMap(Map);
@@ -453,7 +454,6 @@ public partial class PlanetScene : Node2D
         ProjectMarketWindow.GameMode = GameMode;
         ProjectMarketWindow.SetData();
     }
-
     public void AddAndPreloadAbilitiButtons()
     {
         lock (_lock)
@@ -525,6 +525,8 @@ public partial class PlanetScene : Node2D
         }   
     }
 
+
+
     private void ShowAdditionUI(string Name)
     {
         if (Name == "Move")
@@ -548,6 +550,23 @@ public partial class PlanetScene : Node2D
             for (int j = 0; j < Map.Vertical; j++)
                 tileMap.SetCell(0, new Vector2I(i, j), 0, Map[i, j].TileShift);
         DrawBorders();
+    }
+
+    public void BroadCastMapChange()
+    {
+        
+        var lastActionIdx = GameMode.ActionManager.ActionIdx;
+        var json = GameMode.ActionManager.GetStringForLastActions(GameMode.LastSendedAction);
+        if (GameMode.LastSendedAction >= lastActionIdx)
+            return;
+        GameMode.LastSendedAction = lastActionIdx;
+        Rpc("ApplyChangesThroughRpc", json);
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer)]
+    public void ApplyChangesThroughRpc(string json)
+    {
+        GameMode.ActionManager.ApplyActionsFromJson(json);
     }
 
     private void CleanAbilityBar()
@@ -598,7 +617,6 @@ public partial class PlanetScene : Node2D
             }
         needUpdateResources = true;
     }
-
 
     public void OnEndTurn()
     {
