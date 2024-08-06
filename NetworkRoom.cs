@@ -104,12 +104,22 @@ public partial class NetworkRoom : Node
         DOutput.Text += "OPC ";
         PlayerOrder.Add(id);
         if (Players.ContainsKey(id))
+        {
             if (Companies.ContainsKey((int)id))
             {
-                RegisterPlayer(id, (int)id, Companies[(int)id]);
+                RegisterPlayer(id, (int)id, Companies[(int)id ]);
                 return;
             }
-        RegisterPlayer(id, (int)id, "base");
+            else
+                RegisterPlayer(id, (int)id, "base");
+        }
+        else
+            RegisterPlayer(id, (int)id, "base");
+        if (Multiplayer.IsServer())
+            foreach (var player in PlayerOrder)
+            {
+                Rpc("UpdateCompanyChoose", Players[player].Id, Companies[Players[player].Id]);
+            }
     }
 
     public void OnStart()
@@ -154,8 +164,7 @@ public partial class NetworkRoom : Node
     public void OnChangeCompany(long i)
     {
         Companies[CurrentPlayer.Id] = Company.Avalialve[(int)i];
-        foreach (var peerId in Players.Keys)
-            Rpc("UpdateCompanyChoose", CurrentPlayer.Id, Companies[CurrentPlayer.Id]);
+        Rpc("UpdateCompanyChoose", CurrentPlayer.Id, Companies[CurrentPlayer.Id]);
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
@@ -180,6 +189,7 @@ public partial class NetworkRoom : Node
         DOutput.Text += "OCO ";
         var peerId = Multiplayer.GetUniqueId();
         Players[peerId] = new Player(peerId);
+        Companies[Players[peerId].Id] = "base3";
         CurrentPlayer = Players[peerId]; 
         UpdateLobby.Invoke();
     }
@@ -241,6 +251,7 @@ public partial class NetworkRoom : Node
             text.Text = "Player_" + player.Id.ToString();
             text.ExpandToTextLength = true;
             var oB = new OptionButton();
+            
             foreach(var company in Company.Avalialve)
             {
                 oB.AddItem(company);
