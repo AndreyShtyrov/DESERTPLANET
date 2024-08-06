@@ -33,6 +33,14 @@ namespace DesertPlanet.source
         public Player ActivePlayer { get; set; } = null;
         public Player Player { get; }
 
+        public Player NextPlayer { get
+            {
+                var index = PlayerList.IndexOf(ActivePlayer);
+                if (index == PlayerList.Count - 1)
+                    return PlayerList[0];
+                else
+                    return PlayerList[index + 1];
+            } }
         public Dictionary<int, Building> Buildings { get; }
         public List<Player> PlayerList { get; }
 
@@ -254,9 +262,18 @@ namespace DesertPlanet.source
             {
                 var index = PlayerList.IndexOf(ActivePlayer);
                 if (index == PlayerList.Count - 1)
+                {
+                    actions.Add(new ChangeGameState(ActivePlayer.Id, GameState.PlayTurn, GameState.AwaitPlayers));
                     actions.Add(new ChangeActivePlayer(ActivePlayer, PlayerList[0]));
+                    actions.Add(new ChangeGameState(PlayerList[0].Id, GameState.AwaitPlayers, GameState.PlayTurn));
+                }
+                    
                 else
+                {
+                    actions.Add(new ChangeGameState(ActivePlayer.Id, GameState.PlayTurn, GameState.AwaitPlayers));
                     actions.Add(new ChangeActivePlayer(ActivePlayer, PlayerList[index + 1]));
+                    actions.Add(new ChangeGameState(PlayerList[index + 1].Id, GameState.AwaitPlayers, GameState.PlayTurn));
+                }
             }
             else
             {

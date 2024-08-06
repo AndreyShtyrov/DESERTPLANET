@@ -102,7 +102,27 @@ namespace DesertPlanet.source
             Game.UnitId++;
             return result;
         }
-
+        public List<IAction> EndPlayerDeploy()
+        {
+            var result = new List<IAction>();
+            var nextPlayer = Game.NextPlayer;
+            if (Game.PlayerList[0] == nextPlayer)
+            {
+                result.Add(new ChangeGameState(Game.Player.Id, Game.State, GameState.AwaitPlayers));
+                result.Add(new ChangeGameState(nextPlayer.Id, GameState.AwaitPlayers, GameState.PlayTurn));
+                result.Add(new ChangeActivePlayer(Game.ActivePlayer, nextPlayer));
+                result.Add(new CloseStartActions(Game.Player));
+                result.AddRange(Game.GetStartTurnActionForPlayer(nextPlayer));
+            }
+            else
+            {
+                result.Add(new ChangeActivePlayer(Game.ActivePlayer, nextPlayer));
+                result.Add(new ChangeGameState(Game.Player.Id, Game.State, GameState.AwaitPlayers));
+                result.Add(new ChangeGameState(nextPlayer.Id, GameState.AwaitSytem, GameState.Deploy));
+                result.Add(new CloseStartActions(Game.Player));
+            }
+            return result;
+        }
         private List<IAction> GenerateMovingResource(int diff, PlanetResource res, object fromToken, object toToken)
         {
             if (Game.ActivePlayer != Game.Player)

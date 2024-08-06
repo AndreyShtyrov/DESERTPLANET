@@ -82,6 +82,7 @@ public partial class PlanetScene : Node2D
         SetResBarOut();
         IsInit = true;
         IsReady = true;
+        GetNode<Timer>("UpdateData").Start();
     }
 
     private void SetResBarOut()
@@ -218,8 +219,7 @@ public partial class PlanetScene : Node2D
             {
                 StartGameResourceMoverWindow.Visible = false;
                 tileMap.ClearLayer(4);
-            }
-                
+            } 
         }
         if (Path.Visible && Selector.State != SelectorState.SelectTarget)
         {
@@ -304,7 +304,7 @@ public partial class PlanetScene : Node2D
     }
     public void ProceedInputData(int X, int Y, float globalX, float globalY)
     {
-        if (GameMode.State == GameState.AwaitSytem)
+        if (GameMode.State == GameState.AwaitSytem || GameMode.State == GameState.AwaitPlayers)
             return;
         if (Input.IsActionJustReleased("mb_right"))
         {
@@ -328,7 +328,6 @@ public partial class PlanetScene : Node2D
                     {
                         actions = new List<IAction>();
                         actions.Add(new ChangeGameState(GameMode.Player.Id, GameMode.State, GameState.ChooseStartResource));
-                        actions.AddRange(GameMode.GetStartTurnActionForPlayer(GameMode.Player));
                         GameMode.ActionManager.ApplyActions(actions);
                         return;
                     }

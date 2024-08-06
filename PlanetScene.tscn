@@ -1861,6 +1861,10 @@ filters = PackedStringArray("*.json")
 layout_mode = 2
 text = "Sync"
 
+[node name="UpdateData" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.5
+
 [connection signal="pressed" from="Button" to="." method="OnEndTurn"]
 [connection signal="pressed" from="MoveResource/Button4" to="MoveResource" method="OnCancel"]
 [connection signal="pressed" from="MoveResource/Button3" to="MoveResource" method="OnConfirm"]
@@ -1878,3 +1882,4 @@ text = "Sync"
 [connection signal="file_selected" from="MenuBar/SaveWindow" to="." method="OnSaveGame"]
 [connection signal="file_selected" from="MenuBar/LoadWindow" to="." method="OnLoadGame"]
 [connection signal="pressed" from="MenuBar/Button" to="." method="BroadCastMapChange"]
+[connection signal="timeout" from="UpdateData" to="." method="BroadCastMapChange"]

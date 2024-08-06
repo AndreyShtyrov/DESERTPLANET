@@ -210,8 +210,7 @@ public partial class StartGameResourceMover : Window
             foreach (var resource in ThirdHarvester)
                 actions.Add(new IncomeResource(harvester, resource.Type, resource.Alternative, harvester.Owner));
         }
-		actions.Add(new ChangeGameState(GameMode.Player.Id, GameMode.State, GameState.PlayTurn));
-		actions.Add(new CloseStartActions(GameMode.Player));
+		actions.AddRange(GameMode.Logic.EndPlayerDeploy());
 		GameMode.ActionManager.ApplyActions(actions);
     }
 }
