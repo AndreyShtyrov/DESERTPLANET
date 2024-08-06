@@ -63,6 +63,7 @@ namespace DesertPlanet.source.Action
                     PreviousStates.Add(action);
                 }
             }
+            _ActionIdx = PreviousStates[PreviousStates.Count - 1].Idx;
             //GameMode.TriggerUpdateActions();
         }
 

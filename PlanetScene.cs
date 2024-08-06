@@ -194,8 +194,6 @@ public partial class PlanetScene : Node2D
                 toOutput += " Un S.: " + Selector.UnitId;
             outputLine.Text =  toOutput;
         }
-        if (GameMode.State == GameState.AwaitSytem)
-            return;
         if (ProjectMarketWindow.Visible)
             return;
         if (GameMode.State == GameState.ChooseStartResource && !StartGameResourceMoverWindow.Visible)
