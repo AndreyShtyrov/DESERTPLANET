@@ -85,7 +85,7 @@ namespace DesertPlanet.source
             Logic = new GameLogic(this);
             Companies = new Dictionary<int, Company>();
             foreach (var player in players)
-                Companies.Add(player.Id, Company.CreateFromName("base", player, this));
+                Companies.Add(player.Id, Company.CreateFromName(companies[player.Id], player, this));
             HexalTools = new CubeHexalTools();
             pathFields = new Dictionary<int, PathNode[,]>();
             StartMap = Map.Copy();

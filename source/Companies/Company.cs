@@ -14,14 +14,16 @@ namespace DesertPlanet.source.Companies
 {
     public class Company
     {
-        public string Name { get; }
+        public virtual string Name { get; }
 
         public GameMode Mode { get; }
 
-        public static List<string> Avalialve = new List<string> { "base", "base1" };
+        public static List<string> Avalialve = new List<string> { "base", "ExTerra" };
         public virtual bool CanHarvestorMoveOnWater => false;
         public string Description { get; }
         public Player Player { get; }
+
+        public virtual int VerticalShiftForHarvesterTile { get; }
 
         public Dictionary<string, AbilityRecipe> AbilityRecepts { get; }
         public Dictionary<int, BuildingRecipe> Recepts { get; }
@@ -48,10 +50,21 @@ namespace DesertPlanet.source.Companies
             Projects = new List<CompanyProject>();
             InitRecepts();
             InitStartResources();
-
+            VerticalShiftForHarvesterTile = 0;
         }
 
-        internal virtual void InitStartResources()
+        public Company(Player player, GameMode mode)
+        {
+            Player = player;
+            Name = "Unknown";
+            Recepts = new Dictionary<int, BuildingRecipe>();
+            AbilityRecepts = new Dictionary<string, AbilityRecipe>();
+            StartResources = new List<PlanetResource>();
+            Mode = mode;
+            Projects = new List<CompanyProject>();
+        }
+
+        public virtual void InitStartResources()
         {
             StartResources.Add(new PlanetResource(ResourceType.Iron, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Iron, Player.Id));
@@ -68,7 +81,6 @@ namespace DesertPlanet.source.Companies
 
             Projects.Add(new ManipulatorDrill());
         }
-
 
         public CompanyProject GetCompanyProject(int id)
         {
@@ -161,8 +173,8 @@ namespace DesertPlanet.source.Companies
         {
             if (name == "base")
                 return new Company("base", player, gameMode);
-            if (name == "base1")
-                return new Company("base", player, gameMode);
+            if (name == "ExTerra")
+                return new ExTerra("ExTerra", player, gameMode);
             throw new NotImplementedException("--------Unknown company name");
         }
     }

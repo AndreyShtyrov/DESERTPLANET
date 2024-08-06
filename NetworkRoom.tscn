@@ -64,7 +64,8 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 deselect_on_focus_loss_enabled = false
 
-[node name="Button" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="."]
+visible = false
 offset_left = 670.0
 offset_top = 880.0
 offset_right = 766.0
@@ -74,4 +75,4 @@ text = "Start Game"
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="Connect"]
 [connection signal="pressed" from="HBoxContainer/Button2" to="." method="Host"]
 [connection signal="pressed" from="HBoxContainer/Button3" to="." method="OnTest"]
-[connection signal="pressed" from="Button" to="." method="OnStart"]
+[connection signal="pressed" from="StartButton" to="." method="OnStart"]

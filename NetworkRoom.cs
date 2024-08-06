@@ -22,11 +22,14 @@ public partial class NetworkRoom : Node
 
     public Dictionary<long, Player> Players = new Dictionary<long, Player>();
 
+    public Godot.Collections.Array<long> PlayerOrder = new Godot.Collections.Array<long>();
+
     public Dictionary<int, string> Companies = new Dictionary<int, string>();
     public int PlayersLoaded { get; set; } = 2;
     public LineEdit IpAdress { get; set; }
 
     public VBoxContainer PlayersHBox;
+    private Button StartB;
 
     public override void _Ready()
     {
@@ -42,6 +45,7 @@ public partial class NetworkRoom : Node
         IpAdress = GetNode<LineEdit>("HBoxContainer/LineEdit2");
         PlayersHBox = GetNode<VBoxContainer>("PlayersList");
         DOutput = GetNode<LineEdit>("HBoxContainer/OutPut");
+        StartB = GetNode<Button>("StartButton");
     }
 
     public void Join(string address)
@@ -59,11 +63,15 @@ public partial class NetworkRoom : Node
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
-    public void StartGame()
+    public void StartGame(Godot.Collections.Array<long> order)
     {
         var data = ProgramData.Data;
         if (data is null)
             data = new ProgramData();
+        foreach (var item in order)
+        {
+            data.PlayerOrder.Add(item);
+        }
         data.Players = Players;
         data.Companies = Companies;
         data.CurrentPlayer = CurrentPlayer;
@@ -83,15 +91,18 @@ public partial class NetworkRoom : Node
             return;
         }
         Players[1] = new Player(1);
+        PlayerOrder.Add(1);
         CurrentPlayer = Players[1];
         Companies[1] = "base";
         Multiplayer.MultiplayerPeer = peer;
+        StartB.Visible = true;
         UpdateLobby.Invoke();
     }
 
     public void OnPlayerConnected(long id)
     {
         DOutput.Text += "OPC ";
+        PlayerOrder.Add(id);
         if (Players.ContainsKey(id))
             if (Companies.ContainsKey((int)id))
             {
@@ -103,7 +114,8 @@ public partial class NetworkRoom : Node
 
     public void OnStart()
     {
-        Rpc("StartGame");
+        var playerOrder = SetPlayerOrder();
+        Rpc("StartGame", new Variant[1] { playerOrder });
         var data = ProgramData.Data;
         if (data is null)
             data = new ProgramData();
@@ -112,6 +124,21 @@ public partial class NetworkRoom : Node
         data.CurrentPlayer = CurrentPlayer;
         data.Status = ClientStatus.Multiplayer;
         GetTree().ChangeSceneToFile("res://PlanetScene.tscn");
+    }
+
+    public Godot.Collections.Array<long> SetPlayerOrder()
+    {
+        var data = ProgramData.Data;
+        var result = new Godot.Collections.Array<long>();
+        foreach (var ind in  PlayerOrder)
+        {
+            if (Players.Keys.Contains(ind))
+            {
+                result.Add(ind);
+                data.PlayerOrder.Add(ind);
+            }    
+        }
+        return result;
     }
     public void OnTest()
     {

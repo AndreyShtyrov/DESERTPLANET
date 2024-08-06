@@ -105,7 +105,7 @@ public partial class DecideRecipe : Window
             if (!hasAdded.Contains(resource.Alternative) && resource.Alternative != ResourceType.None)
                 hasAdded.Add(resource.Alternative);
         }
-        var company = GameMode.GetCompany(GameMode.ActivePlayer.Id);
+        var company = GameMode.GetCompany(GameMode.Player.Id);
         Company = company;
         foreach(var resource in hasAdded)
         {

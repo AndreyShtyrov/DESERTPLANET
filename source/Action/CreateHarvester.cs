@@ -21,7 +21,7 @@ namespace DesertPlanet.source.Action
         public override void Forward()
         {
             var player = Map.GetPlayer(PlayerId);
-            Map.Harvesters.Add(HarvesterId, new Harvester(HarvesterId, X, Y, player, Map.GetCompany(PlayerId)));
+            Map.Harvesters.Add(HarvesterId, new Harvester(HarvesterId, X, Y, player, Map));
             Map.NeedRedraw = true;
             Map.NeedLoadAbilityGUI = true;
             Map.NeedLoadAbilityGUI = true;

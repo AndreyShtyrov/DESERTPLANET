@@ -51,6 +51,9 @@ namespace DesertPlanet.source
         }
 
         [JsonIgnore]
+        public List<long> PlayerOrder = new List<long>();
+
+        [JsonIgnore]
         public Dictionary<long, Player> Players = new Dictionary<long, Player>();
 
         [JsonIgnore]

@@ -104,7 +104,7 @@ public partial class PlanetScene : Node2D
         tileMap.ClearLayer(5);
         foreach(var field in area)
         {
-            tileMap.SetCell(5, field, 2, new Vector2I(2, 0));
+            tileMap.SetCell(5, field, 7, new Vector2I(2, 0));
         }
         DrawBorders();
     }
@@ -129,7 +129,7 @@ public partial class PlanetScene : Node2D
         tileMap.ClearLayer(3);
         foreach (var harvester in GameMode.Harvesters.Values)
         {
-            tileMap.SetCell(3, new Vector2I(harvester.X, harvester.Y), 2, new Vector2I(1, 0));
+            tileMap.SetCell(3, new Vector2I(harvester.X, harvester.Y), 2, harvester.TileShift);
         }
         foreach (var building in GameMode.Buildings.Values)
         {
@@ -187,16 +187,17 @@ public partial class PlanetScene : Node2D
         if (GameMode != null)
         {
             string toOutput = "MP: " + tilePos.X + " " + tilePos.Y + " " + GameMode.StringState();
-
+            toOutput += "AcPl : " + GameMode.ActivePlayer.Id;
             var hex = GameMode.HexalTools.CubeToHex(tilePos.X - 6, tilePos.Y - 4);
             toOutput += " " + Selector.StringState + " H.P. " + hex.Q + " " + hex.R + " " + hex.S;
             if (Selector.UnitId > -1)
                 toOutput += " Un S.: " + Selector.UnitId;
             outputLine.Text =  toOutput;
         }
+        if (GameMode.State == GameState.AwaitSytem)
+            return;
         if (ProjectMarketWindow.Visible)
             return;
-
         if (GameMode.State == GameState.ChooseStartResource && !StartGameResourceMoverWindow.Visible)
         {
             StartGameResourceMoverWindow.Show();
@@ -305,6 +306,8 @@ public partial class PlanetScene : Node2D
     }
     public void ProceedInputData(int X, int Y, float globalX, float globalY)
     {
+        if (GameMode.State == GameState.AwaitSytem)
+            return;
         if (Input.IsActionJustReleased("mb_right"))
         {
             Selector.State = SelectorState.SelectUnit;
@@ -425,7 +428,12 @@ public partial class PlanetScene : Node2D
     {
         GD.Print("Init Map");
         var data = ProgramData.Data;
-        GameMode = new GameMode(data.Players.Values.ToList(), data.Companies, data.CurrentPlayer, path);
+        var players = new List<Player>();
+        foreach(var idx in data.PlayerOrder)
+        {
+            players.Add(data.Players[idx]);
+        }
+        GameMode = new GameMode(players, data.Companies, data.CurrentPlayer, path);
         if (data.Status == ClientStatus.Multiplayer)
             GameMode.SendLastActions += BroadCastMapChange;
         Map = GameMode.Map;
@@ -433,9 +441,8 @@ public partial class PlanetScene : Node2D
         InitResFieldsFromMap(Map);
         MatchResourceSets();
         Selector = new SelectorTools(GameMode);
-        GameMode.ActivePlayer = GameMode.Player;
-        var actions = new List<IAction>();
-        actions.Add(new ChangeGameState(GameMode.Player.Id, GameMode.State, GameState.Deploy));
+        GameMode.ActivePlayer = players[0];
+        var actions = GameMode.Logic.StartActions();
         GameMode.ActionManager.ApplyActions(actions);
         PreloadAbilities = new Dictionary<int, Dictionary<int, AbilityButton>>();
 
@@ -524,8 +531,6 @@ public partial class PlanetScene : Node2D
                 AbilitiPanel.AddChild(ability);
         }   
     }
-
-
 
     private void ShowAdditionUI(string Name)
     {

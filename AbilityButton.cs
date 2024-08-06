@@ -54,6 +54,8 @@ public partial class AbilityButton : Button
 
     public void OnPress()
 	{
+		if (GameMode.State == GameState.AwaitSytem)
+			return;
 		if (Selector.AbilityId == Ability.Id)
 		{
 			Selector.AbilityId = -1;

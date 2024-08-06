@@ -1,17 +1,19 @@
-[gd_scene load_steps=75 format=3 uid="uid://jugyy6wgr5cs"]
+[gd_scene load_steps=79 format=3 uid="uid://jugyy6wgr5cs"]
 
 [ext_resource type="Script" path="res://PlanetScene.cs" id="1_qgbts"]
 [ext_resource type="PackedScene" uid="uid://dkoyjt3n4lmnc" path="res://AbilityButton.tscn" id="2_1487e"]
 [ext_resource type="Texture2D" uid="uid://bb8bdwvt73asi" path="res://source/Assets/DesertPlanet.png" id="2_tb7yq"]
 [ext_resource type="Texture2D" uid="uid://ceeh2ybuf7i27" path="res://source/Assets/GroundSource.png" id="3_srjop"]
-[ext_resource type="Texture2D" uid="uid://bkaj4kln2fta3" path="res://source/Assets/TestCompany1.png" id="4_5up0u"]
+[ext_resource type="Texture2D" uid="uid://bkaj4kln2fta3" path="res://source/Assets/Harvesters.png" id="5_lkkhe"]
 [ext_resource type="Texture2D" uid="uid://vw2tqyy142yo" path="res://source/Assets/BuildingCompany1.png" id="6_ti15g"]
 [ext_resource type="Texture2D" uid="uid://dn456acda5420" path="res://source/Assets/iron.png" id="7_2i6kr"]
 [ext_resource type="Texture2D" uid="uid://bpp33u1prgdyy" path="res://source/Assets/AnimatedTiles/AnimatedTiles.png" id="7_4m2tk"]
 [ext_resource type="Texture2D" uid="uid://scq6ovjo067i" path="res://source/Assets/Borders/Borders.png" id="8_kayfa"]
 [ext_resource type="Texture2D" uid="uid://clvtf5r7kjta5" path="res://source/Assets/ResourceIcons/Energy.png" id="8_xa04d"]
+[ext_resource type="Texture2D" uid="uid://dqsprin1n0lch" path="res://source/Assets/BuildingCompany2.png" id="9_5qa2v"]
 [ext_resource type="Texture2D" uid="uid://2vqmutlexg8p" path="res://source/Assets/ResourceIcons/Plastic.png" id="9_23nc8"]
 [ext_resource type="Texture2D" uid="uid://cs100gmrv6iy5" path="res://source/Assets/ResourceIcons/Aliminium.png" id="10_44hh3"]
+[ext_resource type="Texture2D" uid="uid://4sicnw7g3wd" path="res://source/Assets/Selectors.png" id="10_g5p21"]
 [ext_resource type="Texture2D" uid="uid://yhl5wk2ujhau" path="res://source/Assets/ResourceIcons/Uran.png" id="11_1k86o"]
 [ext_resource type="Texture2D" uid="uid://bkgl8gii8jx0e" path="res://source/Assets/ResourceIcons/Cement.png" id="12_c717b"]
 [ext_resource type="Texture2D" uid="uid://i0d3lg2levca" path="res://source/Assets/ResourceIcons/iron.png" id="13_endgw"]
@@ -73,8 +75,8 @@ texture_region_size = Vector2i(315, 270)
 3:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j1dw3"]
-texture = ExtResource("4_5up0u")
-margins = Vector2i(5, 138)
+texture = ExtResource("5_lkkhe")
+margins = Vector2i(5, 10)
 texture_region_size = Vector2i(315, 270)
 0:0/0 = 0
 1:0/0 = 0
@@ -156,6 +158,44 @@ texture_region_size = Vector2i(315, 270)
 3:5/0 = 0
 4:5/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vy52k"]
+texture = ExtResource("9_5qa2v")
+margins = Vector2i(2, 137)
+texture_region_size = Vector2i(315, 270)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oj8si"]
+texture = ExtResource("10_g5p21")
+margins = Vector2i(2, 137)
+texture_region_size = Vector2i(315, 270)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_afaeu"]
 tile_shape = 3
 tile_layout = 1
@@ -167,6 +207,8 @@ sources/4 = SubResource("TileSetAtlasSource_21hta")
 sources/1 = SubResource("TileSetAtlasSource_q6flo")
 sources/2 = SubResource("TileSetAtlasSource_j1dw3")
 sources/5 = SubResource("TileSetAtlasSource_u4wub")
+sources/6 = SubResource("TileSetAtlasSource_vy52k")
+sources/7 = SubResource("TileSetAtlasSource_oj8si")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bm5d7"]
 
@@ -287,13 +329,14 @@ layer_6/tile_data = PackedInt32Array()
 [node name="FileDialog" type="FileDialog" parent="."]
 
 [node name="UpToolBar" type="HBoxContainer" parent="."]
-offset_right = 40.0
+offset_right = 584.0
 offset_bottom = 40.0
 
 [node name="LineEdit" type="LineEdit" parent="UpToolBar"]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 editable = false
+expand_to_text_length = true
 context_menu_enabled = false
 virtual_keyboard_enabled = false
 shortcut_keys_enabled = false
@@ -315,10 +358,10 @@ offset_right = 1687.0
 offset_bottom = 598.0
 
 [node name="Button" type="Button" parent="."]
-offset_left = 1627.0
-offset_top = 981.0
-offset_right = 1705.0
-offset_bottom = 1012.0
+offset_left = 1623.0
+offset_top = 894.0
+offset_right = 1701.0
+offset_bottom = 925.0
 text = "End Turn"
 
 [node name="Window" type="Window" parent="."]
@@ -355,9 +398,9 @@ theme_override_font_sizes/font_size = 6
 layout_mode = 2
 
 [node name="RBar" type="GridContainer" parent="."]
-offset_left = 626.0
+offset_left = 753.0
 offset_top = 2.0
-offset_right = 1002.0
+offset_right = 1129.0
 offset_bottom = 90.0
 columns = 5
 
@@ -1098,10 +1141,10 @@ text = "Confirm
 "
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 1605.0
-offset_top = 940.0
-offset_right = 1740.0
-offset_bottom = 971.0
+offset_left = 1584.0
+offset_top = 859.0
+offset_right = 1719.0
+offset_bottom = 890.0
 text = "Switch Resource
 "
 
@@ -1734,9 +1777,10 @@ middle_mouse_paste_enabled = false
 scroll_past_end_of_file = true
 
 [node name="RepoTolbar" type="HBoxContainer" parent="."]
-offset_left = 423.0
-offset_right = 463.0
-offset_bottom = 40.0
+offset_left = 601.0
+offset_top = 4.0
+offset_right = 763.0
+offset_bottom = 52.0
 
 [node name="TextureButton" type="TextureButton" parent="RepoTolbar"]
 layout_mode = 2
@@ -1783,9 +1827,9 @@ offset_bottom = 40.0
 columns = 4
 
 [node name="MenuBar" type="HBoxContainer" parent="."]
-offset_left = 1024.0
+offset_left = 1153.0
 offset_top = 4.0
-offset_right = 1159.0
+offset_right = 1336.0
 offset_bottom = 42.0
 
 [node name="SaveButton" type="Button" parent="MenuBar"]

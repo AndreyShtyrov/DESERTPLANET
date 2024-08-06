@@ -28,7 +28,7 @@ namespace DesertPlanet.source
 
         public List<AbilityPresset> Abilities { get; }
 
-        public Harvester(int id, int x, int y, Player owner, Company company)
+        public Harvester(int id, int x, int y, Player owner, GameMode gameMode)
         {
             Id = id;
             X = x;
@@ -39,8 +39,17 @@ namespace DesertPlanet.source
             Counter = new ActionCounter(1, 1);
             Abilities.Add(new MoveUnit(this, 0));
             Abilities.Add(new Dig(this, 1));
+            var company = gameMode.GetCompany(owner.Id);
             Abilities.AddRange(company.GetCounstructAbility(this, 1));
+            int countHarvesters = 0;
+            foreach (var unit in gameMode.Harvesters.Values)
+            {
+                if (unit.Owner == owner)
+                { countHarvesters++; }
+            }
+            TileShift = new Vector2I(countHarvesters, company.VerticalShiftForHarvesterTile);
         }
+        public Vector2I TileShift { get; }
 
         public int EndTurnEnergyCotainer { get; set; }
 

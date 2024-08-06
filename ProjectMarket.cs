@@ -50,6 +50,8 @@ public partial class ProjectMarket : Window
 
 	private void BuyProject(int i)
 	{
+		if (GameMode.State == GameState.AwaitSytem)
+			return;
 		if (GameMode.State == GameState.Deploy || GameMode.State == GameState.AwaitPlayers || GameMode.State == GameState.ChooseStartResource)
 			return;
 		var player = GameMode.Player;

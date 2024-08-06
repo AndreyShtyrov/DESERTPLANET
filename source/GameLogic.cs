@@ -17,6 +17,8 @@ namespace DesertPlanet.source
     {
         private GameMode Game;
 
+        public static int MAXHARVESTERS = 4;
+
         public GameLogic(GameMode mode) {
             Game = mode;
         }
@@ -66,6 +68,12 @@ namespace DesertPlanet.source
         {
             if (Game.ActivePlayer != Game.Player)
                 return new List<IAction>();
+            int count = 0;
+            foreach (var harvester in Game.Harvesters.Values)
+                if (player == harvester.Owner)
+                    count++;
+            if (count > MAXHARVESTERS)
+                return new List<IAction>();
             var result = new List<IAction>() { new CreateHarvester(Game.UnitId, x, y, player) };
             result.Add(new RemoveStartHarvester(player.Id));
             Game.UnitId++;
@@ -75,6 +83,8 @@ namespace DesertPlanet.source
 
         public List<IAction> BuyProject(Player player, CompanyProject project)
         {
+            if (Game.ActivePlayer != Game.Player)
+                return new List<IAction>();
             var result = new List<IAction>();
             if (player.Repos < project.Repo)
                 return result;
@@ -120,6 +130,8 @@ namespace DesertPlanet.source
         public List<IAction> MoveResource(IHasResource fromToken, IHasResource toToken, 
             ResourceContainer fromLast)
         {
+            if (Game.ActivePlayer != Game.Player)
+                return new List<IAction>();
             var company = Game.GetCompany(Game.Player.Id);
             var result = new List<IAction>();
             int diff = 0;
@@ -176,6 +188,16 @@ namespace DesertPlanet.source
                 diff = fromLast.Uran - fromToken.Resources.Uran;
                 var res = company.GetAlignResource(ResourceType.Uran);
                 result.AddRange(GenerateMovingResource(diff, res, fromToken, toToken));
+            }
+            return result;
+        }
+
+        public List<IAction> StartActions()
+        {
+            var result = new List<IAction>();
+            if (Game.Player == Game.ActivePlayer)
+            {
+                result.Add(new ChangeGameState(Game.Player.Id, Game.State, GameState.Deploy));
             }
             return result;
         }
