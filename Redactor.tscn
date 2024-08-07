@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bboyg4thfisyy"]
+[gd_scene load_steps=12 format=3 uid="uid://bboyg4thfisyy"]
 
 [ext_resource type="Script" path="res://Redactor.cs" id="1_hh0qj"]
 [ext_resource type="PackedScene" uid="uid://dmdgnm43iov7t" path="res://ResourceUi.tscn" id="2_dt4ga"]
 [ext_resource type="Texture2D" uid="uid://bb8bdwvt73asi" path="res://source/Assets/DesertPlanet.png" id="2_vny6m"]
 [ext_resource type="Texture2D" uid="uid://ceeh2ybuf7i27" path="res://source/Assets/GroundSource.png" id="4_34u78"]
 [ext_resource type="Texture2D" uid="uid://scq6ovjo067i" path="res://source/Assets/Borders/Borders.png" id="5_kg4ql"]
+[ext_resource type="Texture2D" uid="uid://4sicnw7g3wd" path="res://source/Assets/Selectors.png" id="6_8wiff"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lhpsb"]
 texture = ExtResource("2_vny6m")
@@ -74,6 +75,27 @@ texture_region_size = Vector2i(315, 270)
 2:4/0 = 0
 4:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sg61d"]
+texture = ExtResource("6_8wiff")
+margins = Vector2i(3, 137)
+separation = Vector2i(0, 16)
+texture_region_size = Vector2i(316, 270)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_52skn"]
 tile_shape = 3
 tile_layout = 1
@@ -82,6 +104,7 @@ tile_size = Vector2i(315, 270)
 sources/0 = SubResource("TileSetAtlasSource_lhpsb")
 sources/1 = SubResource("TileSetAtlasSource_juxxu")
 sources/2 = SubResource("TileSetAtlasSource_uubrt")
+sources/3 = SubResource("TileSetAtlasSource_sg61d")
 
 [node name="Redactor" type="Node2D"]
 script = ExtResource("1_hh0qj")
@@ -114,6 +137,13 @@ layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 3
 layer_3/tile_data = PackedInt32Array()
+layer_4/name = ""
+layer_4/enabled = true
+layer_4/modulate = Color(1, 1, 1, 0.380392)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 4
+layer_4/tile_data = PackedInt32Array()
 
 [node name="HB" type="HBoxContainer" parent="."]
 offset_right = 40.0
@@ -179,6 +209,11 @@ context_menu_enabled = false
 virtual_keyboard_enabled = false
 shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
+
+[node name="CheckButton" type="CheckButton" parent="HB"]
+visible = false
+layout_mode = 2
+text = "Hide Landing Grid"
 
 [node name="ToolsPalit" type="GridContainer" parent="."]
 offset_left = 965.0
@@ -267,6 +302,22 @@ layout_mode = 2
 [node name="HSeparator4" type="HSeparator" parent="ToolsPalit"]
 layout_mode = 2
 
+[node name="Button16" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Landing 1"
+
+[node name="Button17" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Landing 2"
+
+[node name="Button18" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Landing 3"
+
+[node name="Button19" type="Button" parent="ToolsPalit"]
+layout_mode = 2
+text = "Landing 4"
+
 [node name="SaveFile" type="FileDialog" parent="."]
 size = Vector2i(450, 300)
 access = 2
@@ -281,10 +332,10 @@ access = 2
 filters = PackedStringArray("*.json")
 
 [node name="SetBorders" type="VBoxContainer" parent="."]
-offset_left = 966.0
-offset_top = 332.0
-offset_right = 1033.0
-offset_bottom = 387.0
+offset_left = 967.0
+offset_top = 402.0
+offset_right = 1092.0
+offset_bottom = 538.0
 
 [node name="Postion" type="LineEdit" parent="SetBorders"]
 layout_mode = 2
@@ -356,6 +407,7 @@ text = "Clean Borders"
 [connection signal="pressed" from="HB/Save" to="." method="OnSaveFile"]
 [connection signal="pressed" from="HB/Load" to="." method="OnLoadFile"]
 [connection signal="pressed" from="HB/Button" to="." method="CreateMap"]
+[connection signal="toggled" from="HB/CheckButton" to="." method="ShowHideLandingGrid"]
 [connection signal="pressed" from="ToolsPalit/Button6" to="." method="Unselect"]
 [connection signal="pressed" from="ToolsPalit/Button" to="." method="SelectSand"]
 [connection signal="pressed" from="ToolsPalit/Button2" to="." method="SelectStone"]
@@ -371,6 +423,10 @@ text = "Clean Borders"
 [connection signal="pressed" from="ToolsPalit/Button12" to="." method="SelectIron"]
 [connection signal="pressed" from="ToolsPalit/Button13" to="." method="SelectUran"]
 [connection signal="pressed" from="ToolsPalit/Button14" to="." method="SelectOil"]
+[connection signal="pressed" from="ToolsPalit/Button16" to="." method="SelectLanding1"]
+[connection signal="pressed" from="ToolsPalit/Button17" to="." method="SelectLanding2"]
+[connection signal="pressed" from="ToolsPalit/Button18" to="." method="SelectLanding3"]
+[connection signal="pressed" from="ToolsPalit/Button19" to="." method="SelectLanding4"]
 [connection signal="file_selected" from="SaveFile" to="." method="SaveFile"]
 [connection signal="file_selected" from="LoadFile" to="." method="LoadFile"]
 [connection signal="pressed" from="SetBorders/Button" to="." method="OnSetBorders"]

@@ -83,6 +83,7 @@ public partial class Redactor : Node2D
                 tileMap.SetCell(1, new Vector2I(i, j), -1, Vector2I.Zero);
                 tileMap.SetCell(2, new Vector2I(i, j), -1, Vector2I.Zero);
                 tileMap.SetCell(3, new Vector2I(i, j), -1, Vector2I.Zero);
+                tileMap.SetCell(4, new Vector2I(i, j), -1, Vector2I.Zero);
             }
     }
     private void LoadMap()
@@ -91,6 +92,7 @@ public partial class Redactor : Node2D
             for(int j =0; j < Map.Vertical; j++)
             {
                 tileMap.SetCell(0, new Vector2I(i, j), 0, GetTileShift(Map[i, j]));
+                tileMap.SetCell(4, new Vector2I(i, j), 3, Map.LandingFields[i, j].GetTile);
             }
         DrawBorders();
     }
@@ -118,7 +120,7 @@ public partial class Redactor : Node2D
                             Map[tilePos.X, tilePos.Y] = GetFieldToken(tilePos.X, tilePos.Y);
                             tileMap.SetCell(0, tilePos, 0, GetTileShift(Map[tilePos.X, tilePos.Y]));
                         }
-                        else
+                        else if(CurrentFieldType <= 14)
                         {
                             switch (CurrentFieldType)
                             {
@@ -131,8 +133,26 @@ public partial class Redactor : Node2D
                             }
                             MatchResourceSets();
                         }
+                        else
+                        {
+                            Map.LandingFields[tilePos.X, tilePos.Y] = ChooseSimpleField(tilePos.X, tilePos.Y);
+                            tileMap.SetCell(4, new Vector2I(tilePos.X, tilePos.Y), 3, Map.LandingFields[tilePos.X, tilePos.Y].GetTile);
+                        }
                     }
                 }
+            }
+            if (Input.IsActionJustReleased("mb_right"))
+            {
+                switch (CurrentFieldType)
+                {
+                    case 12:
+                        Map[tilePos.X, tilePos.Y].Resources.PopupByType(ResourceType.Iron); break;
+                    case 13:
+                        Map[tilePos.X, tilePos.Y].Resources.PopupByType(ResourceType.Oil); break;
+                    case 14:
+                        Map[tilePos.X, tilePos.Y].Resources.PopupByType(ResourceType.Uran); break;
+                }
+                MatchResourceSets();
             }
         }
         else
@@ -141,6 +161,23 @@ public partial class Redactor : Node2D
                 fileDialog = null;
         }
     }
+
+    public SelectionTile ChooseSimpleField(int x, int y)
+    {
+        switch (CurrentFieldType)
+        {
+            case 15:
+                return new SelectionTile(1, x, y);
+            case 16:
+                return new SelectionTile(2, x, y);
+            case 17:
+                return new SelectionTile(3, x, y);
+            case 18:
+                return new SelectionTile(4, x, y);
+        }
+        return new SelectionTile(-1, x, y);
+    }
+
 
     private void ExpandBorders(int blockPosition, List<FieldToken> area)
     {
@@ -298,27 +335,27 @@ public partial class Redactor : Node2D
         if (token == null)
             return new Vector2I(-1, -1);
         if (token.Name == "Sand")
-            return FieldToken.SandTileShift;
+            return FieldTileShifts.SandTileShift;
         if (token.Name == "Stone")
-            return FieldToken.StoneTileShift;
+            return FieldTileShifts.StoneTileShift;
         if (token.Name == "Water")
-            return FieldToken.WaterTileShift;
+            return FieldTileShifts.WaterTileShift;
         if (token.Name == "StaticCosmoport")
-            return FieldToken.SpaceDockTileShift;
+            return FieldTileShifts.SpaceDockTileShift;
         if (token.Name == "Empty")
-            return FieldToken.EmptyTileShift;
+            return FieldTileShifts.EmptyTileShift;
         if (token.Name == "StoneIron")
-            return FieldToken.StoneIronTileShift;
+            return FieldTileShifts.StoneIronTileShift;
         if (token.Name == "StoneOil")
-            return FieldToken.StoneOilTileShift;
+            return FieldTileShifts.StoneOilTileShift;
         if (token.Name == "SandLime")
-            return FieldToken.SandLimeTileShift;
+            return FieldTileShifts.SandLimeTileShift;
         if (token.Name == "SandBoskit")
-            return FieldToken.SandBokcitTileShift;
+            return FieldTileShifts.SandBokcitTileShift;
         if (token.Name == "Blocked")
-            return FieldToken.BlockedTileShift;
+            return FieldTileShifts.BlockedTileShift;
         if (token.Name == "WaterOil")
-            return FieldToken.WaterOilTileShift;
+            return FieldTileShifts.WaterOilTileShift;
         GD.Print("Error Don't Found such token " + token.Name);
         return new Vector2I(-1, -1);
     }
@@ -368,6 +405,13 @@ public partial class Redactor : Node2D
     public void SelectOil() => CurrentFieldType = 13;
 
     public void SelectUran() => CurrentFieldType = 14;
+
+    public void SelectLanding1() => CurrentFieldType = 15;
+    public void SelectLanding2() => CurrentFieldType = 16;
+
+    public void SelectLanding3() => CurrentFieldType = 17;
+
+    public void SelectLanding4() => CurrentFieldType = 18;
 
     public void Unselect() => CurrentFieldType = 0;
 
@@ -424,5 +468,21 @@ public partial class Redactor : Node2D
             return;
         }
 
+    }
+
+    public void ShowHideLandingGrid(bool buttonPressed)
+    {
+        if (buttonPressed)
+        {
+            tileMap.ClearLayer(3);
+        }
+        else
+        {
+            for (int i = 0; i < Map.Horizontal; i++)
+                for (int j = 0; j < Map.Vertical; j++)
+                {
+                    tileMap.SetCell(3, new Vector2I(i, j), 3, Map.LandingFields[i, j].GetTile);
+                }
+        }
     }
 }

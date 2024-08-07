@@ -17,6 +17,9 @@ namespace DesertPlanet.source
         public CubeHexalTools HexalTools;
         public string Name { get; }
 
+        public int MaxPlayers { get; set; }
+
+        public bool HasSubSectors { get; set; } = false;
         public int Horizontal { get; }
 
         public int Vertical { get; }
@@ -24,17 +27,23 @@ namespace DesertPlanet.source
 
         private FieldToken[,] _fields = null;
 
+        public SelectionTile[,] LandingFields { get; }
+
         public MapField(string name, int horizontal, int vertical)
         {
             Name = name;
             Horizontal = horizontal;
             Vertical = vertical;
+            MaxPlayers = 2;
             HexalTools = new CubeHexalTools();
             _fields = new FieldToken[horizontal, vertical];
             for (int i = 0; i < horizontal; i++)
                 for (int j = 0; j < vertical; j++)
                     _fields[i, j] = new Blocked(i, j);
-
+            LandingFields = new SelectionTile[horizontal, vertical];
+            for (int i = 0; i < horizontal; i++)
+                for (int j = 0; j < vertical; j++)
+                    LandingFields[i, j] = new SelectionTile(-1, i, j);
         }
 
         public List<FieldToken> Area(int x0, int y0)
@@ -101,7 +110,12 @@ namespace DesertPlanet.source
             var result = new MapField(file, data.Horizontal, data.Vertical);
             for (int i = 0; i < data.Horizontal; i++)
                 for (int j = 0; j < data.Vertical; j++)
+                {
                     result[i, j] = FieldToken.CastAsType(data.Fields[i][j]);
+                    result.LandingFields[i, j] = data.Landing[i][j];
+                }
+            result.MaxPlayers = data.MaxPlayer;
+            result.HasSubSectors = data.HasSubSectors;
             return result;
         }
 
@@ -109,14 +123,18 @@ namespace DesertPlanet.source
         {
             var saveMap = new SaveMap();
             saveMap.Fields = new List<List<FieldToken>>();
+            saveMap.Landing = new List<List<SelectionTile>>();
             for(int i = 0; i < Horizontal; i++)
             {
                 var line = new List<FieldToken>();
+                var lineL = new List<SelectionTile>();
                 for (int j = 0; j < Vertical; j++)
                 {
                     line.Add(_fields[i, j]);
+                    lineL.Add(LandingFields[i, j]);
                 }
                 saveMap.Fields.Add(line);
+                saveMap.Landing.Add(lineL);
             }
             saveMap.Name = Name;
             saveMap.Vertical = Vertical;
@@ -126,6 +144,8 @@ namespace DesertPlanet.source
                 WriteIndented = true,
                 Converters = { new ResourceContainerJsonConverter() }
             };
+            saveMap.MaxPlayer = MaxPlayers;
+            saveMap.HasSubSectors = HasSubSectors;
             string json = JsonSerializer.Serialize<SaveMap>(saveMap, options);
             using (StreamWriter fw = new StreamWriter(file))
                 fw.WriteLine(json);
@@ -137,6 +157,9 @@ namespace DesertPlanet.source
             for (int i = 0; i < Horizontal; i++)
                 for (int j = 0; j < Vertical; j++)
                     result[i, j] = FieldToken.CastAsType(this[i, j]);
+            for (int i = 0; i < Horizontal; i++)
+                for (int j = 0; j < Vertical; j++)
+                    result.LandingFields[i, j] = new SelectionTile(LandingFields[i, j].Value, i, j);
             return result;
         }
     }
@@ -145,6 +168,10 @@ namespace DesertPlanet.source
     {
         public List<List<FieldToken>> Fields { get; set; }
 
+        public List<List<SelectionTile>> Landing { get; set; }
+
+        public bool HasSubSectors { get; set; }
+        public int MaxPlayer { get; set; }
         public int Vertical { get; set; }
 
         public int Horizontal { get; set; }

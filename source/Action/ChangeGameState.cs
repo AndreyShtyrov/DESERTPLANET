@@ -11,6 +11,8 @@ namespace DesertPlanet.source.Action
     {
         public int PlayerId { get; set; }
 
+        public int OccupiedLanding { get; set; }
+
         public GameState PrevState { get; set; }
 
         public GameState NextState { get; set; }
@@ -26,6 +28,8 @@ namespace DesertPlanet.source.Action
             {
                 Map.State = NextState;
             }
+            if (PrevState is GameState.ChooseStartResource)
+                Map.OccupiedLandings.Add(OccupiedLanding);
         }
 
         [JsonConstructor]
@@ -35,6 +39,14 @@ namespace DesertPlanet.source.Action
             PlayerId = playreId;
             PrevState = prevState;
             NextState = nextState;
+            if (PrevState == GameState.ChooseStartResource)
+            {
+                OccupiedLanding = Map.LandingRegion;
+            }
+            else
+            {
+                OccupiedLanding = -1;
+            }
         }
     }
 }

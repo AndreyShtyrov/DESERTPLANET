@@ -262,7 +262,12 @@ public partial class NetworkRoom : Node
                 if (!canChooseCompany)
                     oB.Disabled = true;
                 else
-                    oB.ItemSelected += OnChangeCompany;
+                    try
+                    {
+                        oB.ItemSelected += OnChangeCompany;
+                    }
+                    catch { }
+                    
             }
             hb.AddChild(text);
             hb.AddChild(oB);

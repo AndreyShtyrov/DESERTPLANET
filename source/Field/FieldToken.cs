@@ -9,34 +9,26 @@ using System.Threading.Tasks;
 
 namespace DesertPlanet.source.Field
 {
-    public class FieldToken: IHasResource
+    public class FieldToken: Tile, IHasResource, FieldTileShifts
     {
-        public int X { get; }
-
-        public int Y { get; }
-
         public string Name { get; }
 
         public ResourceContainer Resources { get; }
 
-        public int BlockSeds { get; set; }
-
         private List<Vector2I> _connectedFields = null;
 
+        public int BlockSeds { get; set; }
+
         [JsonConstructor]
-        public FieldToken(int x, int y, string name, ResourceContainer resources, int blockSeds)
+        public FieldToken(int x, int y, string name, ResourceContainer resources, int blockSeds): base(x, y)
         {
-            X = x;
-            Y = y;
             Name = name;
             BlockSeds = blockSeds;
             Resources = resources;
         }
 
-        public FieldToken(int x, int y, string name, ResourceContainer resources)
+        public FieldToken(int x, int y, string name, ResourceContainer resources): base(x, y)
         {
-            X = x;
-            Y = y;
             Name = name;
             BlockSeds = 0;
             Resources = resources;
@@ -68,28 +60,6 @@ namespace DesertPlanet.source.Field
                 return new Blocked(token.X, token.Y, token.Resources, token.BlockSeds);
             return null;
         }
-
-        public static Vector2I WaterTileShift = new Vector2I(3, 1);
-
-        public static Vector2I WaterOilTileShift = new Vector2I(3, 2);
-
-        public static Vector2I SandTileShift = new Vector2I(2, 0);
-
-        public static Vector2I SandBokcitTileShift = new Vector2I(0, 1);
-
-        public static Vector2I SandLimeTileShift = new Vector2I(1, 0);
-
-        public static Vector2I StoneTileShift = new Vector2I(0, 2);
-
-        public static Vector2I StoneOilTileShift =new Vector2I(1, 2);
-
-        public static Vector2I StoneIronTileShift = new Vector2I(2, 2);
-
-        public static Vector2I SpaceDockTileShift = new Vector2I(0, 0);
-
-        public static Vector2I EmptyTileShift = new Vector2I(-1, -1);
-
-        public static Vector2I BlockedTileShift = new Vector2I(3, 0);
 
         public static int BorderTypeFromString(string str)
         {
@@ -165,27 +135,27 @@ namespace DesertPlanet.source.Field
             get
             {
                 if (Name == "Sand")
-                    return FieldToken.SandTileShift;
+                    return FieldTileShifts.SandTileShift;
                 if (Name == "Stone")
-                    return FieldToken.StoneTileShift;
+                    return FieldTileShifts.StoneTileShift;
                 if (Name == "Water")
-                    return FieldToken.WaterTileShift;
+                    return FieldTileShifts.WaterTileShift;
                 if (Name == "StaticCosmoport")
-                    return FieldToken.SpaceDockTileShift;
+                    return FieldTileShifts.SpaceDockTileShift;
                 if (Name == "Empty")
-                    return FieldToken.EmptyTileShift;
+                    return FieldTileShifts.EmptyTileShift;
                 if (Name == "StoneIron")
-                    return FieldToken.StoneIronTileShift;
+                    return FieldTileShifts.StoneIronTileShift;
                 if (Name == "StoneOil")
-                    return FieldToken.StoneOilTileShift;
+                    return FieldTileShifts.StoneOilTileShift;
                 if (Name == "SandLime")
-                    return FieldToken.SandLimeTileShift;
+                    return FieldTileShifts.SandLimeTileShift;
                 if (Name == "SandBoskit")
-                    return FieldToken.SandBokcitTileShift;
+                    return FieldTileShifts.SandBokcitTileShift;
                 if (Name == "Blocked")
-                    return FieldToken.BlockedTileShift;
+                    return FieldTileShifts.BlockedTileShift;
                 if (Name == "WaterOil")
-                    return FieldToken.WaterOilTileShift;
+                    return FieldTileShifts.WaterOilTileShift;
                 GD.Print("Error Don't Found such token " + Name);
                 return new Vector2I(-1, -1);
             }
@@ -274,36 +244,6 @@ namespace DesertPlanet.source.Field
             }
         }
 
-        [JsonIgnore]
-        public List<Vector2I> Neighbors
-        {
-            get
-            {
-                var result = new List<Vector2I>();
-                if ( X % 2 == 0)
-                {
-                    result.Add(new Vector2I(X + 0, Y - 1));
-                    result.Add(new Vector2I(X + 1, Y));
-                    result.Add(new Vector2I(X + 1, Y + 1));
-                    result.Add(new Vector2I(X, Y + 1));
-                    result.Add(new Vector2I(X - 1, Y + 1));
-                    result.Add(new Vector2I(X - 1, Y));
-                }
-                else
-                {
-                    result.Add(new Vector2I(X + 0, Y - 1));
-                    result.Add(new Vector2I(X + 1, Y - 1));
-                    result.Add(new Vector2I(X + 1, Y));
-                    result.Add(new Vector2I(X, Y + 1));
-                    result.Add(new Vector2I(X - 1, Y));
-                    result.Add(new Vector2I(X - 1, Y - 1));
-                }
-
-
-                return result;
-            }
-        }
-        
         private List<int> DecompresBorderString(string str)
             {
                 var result = new List<int>();

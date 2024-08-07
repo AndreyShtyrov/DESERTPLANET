@@ -313,7 +313,7 @@ layer_4/z_index = 4
 layer_4/tile_data = PackedInt32Array()
 layer_5/name = "AreaSelection"
 layer_5/enabled = true
-layer_5/modulate = Color(1, 1, 1, 1)
+layer_5/modulate = Color(1, 1, 1, 0.415686)
 layer_5/y_sort_enabled = false
 layer_5/y_sort_origin = 0
 layer_5/z_index = 5
@@ -1861,6 +1861,26 @@ filters = PackedStringArray("*.json")
 layout_mode = 2
 text = "Sync"
 
+[node name="Landing" type="HBoxContainer" parent="MenuBar"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MenuBar/Landing"]
+layout_mode = 2
+mouse_filter = 2
+text = "Select Landing Region"
+editable = false
+expand_to_text_length = true
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+
+[node name="SelectLanding" type="OptionButton" parent="MenuBar/Landing"]
+visible = false
+layout_mode = 2
+
 [node name="UpdateData" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.5
@@ -1882,4 +1902,5 @@ wait_time = 0.5
 [connection signal="file_selected" from="MenuBar/SaveWindow" to="." method="OnSaveGame"]
 [connection signal="file_selected" from="MenuBar/LoadWindow" to="." method="OnLoadGame"]
 [connection signal="pressed" from="MenuBar/Button" to="." method="BroadCastMapChange"]
+[connection signal="item_selected" from="MenuBar/Landing/SelectLanding" to="." method="ChooseLandingRegion"]
 [connection signal="timeout" from="UpdateData" to="." method="BroadCastMapChange"]

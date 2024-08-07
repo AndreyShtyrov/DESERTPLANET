@@ -33,6 +33,9 @@ namespace DesertPlanet.source
         public Player ActivePlayer { get; set; } = null;
         public Player Player { get; }
 
+        public List<int> OccupiedLandings { get; } = new List<int>();
+        public int PreviosLandingSubSector { get; set; } = -1;
+        public int LandingRegion { get; set; } = -1;
         public Player NextPlayer { get
             {
                 var index = PlayerList.IndexOf(ActivePlayer);

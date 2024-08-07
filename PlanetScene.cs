@@ -28,6 +28,9 @@ public partial class PlanetScene : Node2D
     public MapField Map { get; set; } = null;
     private HBoxContainer AbilitiPanel { get; set; }
     private GridContainer BuldingPanel { get; set; }
+
+    private OptionButton LandingSelected { get; set; }
+
     public SelectorTools Selector { get; set; }
     public GameMode GameMode { get; set; }
 
@@ -78,11 +81,18 @@ public partial class PlanetScene : Node2D
         TransportResourceWindow = GetNode<TransportResource>("TransportResource");
         Path = GetNode<PathLine>("PathLine");
         ProjectMarketWindow = GetNode<ProjectMarket>("ProjectMarket");
+        LandingSelected = GetNode<OptionButton>("MenuBar/Landing/SelectLanding");
         InitMap(ProjectSettings.GlobalizePath("res://Maps/") + "/map1.json");
         SetResBarOut();
         IsInit = true;
         IsReady = true;
+        if (GameMode.Player == GameMode.ActivePlayer)
+        {
+            LandingSelected.Visible = true;
+        }
+        
         GetNode<Timer>("UpdateData").Start();
+
     }
 
     private void SetResBarOut()
@@ -199,9 +209,11 @@ public partial class PlanetScene : Node2D
             return;
         if (GameMode.State == GameState.ChooseStartResource && !StartGameResourceMoverWindow.Visible)
         {
+            tileMap.ClearLayer(5);
+            LandingSelected.Visible = false;
             StartGameResourceMoverWindow.Show();
             List<Harvester> harvesters = new List<Harvester>();
-            foreach(var harvester in GameMode.Harvesters.Values)
+            foreach (var harvester in GameMode.Harvesters.Values)
                 if (harvester.Owner == GameMode.Player)
                     harvesters.Add(harvester);
             InitHarvesterStartGame();
@@ -316,13 +328,26 @@ public partial class PlanetScene : Node2D
         }
         if (GameMode.State == GameState.Deploy)
         {
+            if (GameMode.LandingRegion == -1)
+                return;
             if (Input.IsActionJustReleased("mb_left"))
             {
                 if (GameMode.ActivePlayer != GameMode.Player)
                     return;
                 if (!(X < 0 || X >= Map.Horizontal || Y < 0 || Y >= Map.Vertical))
                 {
+                    var landing = GameMode.LandingRegion;
+                    if (landing != Map.LandingFields[X, Y].Value && landing + 4 != Map.LandingFields[X, Y].Value)
+                        return;
+                    if (GameMode.PreviosLandingSubSector != -1)
+                    {
+                        if (GameMode.PreviosLandingSubSector == 1 && landing == Map.LandingFields[X, Y].Value)
+                            return;
+                        if (GameMode.PreviosLandingSubSector == 2 && landing + 4 == Map.LandingFields[X, Y].Value)
+                            return;
+                    } 
                     var actions = GameMode.Logic.CreateHarvester(X, Y, GameMode.Player);
+                    LandingSelected.Visible = false;
                     GameMode.ActionManager.ApplyActions(actions);
                     if (GameMode.Player.AmountStartHarvesters == 0)
                     {
@@ -457,6 +482,11 @@ public partial class PlanetScene : Node2D
         TransportResourceWindow.Selector = Selector;
         ProjectMarketWindow.GameMode = GameMode;
         ProjectMarketWindow.SetData();
+        for (int i = 0; i < Map.MaxPlayers; i++)
+        {
+            LandingSelected.AddItem((i + 1).ToString());
+        }
+        LandingSelected.Select(GameMode.LandingRegion);
     }
     public void AddAndPreloadAbilitiButtons()
     {
@@ -551,6 +581,9 @@ public partial class PlanetScene : Node2D
         for (int i = 0; i < Map.Horizontal; i++)
             for (int j = 0; j < Map.Vertical; j++)
                 tileMap.SetCell(0, new Vector2I(i, j), 0, Map[i, j].TileShift);
+        for (int i = 0; i < Map.Horizontal; i++)
+            for (int j = 0; j < Map.Vertical; j++)
+                tileMap.SetCell(5, new Vector2I(i, j), 7, Map.LandingFields[i, j].GetTile);
         DrawBorders();
     }
 
@@ -569,6 +602,20 @@ public partial class PlanetScene : Node2D
     public void ApplyChangesThroughRpc(string json)
     {
         GameMode.ActionManager.ApplyActionsFromJson(json);
+        if (GameMode.State == GameState.Deploy && !LandingSelected.Visible)
+        {
+            ExcludeOccuiedRegionsIds();
+            LandingSelected.Visible = true;
+            tileMap.ClearLayer(5);
+            for (int i = 0; i < Map.Horizontal; i++)
+                for (int j = 0; j < Map.Vertical; j++)
+                {
+                    if (GameMode.OccupiedLandings.Contains(Map.LandingFields[i, j].Value))
+                        continue;
+                    tileMap.SetCell(5, new Vector2I(i, j), 7, Map.LandingFields[i, j].GetTile);
+                }
+
+        }
     }
 
     private void CleanAbilityBar()
@@ -761,4 +808,18 @@ public partial class PlanetScene : Node2D
         SelectRecept2Window.SetData(ability.Recipe, ability);
     }
 
+    private void ExcludeOccuiedRegionsIds()
+    {
+        for (int i = LandingSelected.ItemCount - 1; i >= 0; i--)
+            LandingSelected.RemoveItem(i);
+        for (int i = 0; i < Map.MaxPlayers; i++)
+            if (!GameMode.OccupiedLandings.Contains(i + 1))
+                LandingSelected.AddItem((i + 1).ToString());
+        LandingSelected.Selected = -1;
+    }
+
+    public void ChooseLandingRegion(int i)
+    {
+        GameMode.LandingRegion = LandingSelected.GetItemText(i).ToInt();
+    }
 }
