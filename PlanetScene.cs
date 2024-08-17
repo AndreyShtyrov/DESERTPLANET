@@ -71,8 +71,6 @@ public partial class PlanetScene : Node2D
         prevResFields = null;
         outputLine = GetNode<LineEdit>("UpToolBar/LineEdit");
         tileMap = GetNode<TileMap>("PlanetField");
-        AbilitiPanel = GetNode<HBoxContainer>("AbilityPanel");
-        BuldingPanel = GetNode<GridContainer>("BuildingRecipt");
         SelectWindow = GetNode<SelectTarget>("SelectTarget");
         MoveResourceWindow = GetNode<MoveResource>("MoveResource");
         SelectReceptWindow = GetNode<DecideRecipe>("DecideRecipe");
@@ -109,7 +107,7 @@ public partial class PlanetScene : Node2D
         LimeText = GetNode<TextEdit>("RBar/I10/TextEdit");
         RepoAmount = GetNode<TextEdit>("RepoTolbar/I1/TextEdit");
     }
-
+     
     public void DrawArea(List<Vector2I> area)
     {
         tileMap.ClearLayer(5);
@@ -221,10 +219,7 @@ public partial class PlanetScene : Node2D
         }
         if (DebugFlagShowArea)
             DrawArea(GameMode.Area(tilePos.X, tilePos.Y, 2));
-        
-        if (Selector.UnitId == -1)
-            CleanAbilityBar();
-        
+
         if (GameMode.State != GameState.ChooseStartResource)
         {
             if (StartGameResourceMoverWindow.Visible)
@@ -283,7 +278,6 @@ public partial class PlanetScene : Node2D
         DrawResourceUI();
         DrawDynamicObjects();
         ProceedInputData(tilePos.X, tilePos.Y, pos.X, pos.Y);
-        AddAndPreloadAbilitiButtons();
     }
 
     public void InitHarvesterStartGame()
@@ -372,18 +366,9 @@ public partial class PlanetScene : Node2D
                     var units = GameMode.GetTokensByPos(X, Y);
                     if (units.Count > 0)
                     {
-                        if (units.Count == 1)
-                        {
-                            Selector.UnitId = units[0].Id;
-                            Selector.State = SelectorState.SelectAbility;
-                            LoadUnitAblitiesBar(Selector.UnitId);
-                            return;
-                        }
-                        else
-                        {
-                            SelectWindow.SetData(units, LoadUnitAblitiesBar, false);
-                        }
-
+                        Selector.UnitId = units[0].Id;
+                        Selector.State = SelectorState.SelectAbility;
+                        return;
                     }
                 }
                 if (Selector.State == SelectorState.SelectTarget)
@@ -488,76 +473,6 @@ public partial class PlanetScene : Node2D
         }
         LandingSelected.Select(GameMode.LandingRegion);
     }
-    public void AddAndPreloadAbilitiButtons()
-    {
-        lock (_lock)
-        {
-            if (!GameMode.NeedLoadAbilityGUI)
-                return;
-            foreach (var unitId in GameMode.UpdateAbilitiesGuiTargets)
-                if (PreloadAbilities.ContainsKey(unitId))
-                {
-                    if (GameMode.GetObjectById(unitId) is IHasAbilities unit)
-                    {
-                        foreach (var ability in unit.Abilities)
-                        {
-                            if (!PreloadAbilities[unitId].ContainsKey(0))
-                            {
-                                var newAbilityGUI = AbilityScene.Instantiate<AbilityButton>();
-                                if (ability is MoveUnit)
-                                    newAbilityGUI.OnAdditionAbilityUI += ShowAdditionUI;
-                                if (ability is ConstructBuilding)
-                                    newAbilityGUI.SetData(ability, Selector, GameMode, DecideRecipe);
-                                else if (ability is MakeRecipe)
-                                    newAbilityGUI.SetData(ability, Selector, GameMode, DecideNotInvariantRecipe);
-                                else
-                                    newAbilityGUI.SetData(ability, Selector, GameMode);
-                                PreloadAbilities[unitId].Add(ability.Id, newAbilityGUI);
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    PreloadAbilities[unitId] = new Dictionary<int, AbilityButton>();
-                    if (GameMode.GetObjectById(unitId) is IHasAbilities unit)
-                    {
-                        foreach (var ability in unit.Abilities)
-                        {
-                            var newAbilityGUI = AbilityScene.Instantiate<AbilityButton>();
-                            if (ability is MoveUnit)
-                                newAbilityGUI.OnAdditionAbilityUI += ShowAdditionUI;
-                            if (ability is ConstructBuilding)
-                                newAbilityGUI.SetData(ability, Selector, GameMode, DecideRecipe);
-                            else if (ability is MakeRecipe)
-                                newAbilityGUI.SetData(ability, Selector, GameMode, DecideNotInvariantRecipe);
-                            else
-                                newAbilityGUI.SetData(ability, Selector, GameMode);
-                            PreloadAbilities[unitId].Add(ability.Id, newAbilityGUI);
-                        }
-                    }
-                }
-            GameMode.NeedLoadAbilityGUI = false;
-            GameMode.UpdateAbilitiesGuiTargets.Clear();
-        }
-    }
-    public void LoadUnitAblitiesBar(int unitId)
-    {
-        GameMode.MakeSelectionPostProcessing(unitId);
-        for (int  i = AbilitiPanel.GetChildCount() - 1;  i >= 0;  i--)
-            AbilitiPanel.RemoveChild(AbilitiPanel.GetChild(i));
-        for (int i = BuldingPanel.GetChildCount() - 1; i >= 0; i--)
-            BuldingPanel.RemoveChild(BuldingPanel.GetChild(i));
-        foreach (var ability in PreloadAbilities[unitId].Values)
-        {
-            if (ability.Ability is ConstructBuilding)
-                BuldingPanel.AddChild(ability);
-            else if (ability.Ability is MakeRecipe)
-                BuldingPanel.AddChild(ability);
-            else
-                AbilitiPanel.AddChild(ability);
-        }   
-    }
 
     private void ShowAdditionUI(string Name)
     {
@@ -616,14 +531,6 @@ public partial class PlanetScene : Node2D
                 }
 
         }
-    }
-
-    private void CleanAbilityBar()
-    {
-        for (int i = AbilitiPanel.GetChildCount() - 1; i >= 0; i--)
-            AbilitiPanel.RemoveChild(AbilitiPanel.GetChild(i));
-        for (int i = BuldingPanel.GetChildCount() - 1;i >= 0; i--)
-            BuldingPanel.RemoveChild(BuldingPanel.GetChild(i));
     }
 
     private void InitResFieldsFromMap(MapField map)

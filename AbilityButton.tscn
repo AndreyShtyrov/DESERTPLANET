@@ -2,15 +2,23 @@
 
 [ext_resource type="Script" path="res://AbilityButton.cs" id="1_vhbj5"]
 
-[node name="AbilityButton" type="Button"]
+[node name="HBox" type="HBoxContainer"]
 script = ExtResource("1_vhbj5")
 
-[node name="AbilityName" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 100.0
-offset_right = 140.0
-offset_bottom = 23.0
+[node name="Reciept" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(30, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+expand_mode = 1
+
+[node name="AbilityButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(90, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
@@ -18,5 +26,4 @@ one_shot = true
 
 [connection signal="mouse_entered" from="." to="." method="OnInitArea"]
 [connection signal="mouse_exited" from="." to="." method="OnOutArea"]
-[connection signal="pressed" from="." to="." method="OnPress"]
 [connection signal="timeout" from="Timer" to="." method="OnEndTimer"]

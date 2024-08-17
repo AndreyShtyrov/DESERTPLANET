@@ -22,7 +22,6 @@ namespace DesertPlanet.source.Companies
         public virtual bool CanHarvestorMoveOnWater => false;
         public string Description { get; }
         public Player Player { get; }
-
         public virtual int VerticalShiftForHarvesterTile { get; }
 
         public Dictionary<string, AbilityRecipe> AbilityRecepts { get; }

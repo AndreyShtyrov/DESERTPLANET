@@ -4,7 +4,7 @@ using Godot;
 using System;
 using DesertPlanet.source.Interfaces;
 
-public partial class AbilityButton : Button
+public partial class AbilityButton : HBoxContainer
 {
 	// Called when the node enters the scene tree for the first time.
 	public AbilityPresset Ability { get; set; }

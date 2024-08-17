@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://jugyy6wgr5cs"]
+[gd_scene load_steps=94 format=3 uid="uid://jugyy6wgr5cs"]
 
 [ext_resource type="Script" path="res://PlanetScene.cs" id="1_qgbts"]
 [ext_resource type="PackedScene" uid="uid://dkoyjt3n4lmnc" path="res://AbilityButton.tscn" id="2_1487e"]
@@ -38,6 +38,21 @@
 [ext_resource type="Texture2D" uid="uid://cktf2rybmogsy" path="res://source/Assets/ResourceIcons/ProjectsMarket.png" id="33_yhblk"]
 [ext_resource type="Script" path="res://ProjectMarket.cs" id="35_wsh2p"]
 [ext_resource type="PackedScene" uid="uid://xrhcs5od2w7f" path="res://ProjectFile.tscn" id="36_l8cru"]
+[ext_resource type="Texture2D" uid="uid://omg3he28a5x2" path="res://source/Assets/ReceptIcons/FeP.png" id="39_n7ow5"]
+[ext_resource type="Texture2D" uid="uid://dxncw83qm1hge" path="res://source/Assets/BuildIcons/Mill.png" id="40_on0op"]
+[ext_resource type="Texture2D" uid="uid://dunsjddnb0c8h" path="res://source/Assets/ReceptIcons/GFeP.png" id="41_kd3l5"]
+[ext_resource type="Texture2D" uid="uid://dwetynfba5wye" path="res://source/Assets/BuildIcons/SolarPanel.png" id="42_gofoi"]
+[ext_resource type="Texture2D" uid="uid://t41qnminyfrl" path="res://source/Assets/ReceptIcons/FeFeP.png" id="43_33r63"]
+[ext_resource type="Texture2D" uid="uid://c76slmcoj1uor" path="res://source/Assets/BuildIcons/ThermalPowerPlan.png" id="44_i7hh3"]
+[ext_resource type="Texture2D" uid="uid://cnp45tn02b0ej" path="res://source/Assets/ReceptIcons/UUPPFeC.png" id="45_r43eb"]
+[ext_resource type="Texture2D" uid="uid://bpjxc75eq5d17" path="res://source/Assets/BuildIcons/AtomicPlant.png" id="46_d8qdc"]
+[ext_resource type="Texture2D" uid="uid://x3lsvwr4mr77" path="res://source/Assets/BuildIcons/House.png" id="47_ped6y"]
+[ext_resource type="Texture2D" uid="uid://cofoyousr8l1i" path="res://source/Assets/ReceptIcons/CCC.png" id="48_vcdwa"]
+[ext_resource type="Texture2D" uid="uid://b27db73hmdo5h" path="res://source/Assets/BuildIcons/Park.png" id="49_618sy"]
+[ext_resource type="Texture2D" uid="uid://bvs83mkuyhvdc" path="res://source/Assets/ReceptIcons/CGPPAl3.png" id="50_l0vv3"]
+[ext_resource type="Texture2D" uid="uid://67fqs383u2t" path="res://source/Assets/BuildIcons/Office.png" id="51_p8140"]
+[ext_resource type="Texture2D" uid="uid://clqxse4perhme" path="res://source/Assets/ReceptIcons/C5P3FeP4.png" id="52_0oc8m"]
+[ext_resource type="Texture2D" uid="uid://barsqtpclyam2" path="res://source/Assets/BuildIcons/TidalPlant.png" id="53_jy4i3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3pyf"]
 texture = ExtResource("2_tb7yq")
@@ -343,19 +358,6 @@ shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
 selecting_enabled = false
 deselect_on_focus_loss_enabled = false
-
-[node name="BuildingRecipt" type="GridContainer" parent="."]
-offset_left = 1609.0
-offset_top = 18.0
-offset_right = 1649.0
-offset_bottom = 58.0
-columns = 2
-
-[node name="AbilityPanel" type="HBoxContainer" parent="."]
-offset_left = 1598.0
-offset_top = 558.0
-offset_right = 1687.0
-offset_bottom = 598.0
 
 [node name="Button" type="Button" parent="."]
 offset_left = 1623.0
@@ -1885,6 +1887,101 @@ layout_mode = 2
 process_callback = 0
 wait_time = 0.5
 
+[node name="EnergyBPanel" type="VBoxContainer" parent="."]
+offset_left = 1729.0
+offset_top = 84.0
+offset_right = 1769.0
+offset_bottom = 124.0
+size_flags_horizontal = 4
+
+[node name="HBox" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Reciept" parent="EnergyBPanel/HBox" index="0"]
+clip_contents = true
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("39_n7ow5")
+
+[node name="AbilityButton" parent="EnergyBPanel/HBox" index="1"]
+texture_normal = ExtResource("40_on0op")
+
+[node name="HBox2" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Reciept" parent="EnergyBPanel/HBox2" index="0"]
+texture = ExtResource("41_kd3l5")
+
+[node name="AbilityButton" parent="EnergyBPanel/HBox2" index="1"]
+texture_normal = ExtResource("42_gofoi")
+
+[node name="HBox3" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Reciept" parent="EnergyBPanel/HBox3" index="0"]
+texture = ExtResource("43_33r63")
+
+[node name="AbilityButton" parent="EnergyBPanel/HBox3" index="1"]
+texture_normal = ExtResource("44_i7hh3")
+
+[node name="HBox4" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="Reciept" parent="EnergyBPanel/HBox4" index="0"]
+custom_minimum_size = Vector2(50, 80)
+texture = ExtResource("45_r43eb")
+
+[node name="AbilityButton" parent="EnergyBPanel/HBox4" index="1"]
+texture_normal = ExtResource("46_d8qdc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 1731.0
+offset_top = 437.0
+offset_right = 1875.0
+offset_bottom = 769.0
+
+[node name="HBox" parent="VBoxContainer" instance=ExtResource("2_1487e")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Reciept" parent="VBoxContainer/HBox" index="0"]
+texture = ExtResource("41_kd3l5")
+
+[node name="AbilityButton" parent="VBoxContainer/HBox" index="1"]
+texture_normal = ExtResource("47_ped6y")
+
+[node name="HBox2" parent="VBoxContainer" instance=ExtResource("2_1487e")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Reciept" parent="VBoxContainer/HBox2" index="0"]
+texture = ExtResource("48_vcdwa")
+
+[node name="AbilityButton" parent="VBoxContainer/HBox2" index="1"]
+texture_normal = ExtResource("49_618sy")
+
+[node name="HBox3" parent="VBoxContainer" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="Reciept" parent="VBoxContainer/HBox3" index="0"]
+custom_minimum_size = Vector2(50, 80)
+texture = ExtResource("50_l0vv3")
+
+[node name="AbilityButton" parent="VBoxContainer/HBox3" index="1"]
+texture_normal = ExtResource("51_p8140")
+
+[node name="HBox4" parent="VBoxContainer" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="Reciept" parent="VBoxContainer/HBox4" index="0"]
+texture = ExtResource("52_0oc8m")
+
+[node name="AbilityButton" parent="VBoxContainer/HBox4" index="1"]
+texture_normal = ExtResource("53_jy4i3")
+
 [connection signal="pressed" from="Button" to="." method="OnEndTurn"]
 [connection signal="pressed" from="MoveResource/Button4" to="MoveResource" method="OnCancel"]
 [connection signal="pressed" from="MoveResource/Button3" to="MoveResource" method="OnConfirm"]
@@ -1904,3 +2001,12 @@ wait_time = 0.5
 [connection signal="pressed" from="MenuBar/Button" to="." method="BroadCastMapChange"]
 [connection signal="item_selected" from="MenuBar/Landing/SelectLanding" to="." method="ChooseLandingRegion"]
 [connection signal="timeout" from="UpdateData" to="." method="BroadCastMapChange"]
+
+[editable path="EnergyBPanel/HBox"]
+[editable path="EnergyBPanel/HBox2"]
+[editable path="EnergyBPanel/HBox3"]
+[editable path="EnergyBPanel/HBox4"]
+[editable path="VBoxContainer/HBox"]
+[editable path="VBoxContainer/HBox2"]
+[editable path="VBoxContainer/HBox3"]
+[editable path="VBoxContainer/HBox4"]

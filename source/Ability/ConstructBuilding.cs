@@ -53,24 +53,48 @@ namespace DesertPlanet.source.Ability
             }
             if (field is Sand)
             {
-                foreach(var building in mode.Buildings.Values)
+                if (Recipe is SolidPlatfromRecept)
                 {
-                    if (!(building.X == Unit.X && building.Y == Unit.Y))
-                        continue;
-                    if (building is SolidPlatform)
+                    IsFieldAcceptable = true;
+                    var tokens = mode.GetTokensByPos(Unit.X, Unit.Y);
+                    foreach (var token in tokens)
+                        if (token is Building)
+                            return false;
+                }
+                else
+                {
+
+                    foreach (var building in mode.Buildings.Values)
                     {
-                        IsFieldAcceptable = true; break;
+                        if (!(building.X == Unit.X && building.Y == Unit.Y))
+                            continue;
+                        if (building is SolidPlatform)
+                        {
+                            IsFieldAcceptable = true; break;
+                        }
                     }
                 }
+
             }
             if (field is Water) {
-                foreach (var building in mode.Buildings.Values)
+                if (Recipe is FloatPlatformReceipt)
                 {
-                    if (!(building.X == Unit.X && building.Y == Unit.Y))
-                        continue;
-                    if (building is FloatPlatform)
+                    IsFieldAcceptable = true;
+                    var tokens = mode.GetTokensByPos(Unit.X, Unit.Y);
+                    foreach (var token in tokens)
+                        if (token is Building)
+                            return false;
+                }
+                else
+                {
+                    foreach (var building in mode.Buildings.Values)
                     {
-                        IsFieldAcceptable = true; break;
+                        if (!(building.X == Unit.X && building.Y == Unit.Y))
+                            continue;
+                        if (building is FloatPlatform)
+                        {
+                            IsFieldAcceptable = true; break;
+                        }
                     }
                 }
             }

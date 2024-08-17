@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Godot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace DesertPlanet.source.Buildings
             : base("SolidPlatform", x, y, layerId, id, owner)
         {
         }
+
+        public override Vector2I TileShift => new Vector2I(0, 2);
     }
 
     public class SolidPlatfromRecept : BuildingRecipe
