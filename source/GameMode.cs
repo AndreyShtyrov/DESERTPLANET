@@ -540,5 +540,7 @@ namespace DesertPlanet.source
 
     public delegate void ActionOnId(int id);
 
+    public delegate void ActionHandler();
+
     public delegate void ShowAdditionAbilityUI(string name);
 }

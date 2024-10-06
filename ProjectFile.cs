@@ -3,7 +3,7 @@ using DesertPlanet.source.Companies.Projects;
 using Godot;
 using System;
 
-public partial class ProjectFile : Control
+public partial class ProjectFile : PanelContainer
 {
 	// Called when the node enters the scene tree for the first time.
 

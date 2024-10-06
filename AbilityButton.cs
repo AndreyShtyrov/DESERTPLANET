@@ -9,6 +9,10 @@ public partial class AbilityButton : HBoxContainer
 	// Called when the node enters the scene tree for the first time.
 	public AbilityPresset Ability { get; set; }
 
+	[Export]
+	public int ActionId { get; set; }
+
+	public event ActionOnId ApplyActionEvent;
     private GameMode GameMode { get; set; }
     private SelectorTools Selector { get; set; }
 	private ActionOnId PostAction { get; set; }
@@ -18,7 +22,6 @@ public partial class AbilityButton : HBoxContainer
 	private Timer ShowHelpTimer { get; set; }
 	public override void _Ready()
 	{
-		Text = Ability.Name;
 		AbilityNameText = GetNode<Label>("AbilityName");
 		ShowHelpTimer = GetNode<Timer>("Timer");
 		AbilityNameText.Visible = false;
@@ -98,5 +101,12 @@ public partial class AbilityButton : HBoxContainer
 		AbilityNameText.Text = Ability.Name;
 		GD.Print("Show Ability Description");
 		AbilityNameText.Visible = true;
+	}
+
+	public void OnPressButton()
+	{
+		if (ActionId == -1)
+			return;
+
 	}
 }

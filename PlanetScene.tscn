@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://jugyy6wgr5cs"]
+[gd_scene load_steps=110 format=3 uid="uid://jugyy6wgr5cs"]
 
 [ext_resource type="Script" path="res://PlanetScene.cs" id="1_qgbts"]
 [ext_resource type="PackedScene" uid="uid://dkoyjt3n4lmnc" path="res://AbilityButton.tscn" id="2_1487e"]
@@ -53,6 +53,22 @@
 [ext_resource type="Texture2D" uid="uid://67fqs383u2t" path="res://source/Assets/BuildIcons/Office.png" id="51_p8140"]
 [ext_resource type="Texture2D" uid="uid://clqxse4perhme" path="res://source/Assets/ReceptIcons/C5P3FeP4.png" id="52_0oc8m"]
 [ext_resource type="Texture2D" uid="uid://barsqtpclyam2" path="res://source/Assets/BuildIcons/TidalPlant.png" id="53_jy4i3"]
+[ext_resource type="Texture2D" uid="uid://bhuanyqriktqj" path="res://source/Assets/BuildIcons/Drille.png" id="54_0hgul"]
+[ext_resource type="Texture2D" uid="uid://bbqiwa2dp2xxt" path="res://source/Assets/BuildIcons/ConversionFabric.png" id="55_4a2pr"]
+[ext_resource type="Texture2D" uid="uid://bqw8f6nfw154e" path="res://source/Assets/BuildIcons/MeltingFurnace.png" id="56_qdd16"]
+[ext_resource type="Texture2D" uid="uid://bmibwcv7xnpcr" path="res://source/Assets/ReceptIcons/FeFePFeP.png" id="57_otgmh"]
+[ext_resource type="Texture2D" uid="uid://p2dch1jrlxyf" path="res://source/Assets/BuildIcons/Fabric.png" id="58_tke0f"]
+[ext_resource type="Texture2D" uid="uid://v2nutgfujuvj" path="res://source/Assets/ReceptIcons/PAl.png" id="59_8gwjt"]
+[ext_resource type="Texture2D" uid="uid://bodor2xclaho6" path="res://source/Assets/BuildIcons/Manipulator.png" id="60_2cugr"]
+[ext_resource type="Texture2D" uid="uid://b6eptd0skkh51" path="res://source/Assets/ReceptIcons/Al.png" id="61_j4koo"]
+[ext_resource type="Texture2D" uid="uid://cbivyipev8gh7" path="res://source/Assets/BuildIcons/Hellicopter.png" id="62_balny"]
+[ext_resource type="Texture2D" uid="uid://dfobq46ef22pq" path="res://source/Assets/ReceptIcons/AlFeP.png" id="63_hpm4x"]
+[ext_resource type="Texture2D" uid="uid://c0s2by05pqppd" path="res://source/Assets/BuildIcons/Radar.png" id="64_626wp"]
+[ext_resource type="Texture2D" uid="uid://d13qrm7kc6op5" path="res://source/Assets/ReceptIcons/FeC.png" id="65_t1us1"]
+[ext_resource type="Texture2D" uid="uid://c6vfl3waua1l8" path="res://source/Assets/BuildIcons/Foundation.png" id="66_8xld7"]
+[ext_resource type="Texture2D" uid="uid://dcgrav6siu5rx" path="res://source/Assets/ReceptIcons/P.png" id="67_qvuhi"]
+[ext_resource type="Texture2D" uid="uid://7w65trxkwlof" path="res://source/Assets/BuildIcons/FloatingPlatform.png" id="68_gio28"]
+[ext_resource type="PackedScene" uid="uid://buupqhgh7jf6s" path="res://HarvesterUi.tscn" id="69_2lm3s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3pyf"]
 texture = ExtResource("2_tb7yq")
@@ -1888,15 +1904,16 @@ process_callback = 0
 wait_time = 0.5
 
 [node name="EnergyBPanel" type="VBoxContainer" parent="."]
-offset_left = 1729.0
-offset_top = 84.0
-offset_right = 1769.0
-offset_bottom = 124.0
+offset_left = 1737.0
+offset_top = 290.0
+offset_right = 1881.0
+offset_bottom = 622.0
 size_flags_horizontal = 4
 
 [node name="HBox" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
+ActionId = 0
 
 [node name="Reciept" parent="EnergyBPanel/HBox" index="0"]
 clip_contents = true
@@ -1910,6 +1927,7 @@ texture_normal = ExtResource("40_on0op")
 [node name="HBox2" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
+ActionId = 8
 
 [node name="Reciept" parent="EnergyBPanel/HBox2" index="0"]
 texture = ExtResource("41_kd3l5")
@@ -1920,6 +1938,7 @@ texture_normal = ExtResource("42_gofoi")
 [node name="HBox3" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
+ActionId = 12
 
 [node name="Reciept" parent="EnergyBPanel/HBox3" index="0"]
 texture = ExtResource("43_33r63")
@@ -1929,6 +1948,7 @@ texture_normal = ExtResource("44_i7hh3")
 
 [node name="HBox4" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
+ActionId = 11
 
 [node name="Reciept" parent="EnergyBPanel/HBox4" index="0"]
 custom_minimum_size = Vector2(50, 80)
@@ -1937,50 +1957,193 @@ texture = ExtResource("45_r43eb")
 [node name="AbilityButton" parent="EnergyBPanel/HBox4" index="1"]
 texture_normal = ExtResource("46_d8qdc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 1731.0
-offset_top = 437.0
-offset_right = 1875.0
-offset_bottom = 769.0
+[node name="SocialBPanel" type="VBoxContainer" parent="."]
+offset_left = 1744.0
+offset_top = 626.0
+offset_right = 1888.0
+offset_bottom = 958.0
 
-[node name="HBox" parent="VBoxContainer" instance=ExtResource("2_1487e")]
+[node name="HBox" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Reciept" parent="VBoxContainer/HBox" index="0"]
+[node name="Reciept" parent="SocialBPanel/HBox" index="0"]
 texture = ExtResource("41_kd3l5")
 
-[node name="AbilityButton" parent="VBoxContainer/HBox" index="1"]
+[node name="AbilityButton" parent="SocialBPanel/HBox" index="1"]
 texture_normal = ExtResource("47_ped6y")
 
-[node name="HBox2" parent="VBoxContainer" instance=ExtResource("2_1487e")]
+[node name="HBox2" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Reciept" parent="VBoxContainer/HBox2" index="0"]
+[node name="Reciept" parent="SocialBPanel/HBox2" index="0"]
 texture = ExtResource("48_vcdwa")
 
-[node name="AbilityButton" parent="VBoxContainer/HBox2" index="1"]
+[node name="AbilityButton" parent="SocialBPanel/HBox2" index="1"]
 texture_normal = ExtResource("49_618sy")
 
-[node name="HBox3" parent="VBoxContainer" instance=ExtResource("2_1487e")]
+[node name="HBox3" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 
-[node name="Reciept" parent="VBoxContainer/HBox3" index="0"]
+[node name="Reciept" parent="SocialBPanel/HBox3" index="0"]
 custom_minimum_size = Vector2(50, 80)
 texture = ExtResource("50_l0vv3")
 
-[node name="AbilityButton" parent="VBoxContainer/HBox3" index="1"]
+[node name="AbilityButton" parent="SocialBPanel/HBox3" index="1"]
 texture_normal = ExtResource("51_p8140")
 
-[node name="HBox4" parent="VBoxContainer" instance=ExtResource("2_1487e")]
+[node name="HBox4" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
+ActionId = 3
 
-[node name="Reciept" parent="VBoxContainer/HBox4" index="0"]
+[node name="Reciept" parent="SocialBPanel/HBox4" index="0"]
 texture = ExtResource("52_0oc8m")
 
-[node name="AbilityButton" parent="VBoxContainer/HBox4" index="1"]
+[node name="AbilityButton" parent="SocialBPanel/HBox4" index="1"]
 texture_normal = ExtResource("53_jy4i3")
+
+[node name="MiningBPanel" type="VBoxContainer" parent="."]
+offset_left = 1572.0
+offset_top = 102.0
+offset_right = 1612.0
+offset_bottom = 142.0
+
+[node name="HBox" parent="MiningBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+ActionId = 2
+
+[node name="Reciept" parent="MiningBPanel/HBox" index="0"]
+texture = ExtResource("39_n7ow5")
+
+[node name="AbilityButton" parent="MiningBPanel/HBox" index="1"]
+texture_normal = ExtResource("54_0hgul")
+
+[node name="HBox2" parent="MiningBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+ActionId = 2
+
+[node name="Reciept" parent="MiningBPanel/HBox2" index="0"]
+texture = ExtResource("39_n7ow5")
+
+[node name="AbilityButton" parent="MiningBPanel/HBox2" index="1"]
+texture_normal = ExtResource("54_0hgul")
+
+[node name="RefineBPanel" type="VBoxContainer" parent="."]
+offset_left = 1576.0
+offset_top = 293.0
+offset_right = 1700.0
+offset_bottom = 541.0
+
+[node name="HBox" parent="RefineBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+ActionId = 6
+
+[node name="Reciept" parent="RefineBPanel/HBox" index="0"]
+texture = ExtResource("43_33r63")
+
+[node name="AbilityButton" parent="RefineBPanel/HBox" index="1"]
+texture_normal = ExtResource("55_4a2pr")
+
+[node name="HBox2" parent="RefineBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+ActionId = 9
+
+[node name="Reciept" parent="RefineBPanel/HBox2" index="0"]
+texture = ExtResource("43_33r63")
+
+[node name="AbilityButton" parent="RefineBPanel/HBox2" index="1"]
+texture_normal = ExtResource("56_qdd16")
+
+[node name="HBox3" parent="RefineBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+ActionId = 7
+
+[node name="Reciept" parent="RefineBPanel/HBox3" index="0"]
+texture = ExtResource("57_otgmh")
+
+[node name="AbilityButton" parent="RefineBPanel/HBox3" index="1"]
+texture_normal = ExtResource("58_tke0f")
+
+[node name="TransferBPanel" type="VBoxContainer" parent="."]
+offset_left = 1580.0
+offset_top = 555.0
+offset_right = 1704.0
+offset_bottom = 803.0
+
+[node name="HBox" parent="TransferBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+ActionId = 14
+
+[node name="Reciept" parent="TransferBPanel/HBox" index="0"]
+texture = ExtResource("59_8gwjt")
+
+[node name="AbilityButton" parent="TransferBPanel/HBox" index="1"]
+texture_normal = ExtResource("60_2cugr")
+
+[node name="HBox2" parent="TransferBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+ActionId = 13
+
+[node name="Reciept" parent="TransferBPanel/HBox2" index="0"]
+texture = ExtResource("61_j4koo")
+
+[node name="AbilityButton" parent="TransferBPanel/HBox2" index="1"]
+texture_normal = ExtResource("62_balny")
+
+[node name="HBox3" parent="TransferBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="Reciept" parent="TransferBPanel/HBox3" index="0"]
+texture = ExtResource("63_hpm4x")
+
+[node name="AbilityButton" parent="TransferBPanel/HBox3" index="1"]
+texture_normal = ExtResource("64_626wp")
+
+[node name="PlatformBPanel" type="VBoxContainer" parent="."]
+offset_left = 1748.0
+offset_top = 117.0
+offset_right = 1872.0
+offset_bottom = 281.0
+
+[node name="HBox" parent="PlatformBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+ActionId = 1
+
+[node name="Reciept" parent="PlatformBPanel/HBox" index="0"]
+texture = ExtResource("65_t1us1")
+
+[node name="AbilityButton" parent="PlatformBPanel/HBox" index="1"]
+texture_normal = ExtResource("66_8xld7")
+
+[node name="HBox2" parent="PlatformBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+ActionId = 5
+
+[node name="Reciept" parent="PlatformBPanel/HBox2" index="0"]
+texture = ExtResource("67_qvuhi")
+
+[node name="AbilityButton" parent="PlatformBPanel/HBox2" index="1"]
+texture_normal = ExtResource("68_gio28")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 1062.0
+offset_top = 106.0
+offset_right = 1570.0
+offset_bottom = 630.0
+columns = 2
+
+[node name="HarvesterUI" parent="GridContainer" instance=ExtResource("69_2lm3s")]
+layout_mode = 2
+
+[node name="HarvesterUI2" parent="GridContainer" instance=ExtResource("69_2lm3s")]
+layout_mode = 2
+
+[node name="HarvesterUI3" parent="GridContainer" instance=ExtResource("69_2lm3s")]
+layout_mode = 2
+
+[node name="HarvesterUI4" parent="GridContainer" instance=ExtResource("69_2lm3s")]
+layout_mode = 2
 
 [connection signal="pressed" from="Button" to="." method="OnEndTurn"]
 [connection signal="pressed" from="MoveResource/Button4" to="MoveResource" method="OnCancel"]
@@ -2006,7 +2169,17 @@ texture_normal = ExtResource("53_jy4i3")
 [editable path="EnergyBPanel/HBox2"]
 [editable path="EnergyBPanel/HBox3"]
 [editable path="EnergyBPanel/HBox4"]
-[editable path="VBoxContainer/HBox"]
-[editable path="VBoxContainer/HBox2"]
-[editable path="VBoxContainer/HBox3"]
-[editable path="VBoxContainer/HBox4"]
+[editable path="SocialBPanel/HBox"]
+[editable path="SocialBPanel/HBox2"]
+[editable path="SocialBPanel/HBox3"]
+[editable path="SocialBPanel/HBox4"]
+[editable path="MiningBPanel/HBox"]
+[editable path="MiningBPanel/HBox2"]
+[editable path="RefineBPanel/HBox"]
+[editable path="RefineBPanel/HBox2"]
+[editable path="RefineBPanel/HBox3"]
+[editable path="TransferBPanel/HBox"]
+[editable path="TransferBPanel/HBox2"]
+[editable path="TransferBPanel/HBox3"]
+[editable path="PlatformBPanel/HBox"]
+[editable path="PlatformBPanel/HBox2"]

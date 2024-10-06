@@ -90,7 +90,6 @@ public partial class PlanetScene : Node2D
         }
         
         GetNode<Timer>("UpdateData").Start();
-
     }
 
     private void SetResBarOut()
@@ -245,7 +244,6 @@ public partial class PlanetScene : Node2D
                 {
                     GD.Print("Prev pos " + Selector.Position.X + " " + Selector.Position.Y + " Next pos " + tilePos.X + " " + tilePos.Y);
                     Selector.Position = tilePos;
-                    Selector.SetResource();
                 }
             }
             else
@@ -254,7 +252,6 @@ public partial class PlanetScene : Node2D
                 if (Selector.Position.X != unitPos.X || Selector.Position.Y != unitPos.Y)
                 {
                     Selector.Position = unitPos;
-                    Selector.SetResource();
                 }
             }
 

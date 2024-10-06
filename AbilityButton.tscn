@@ -4,6 +4,7 @@
 
 [node name="HBox" type="HBoxContainer"]
 script = ExtResource("1_vhbj5")
+ActionId = -1
 
 [node name="Reciept" type="TextureRect" parent="."]
 texture_filter = 1
@@ -24,6 +25,7 @@ stretch_mode = 0
 process_callback = 0
 one_shot = true
 
+[connection signal="focus_exited" from="." to="." method="OnOutArea"]
 [connection signal="mouse_entered" from="." to="." method="OnInitArea"]
 [connection signal="mouse_exited" from="." to="." method="OnOutArea"]
 [connection signal="timeout" from="Timer" to="." method="OnEndTimer"]

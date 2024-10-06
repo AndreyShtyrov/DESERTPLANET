@@ -1,0 +1,333 @@
+[gd_scene load_steps=38 format=3 uid="uid://buupqhgh7jf6s"]
+
+[ext_resource type="Script" path="res://HarvesterUI.cs" id="1_pvllw"]
+[ext_resource type="Texture2D" uid="uid://2vqmutlexg8p" path="res://source/Assets/ResourceIcons/Plastic.png" id="2_gb7wt"]
+[ext_resource type="Texture2D" uid="uid://cs100gmrv6iy5" path="res://source/Assets/ResourceIcons/Aliminium.png" id="3_0iprn"]
+[ext_resource type="Texture2D" uid="uid://yhl5wk2ujhau" path="res://source/Assets/ResourceIcons/Uran.png" id="4_vlyao"]
+[ext_resource type="Texture2D" uid="uid://bkgl8gii8jx0e" path="res://source/Assets/ResourceIcons/Cement.png" id="5_srady"]
+[ext_resource type="Texture2D" uid="uid://i0d3lg2levca" path="res://source/Assets/ResourceIcons/iron.png" id="6_6k13a"]
+[ext_resource type="Texture2D" uid="uid://s57v6o1136qa" path="res://source/Assets/ResourceIcons/oil.png" id="7_wbpjg"]
+[ext_resource type="Texture2D" uid="uid://4tpr4w4eggp0" path="res://source/Assets/ResourceIcons/Baskit.png" id="8_8v0nr"]
+[ext_resource type="Texture2D" uid="uid://cft3godxn8u2j" path="res://source/Assets/ResourceIcons/Glass.png" id="9_a8n5u"]
+[ext_resource type="Texture2D" uid="uid://677miw362km" path="res://source/Assets/ResourceIcons/Lime.png" id="10_f7lf4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qtmwb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjqm3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vhmic"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ywt5f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8odh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kh0o1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mucqd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hc02n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apbri"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_abuy3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8lerm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cr5jy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3one5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_whc8h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sk4fw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gil0y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8plva"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vb336"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fk02l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_voi3w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nciil"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5be63"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0xp1i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dika1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b3ybx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f6g1l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trvwl"]
+
+[node name="HarvesterUI" type="PanelContainer"]
+visible = false
+custom_minimum_size = Vector2(220, 200)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1648.0
+offset_bottom = -740.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pvllw")
+
+[node name="MainGrid" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="EnergyStack" type="VBoxContainer" parent="MainGrid"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainGrid"]
+layout_mode = 2
+
+[node name="HarvesterName" type="TextEdit" parent="MainGrid/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 1
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="RBar" type="GridContainer" parent="MainGrid/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="I2" type="HBoxContainer" parent="MainGrid/VBoxContainer/RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainGrid/VBoxContainer/RBar/I2"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_gb7wt")
+
+[node name="TextEdit" type="TextEdit" parent="MainGrid/VBoxContainer/RBar/I2"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qtmwb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sjqm3")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_vhmic")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I3" type="HBoxContainer" parent="MainGrid/VBoxContainer/RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainGrid/VBoxContainer/RBar/I3"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_0iprn")
+
+[node name="TextEdit" type="TextEdit" parent="MainGrid/VBoxContainer/RBar/I3"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ywt5f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a8odh")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_kh0o1")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I4" type="HBoxContainer" parent="MainGrid/VBoxContainer/RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainGrid/VBoxContainer/RBar/I4"]
+layout_mode = 2
+texture = ExtResource("4_vlyao")
+
+[node name="TextEdit" type="TextEdit" parent="MainGrid/VBoxContainer/RBar/I4"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mucqd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hc02n")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_apbri")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I5" type="HBoxContainer" parent="MainGrid/VBoxContainer/RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainGrid/VBoxContainer/RBar/I5"]
+layout_mode = 2
+texture = ExtResource("5_srady")
+
+[node name="TextEdit" type="TextEdit" parent="MainGrid/VBoxContainer/RBar/I5"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_abuy3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8lerm")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_cr5jy")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I6" type="HBoxContainer" parent="MainGrid/VBoxContainer/RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainGrid/VBoxContainer/RBar/I6"]
+layout_mode = 2
+texture = ExtResource("6_6k13a")
+
+[node name="TextEdit" type="TextEdit" parent="MainGrid/VBoxContainer/RBar/I6"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3one5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_whc8h")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_sk4fw")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I7" type="HBoxContainer" parent="MainGrid/VBoxContainer/RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainGrid/VBoxContainer/RBar/I7"]
+layout_mode = 2
+texture = ExtResource("7_wbpjg")
+
+[node name="TextEdit" type="TextEdit" parent="MainGrid/VBoxContainer/RBar/I7"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gil0y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8plva")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_vb336")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I8" type="HBoxContainer" parent="MainGrid/VBoxContainer/RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainGrid/VBoxContainer/RBar/I8"]
+layout_mode = 2
+texture = ExtResource("8_8v0nr")
+
+[node name="TextEdit" type="TextEdit" parent="MainGrid/VBoxContainer/RBar/I8"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fk02l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_voi3w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_nciil")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I9" type="HBoxContainer" parent="MainGrid/VBoxContainer/RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainGrid/VBoxContainer/RBar/I9"]
+layout_mode = 2
+texture = ExtResource("9_a8n5u")
+
+[node name="TextEdit" type="TextEdit" parent="MainGrid/VBoxContainer/RBar/I9"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5be63")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0xp1i")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_dika1")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
+
+[node name="I10" type="HBoxContainer" parent="MainGrid/VBoxContainer/RBar"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainGrid/VBoxContainer/RBar/I10"]
+layout_mode = 2
+texture = ExtResource("10_f7lf4")
+
+[node name="TextEdit" type="TextEdit" parent="MainGrid/VBoxContainer/RBar/I10"]
+custom_minimum_size = Vector2(26, 24)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b3ybx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f6g1l")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_trvwl")
+text = "0"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_past_end_of_file = true
