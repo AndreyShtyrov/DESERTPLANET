@@ -32,6 +32,8 @@ namespace DesertPlanet.source.Buildings
     {
         public ElectroMillRecept(Player player): base(0) {
             Resources.Add(new PlanetResource(ResourceType.Iron, ResourceType.Plastic, player.Id));
+            Info.Name = "Build ElectroMill";
+            Info.Recipe = Resources;
         }
 
     }

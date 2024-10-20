@@ -7,82 +7,29 @@ using DesertPlanet.source.Interfaces;
 public partial class AbilityButton : HBoxContainer
 {
 	// Called when the node enters the scene tree for the first time.
-	public AbilityPresset Ability { get; set; }
+	public AbilityInfo AbilityInfo { get; set; }
 
 	[Export]
 	public int ActionId { get; set; }
 
 	public event ActionOnId ApplyActionEvent;
-    private GameMode GameMode { get; set; }
-    private SelectorTools Selector { get; set; }
-	private ActionOnId PostAction { get; set; }
+
+	public LoadInfo RequestAbilityInfo;
 
 	private Label AbilityNameText { get; set; }
 
 	private Timer ShowHelpTimer { get; set; }
 	public override void _Ready()
 	{
-		AbilityNameText = GetNode<Label>("AbilityName");
 		ShowHelpTimer = GetNode<Timer>("Timer");
-		AbilityNameText.Visible = false;
+		//AbilityNameText.Visible = false;
 	}
 
 	public event ShowAdditionAbilityUI OnAdditionAbilityUI;
-	// Need in PlanetScene Disconect this event
-	public void SetData(AbilityPresset ability, SelectorTools selector, GameMode gamemode)
-	{
-        PostAction = null;
-		Ability = ability;
-		Selector = selector;
-		GameMode = gamemode;
-	}
-
-    public void SetData(AbilityPresset ability, SelectorTools selector, GameMode gamemode, ActionOnId postAction)
-    {
-        PostAction = null;
-        Ability = ability;
-        Selector = selector;
-        GameMode = gamemode;
-		PostAction = postAction;
-    }
-
-	public void Despose()
-	{
-        PostAction = null;
-        Ability = null;
-        Selector = null;
-        GameMode = null;
-        PostAction = null;
-    }
 
     public void OnPress()
 	{
-		if (GameMode.State == GameState.AwaitSytem)
-			return;
-		if (Selector.AbilityId == Ability.Id)
-		{
-			Selector.AbilityId = -1;
-		}
-		else
-			Selector.AbilityId = Ability.Id;
-		if (PostAction != null)
-		{
-			PostAction(Ability.Id);
-			return;
-		}
-		Selector.State = SelectorState.SelectTarget;
-		if (!Ability.NeedSelecTarget)
-		{
-			GameMode.Logic.UseAbility(Ability);
-			Selector.DeselectUnit();
-			return;
-		}
-		GameMode.NeedDrawAbilityArea = true;
-		if (Ability.Name == "Move")
-		{
-			GameMode.NeedDrawAbilityArea = false;
-            OnAdditionAbilityUI?.Invoke("Move");
-        }
+		ApplyActionEvent?.Invoke(ActionId);
 	}
 
 	public void OnInitArea()
@@ -92,13 +39,26 @@ public partial class AbilityButton : HBoxContainer
 
 	public void OnOutArea()
 	{
+		return;
 		ShowHelpTimer.Stop();
 		AbilityNameText.Visible = false;
 	}
 
+	public void Despose()
+	{
+		AbilityInfo = null;
+	}
+
 	public void OnEndTimer()
 	{
-		AbilityNameText.Text = Ability.Name;
+		RequestAbilityInfo(this);
+		return;
+		if (AbilityInfo == null)
+		{
+			GD.Print(" Fail To Load Data into AbilityButton");
+            return;
+        }
+        AbilityNameText.Text = AbilityInfo.Name;
 		GD.Print("Show Ability Description");
 		AbilityNameText.Visible = true;
 	}
@@ -107,6 +67,5 @@ public partial class AbilityButton : HBoxContainer
 	{
 		if (ActionId == -1)
 			return;
-
 	}
 }

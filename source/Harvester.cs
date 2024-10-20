@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DesertPlanet.source
 {
-    public class Harvester : IOwnedTokenWithAbilites, IHasStartTurnAction, IHasResource
+    public class Harvester : IOwnedTokenWithAbilites, ICanBuilding, IHasStartTurnAction, IHasResource
     {
         public int Id { get; }
         public int X { get; set; }
@@ -57,6 +57,8 @@ namespace DesertPlanet.source
 
         public bool CanMoving => true;
 
+        public bool CanBuild => true;
+
         public virtual List<IAction> StartTurnActions()
         {
             return new List<IAction>() { new IncreaseEnergy(Id, 2) };
@@ -68,6 +70,19 @@ namespace DesertPlanet.source
                 if (ability.Id == id) {  return ability; }
             }
             return null;
+        }
+
+        public AbilityPresset GetAbilityByRecipt(IRecipe recipe)
+        {
+            foreach(var ability in Abilities)
+            {
+                if (ability is ConstructBuilding construct)
+                {
+                    if (construct.Recipe == recipe)
+                        return construct;
+                }
+            }
+            throw new IndexOutOfRangeException("Cannot found Ability with this Recipe");
         }
     }
 }

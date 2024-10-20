@@ -32,6 +32,8 @@ namespace DesertPlanet.source.Buildings
         {
             Resources.Add(new PlanetResource(ResourceType.Plastic, player.Id));
             Resources.Add(new PlanetResource(ResourceType.Iron, player.Id));
+            Info.Name = "Build Manipulator";
+            Info.Recipe = Resources;
         }
     }
 }

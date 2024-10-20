@@ -30,11 +30,14 @@ namespace DesertPlanet.source.Buildings
 
         public Vector2I Position => throw new NotImplementedException();
 
+        public bool CanBuild { get; internal set; }
+
         public ComplexBuildings(int id) { 
             Id = id;
             Positions = new List<Vector2I>();
             Counter = new ActionCounter(0, 1);
             Abilities = new List<AbilityPresset>();
+            CanBuild = false;
         }
         public bool InBound(int X, int Y)
         {

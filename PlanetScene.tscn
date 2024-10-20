@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://jugyy6wgr5cs"]
+[gd_scene load_steps=111 format=3 uid="uid://jugyy6wgr5cs"]
 
 [ext_resource type="Script" path="res://PlanetScene.cs" id="1_qgbts"]
 [ext_resource type="PackedScene" uid="uid://dkoyjt3n4lmnc" path="res://AbilityButton.tscn" id="2_1487e"]
@@ -52,9 +52,10 @@
 [ext_resource type="Texture2D" uid="uid://bvs83mkuyhvdc" path="res://source/Assets/ReceptIcons/CGPPAl3.png" id="50_l0vv3"]
 [ext_resource type="Texture2D" uid="uid://67fqs383u2t" path="res://source/Assets/BuildIcons/Office.png" id="51_p8140"]
 [ext_resource type="Texture2D" uid="uid://clqxse4perhme" path="res://source/Assets/ReceptIcons/C5P3FeP4.png" id="52_0oc8m"]
-[ext_resource type="Texture2D" uid="uid://barsqtpclyam2" path="res://source/Assets/BuildIcons/TidalPlant.png" id="53_jy4i3"]
+[ext_resource type="Texture2D" uid="uid://bxn7jnbyb35p5" path="res://source/Assets/BuildIcons/AerialFarm.png" id="53_odg5m"]
 [ext_resource type="Texture2D" uid="uid://bhuanyqriktqj" path="res://source/Assets/BuildIcons/Drille.png" id="54_0hgul"]
 [ext_resource type="Texture2D" uid="uid://bbqiwa2dp2xxt" path="res://source/Assets/BuildIcons/ConversionFabric.png" id="55_4a2pr"]
+[ext_resource type="Texture2D" uid="uid://cptww6ar3k5f8" path="res://source/Assets/BuildIcons/RockingMachine.png" id="55_cqx4b"]
 [ext_resource type="Texture2D" uid="uid://bqw8f6nfw154e" path="res://source/Assets/BuildIcons/MeltingFurnace.png" id="56_qdd16"]
 [ext_resource type="Texture2D" uid="uid://bmibwcv7xnpcr" path="res://source/Assets/ReceptIcons/FeFePFeP.png" id="57_otgmh"]
 [ext_resource type="Texture2D" uid="uid://p2dch1jrlxyf" path="res://source/Assets/BuildIcons/Fabric.png" id="58_tke0f"]
@@ -376,10 +377,10 @@ selecting_enabled = false
 deselect_on_focus_loss_enabled = false
 
 [node name="Button" type="Button" parent="."]
-offset_left = 1623.0
-offset_top = 894.0
-offset_right = 1701.0
-offset_bottom = 925.0
+offset_left = 1632.0
+offset_top = 786.0
+offset_right = 1710.0
+offset_bottom = 817.0
 text = "End Turn"
 
 [node name="Window" type="Window" parent="."]
@@ -1159,10 +1160,10 @@ text = "Confirm
 "
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 1584.0
-offset_top = 859.0
-offset_right = 1719.0
-offset_bottom = 890.0
+offset_left = 1591.0
+offset_top = 742.0
+offset_right = 1726.0
+offset_bottom = 773.0
 text = "Switch Resource
 "
 
@@ -1904,57 +1905,57 @@ process_callback = 0
 wait_time = 0.5
 
 [node name="EnergyBPanel" type="VBoxContainer" parent="."]
-offset_left = 1737.0
-offset_top = 290.0
-offset_right = 1881.0
-offset_bottom = 622.0
+offset_left = 1582.0
+offset_top = 23.0
+offset_right = 1726.0
+offset_bottom = 355.0
 size_flags_horizontal = 4
 
-[node name="HBox" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
 ActionId = 0
 
-[node name="Reciept" parent="EnergyBPanel/HBox" index="0"]
+[node name="Reciept" parent="EnergyBPanel/AbilityButton" index="0"]
 clip_contents = true
 size_flags_horizontal = 6
 size_flags_vertical = 4
 texture = ExtResource("39_n7ow5")
 
-[node name="AbilityButton" parent="EnergyBPanel/HBox" index="1"]
+[node name="Button" parent="EnergyBPanel/AbilityButton" index="1"]
 texture_normal = ExtResource("40_on0op")
 
-[node name="HBox2" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton2" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
 ActionId = 8
 
-[node name="Reciept" parent="EnergyBPanel/HBox2" index="0"]
+[node name="Reciept" parent="EnergyBPanel/AbilityButton2" index="0"]
 texture = ExtResource("41_kd3l5")
 
-[node name="AbilityButton" parent="EnergyBPanel/HBox2" index="1"]
+[node name="Button" parent="EnergyBPanel/AbilityButton2" index="1"]
 texture_normal = ExtResource("42_gofoi")
 
-[node name="HBox3" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton3" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
 ActionId = 12
 
-[node name="Reciept" parent="EnergyBPanel/HBox3" index="0"]
+[node name="Reciept" parent="EnergyBPanel/AbilityButton3" index="0"]
 texture = ExtResource("43_33r63")
 
-[node name="AbilityButton" parent="EnergyBPanel/HBox3" index="1"]
+[node name="Button" parent="EnergyBPanel/AbilityButton3" index="1"]
 texture_normal = ExtResource("44_i7hh3")
 
-[node name="HBox4" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton4" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 ActionId = 11
 
-[node name="Reciept" parent="EnergyBPanel/HBox4" index="0"]
+[node name="Reciept" parent="EnergyBPanel/AbilityButton4" index="0"]
 custom_minimum_size = Vector2(50, 80)
 texture = ExtResource("45_r43eb")
 
-[node name="AbilityButton" parent="EnergyBPanel/HBox4" index="1"]
+[node name="Button" parent="EnergyBPanel/AbilityButton4" index="1"]
 texture_normal = ExtResource("46_d8qdc")
 
 [node name="SocialBPanel" type="VBoxContainer" parent="."]
@@ -1963,168 +1964,173 @@ offset_top = 626.0
 offset_right = 1888.0
 offset_bottom = 958.0
 
-[node name="HBox" parent="SocialBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Reciept" parent="SocialBPanel/HBox" index="0"]
+[node name="Reciept" parent="SocialBPanel/AbilityButton" index="0"]
 texture = ExtResource("41_kd3l5")
 
-[node name="AbilityButton" parent="SocialBPanel/HBox" index="1"]
+[node name="Button" parent="SocialBPanel/AbilityButton" index="1"]
 texture_normal = ExtResource("47_ped6y")
 
-[node name="HBox2" parent="SocialBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton2" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Reciept" parent="SocialBPanel/HBox2" index="0"]
+[node name="Reciept" parent="SocialBPanel/AbilityButton2" index="0"]
 texture = ExtResource("48_vcdwa")
 
-[node name="AbilityButton" parent="SocialBPanel/HBox2" index="1"]
+[node name="Button" parent="SocialBPanel/AbilityButton2" index="1"]
 texture_normal = ExtResource("49_618sy")
 
-[node name="HBox3" parent="SocialBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton3" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 
-[node name="Reciept" parent="SocialBPanel/HBox3" index="0"]
+[node name="Reciept" parent="SocialBPanel/AbilityButton3" index="0"]
 custom_minimum_size = Vector2(50, 80)
 texture = ExtResource("50_l0vv3")
 
-[node name="AbilityButton" parent="SocialBPanel/HBox3" index="1"]
+[node name="Button" parent="SocialBPanel/AbilityButton3" index="1"]
 texture_normal = ExtResource("51_p8140")
 
-[node name="HBox4" parent="SocialBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton4" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
-ActionId = 3
 
-[node name="Reciept" parent="SocialBPanel/HBox4" index="0"]
+[node name="Reciept" parent="SocialBPanel/AbilityButton4" index="0"]
 texture = ExtResource("52_0oc8m")
 
-[node name="AbilityButton" parent="SocialBPanel/HBox4" index="1"]
-texture_normal = ExtResource("53_jy4i3")
+[node name="Button" parent="SocialBPanel/AbilityButton4" index="1"]
+texture_normal = ExtResource("53_odg5m")
 
 [node name="MiningBPanel" type="VBoxContainer" parent="."]
-offset_left = 1572.0
-offset_top = 102.0
-offset_right = 1612.0
-offset_bottom = 142.0
+offset_left = 1747.0
+offset_top = 181.0
+offset_right = 1871.0
+offset_bottom = 345.0
 
-[node name="HBox" parent="MiningBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton" parent="MiningBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 ActionId = 2
 
-[node name="Reciept" parent="MiningBPanel/HBox" index="0"]
+[node name="Reciept" parent="MiningBPanel/AbilityButton" index="0"]
 texture = ExtResource("39_n7ow5")
 
-[node name="AbilityButton" parent="MiningBPanel/HBox" index="1"]
+[node name="Button" parent="MiningBPanel/AbilityButton" index="1"]
 texture_normal = ExtResource("54_0hgul")
 
-[node name="HBox2" parent="MiningBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton2" parent="MiningBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 ActionId = 2
 
-[node name="Reciept" parent="MiningBPanel/HBox2" index="0"]
+[node name="Reciept" parent="MiningBPanel/AbilityButton2" index="0"]
 texture = ExtResource("39_n7ow5")
 
-[node name="AbilityButton" parent="MiningBPanel/HBox2" index="1"]
-texture_normal = ExtResource("54_0hgul")
+[node name="Button" parent="MiningBPanel/AbilityButton2" index="1"]
+texture_normal = ExtResource("55_cqx4b")
 
 [node name="RefineBPanel" type="VBoxContainer" parent="."]
-offset_left = 1576.0
-offset_top = 293.0
-offset_right = 1700.0
-offset_bottom = 541.0
+offset_left = 1749.0
+offset_top = 347.0
+offset_right = 1873.0
+offset_bottom = 595.0
 
-[node name="HBox" parent="RefineBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton" parent="RefineBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 ActionId = 6
 
-[node name="Reciept" parent="RefineBPanel/HBox" index="0"]
+[node name="Reciept" parent="RefineBPanel/AbilityButton" index="0"]
 texture = ExtResource("43_33r63")
 
-[node name="AbilityButton" parent="RefineBPanel/HBox" index="1"]
+[node name="Button" parent="RefineBPanel/AbilityButton" index="1"]
 texture_normal = ExtResource("55_4a2pr")
 
-[node name="HBox2" parent="RefineBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton2" parent="RefineBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 ActionId = 9
 
-[node name="Reciept" parent="RefineBPanel/HBox2" index="0"]
+[node name="Reciept" parent="RefineBPanel/AbilityButton2" index="0"]
 texture = ExtResource("43_33r63")
 
-[node name="AbilityButton" parent="RefineBPanel/HBox2" index="1"]
+[node name="Button" parent="RefineBPanel/AbilityButton2" index="1"]
 texture_normal = ExtResource("56_qdd16")
 
-[node name="HBox3" parent="RefineBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton3" parent="RefineBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 ActionId = 7
 
-[node name="Reciept" parent="RefineBPanel/HBox3" index="0"]
+[node name="Reciept" parent="RefineBPanel/AbilityButton3" index="0"]
 texture = ExtResource("57_otgmh")
 
-[node name="AbilityButton" parent="RefineBPanel/HBox3" index="1"]
+[node name="Button" parent="RefineBPanel/AbilityButton3" index="1"]
 texture_normal = ExtResource("58_tke0f")
 
 [node name="TransferBPanel" type="VBoxContainer" parent="."]
-offset_left = 1580.0
-offset_top = 555.0
-offset_right = 1704.0
-offset_bottom = 803.0
+offset_left = 1605.0
+offset_top = 366.0
+offset_right = 1729.0
+offset_bottom = 614.0
 
-[node name="HBox" parent="TransferBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton" parent="TransferBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 ActionId = 14
 
-[node name="Reciept" parent="TransferBPanel/HBox" index="0"]
+[node name="Reciept" parent="TransferBPanel/AbilityButton" index="0"]
 texture = ExtResource("59_8gwjt")
 
-[node name="AbilityButton" parent="TransferBPanel/HBox" index="1"]
-texture_normal = ExtResource("60_2cugr")
+[node name="Button" parent="TransferBPanel/AbilityButton" index="1"]
+texture_normal = ExtResource("62_balny")
 
-[node name="HBox2" parent="TransferBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton2" parent="TransferBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 ActionId = 13
 
-[node name="Reciept" parent="TransferBPanel/HBox2" index="0"]
+[node name="Reciept" parent="TransferBPanel/AbilityButton2" index="0"]
 texture = ExtResource("61_j4koo")
 
-[node name="AbilityButton" parent="TransferBPanel/HBox2" index="1"]
-texture_normal = ExtResource("62_balny")
-
-[node name="HBox3" parent="TransferBPanel" instance=ExtResource("2_1487e")]
-layout_mode = 2
-
-[node name="Reciept" parent="TransferBPanel/HBox3" index="0"]
-texture = ExtResource("63_hpm4x")
-
-[node name="AbilityButton" parent="TransferBPanel/HBox3" index="1"]
+[node name="Button" parent="TransferBPanel/AbilityButton2" index="1"]
 texture_normal = ExtResource("64_626wp")
 
-[node name="PlatformBPanel" type="VBoxContainer" parent="."]
-offset_left = 1748.0
-offset_top = 117.0
-offset_right = 1872.0
-offset_bottom = 281.0
+[node name="AbilityButton3" parent="TransferBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
 
-[node name="HBox" parent="PlatformBPanel" instance=ExtResource("2_1487e")]
+[node name="Reciept" parent="TransferBPanel/AbilityButton3" index="0"]
+texture = ExtResource("63_hpm4x")
+
+[node name="Button" parent="TransferBPanel/AbilityButton3" index="1"]
+texture_normal = ExtResource("60_2cugr")
+
+[node name="PlatformBPanel" type="VBoxContainer" parent="."]
+offset_left = 1750.0
+offset_top = 14.0
+offset_right = 1874.0
+offset_bottom = 178.0
+
+[node name="AbilityButton" parent="PlatformBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 ActionId = 1
 
-[node name="Reciept" parent="PlatformBPanel/HBox" index="0"]
+[node name="Reciept" parent="PlatformBPanel/AbilityButton" index="0"]
 texture = ExtResource("65_t1us1")
 
-[node name="AbilityButton" parent="PlatformBPanel/HBox" index="1"]
+[node name="Button" parent="PlatformBPanel/AbilityButton" index="1"]
 texture_normal = ExtResource("66_8xld7")
 
-[node name="HBox2" parent="PlatformBPanel" instance=ExtResource("2_1487e")]
+[node name="AbilityButton2" parent="PlatformBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 ActionId = 5
 
-[node name="Reciept" parent="PlatformBPanel/HBox2" index="0"]
+[node name="Reciept" parent="PlatformBPanel/AbilityButton2" index="0"]
 texture = ExtResource("67_qvuhi")
 
-[node name="AbilityButton" parent="PlatformBPanel/HBox2" index="1"]
+[node name="Button" parent="PlatformBPanel/AbilityButton2" index="1"]
 texture_normal = ExtResource("68_gio28")
+
+[node name="SpecialBPanel" type="VBoxContainer" parent="."]
+offset_left = 1614.0
+offset_top = 624.0
+offset_right = 1654.0
+offset_bottom = 664.0
 
 [node name="GridContainer" type="GridContainer" parent="."]
 offset_left = 1062.0
@@ -2165,21 +2171,21 @@ layout_mode = 2
 [connection signal="item_selected" from="MenuBar/Landing/SelectLanding" to="." method="ChooseLandingRegion"]
 [connection signal="timeout" from="UpdateData" to="." method="BroadCastMapChange"]
 
-[editable path="EnergyBPanel/HBox"]
-[editable path="EnergyBPanel/HBox2"]
-[editable path="EnergyBPanel/HBox3"]
-[editable path="EnergyBPanel/HBox4"]
-[editable path="SocialBPanel/HBox"]
-[editable path="SocialBPanel/HBox2"]
-[editable path="SocialBPanel/HBox3"]
-[editable path="SocialBPanel/HBox4"]
-[editable path="MiningBPanel/HBox"]
-[editable path="MiningBPanel/HBox2"]
-[editable path="RefineBPanel/HBox"]
-[editable path="RefineBPanel/HBox2"]
-[editable path="RefineBPanel/HBox3"]
-[editable path="TransferBPanel/HBox"]
-[editable path="TransferBPanel/HBox2"]
-[editable path="TransferBPanel/HBox3"]
-[editable path="PlatformBPanel/HBox"]
-[editable path="PlatformBPanel/HBox2"]
+[editable path="EnergyBPanel/AbilityButton"]
+[editable path="EnergyBPanel/AbilityButton2"]
+[editable path="EnergyBPanel/AbilityButton3"]
+[editable path="EnergyBPanel/AbilityButton4"]
+[editable path="SocialBPanel/AbilityButton"]
+[editable path="SocialBPanel/AbilityButton2"]
+[editable path="SocialBPanel/AbilityButton3"]
+[editable path="SocialBPanel/AbilityButton4"]
+[editable path="MiningBPanel/AbilityButton"]
+[editable path="MiningBPanel/AbilityButton2"]
+[editable path="RefineBPanel/AbilityButton"]
+[editable path="RefineBPanel/AbilityButton2"]
+[editable path="RefineBPanel/AbilityButton3"]
+[editable path="TransferBPanel/AbilityButton"]
+[editable path="TransferBPanel/AbilityButton2"]
+[editable path="TransferBPanel/AbilityButton3"]
+[editable path="PlatformBPanel/AbilityButton"]
+[editable path="PlatformBPanel/AbilityButton2"]

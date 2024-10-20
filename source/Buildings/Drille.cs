@@ -23,6 +23,8 @@ namespace DesertPlanet.source.Buildings
         public DrilleRecept(Player player) : base(2)
         {
             Resources.Add(new PlanetResource(ResourceType.Iron, ResourceType.Plastic, player.Id));
+            Info.Name = "Build Drile";
+            Info.Recipe = Resources;
         }
     }
 }

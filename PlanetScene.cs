@@ -80,6 +80,7 @@ public partial class PlanetScene : Node2D
         Path = GetNode<PathLine>("PathLine");
         ProjectMarketWindow = GetNode<ProjectMarket>("ProjectMarket");
         LandingSelected = GetNode<OptionButton>("MenuBar/Landing/SelectLanding");
+        InitBuildButtons();
         InitMap(ProjectSettings.GlobalizePath("res://Maps/") + "/map1.json");
         SetResBarOut();
         IsInit = true;
@@ -235,7 +236,6 @@ public partial class PlanetScene : Node2D
         {
             GameMode.ActionManager.ApplyActions(GameMode.GetStartTurnActionForPlayer(GameMode.Player));
         }
-
         if (GameMode.Map.InBound(tilePos))
         {
             if (Selector.UnitId == -1)
@@ -262,6 +262,10 @@ public partial class PlanetScene : Node2D
         {
             GameMode.NeedDrawAbilityArea = false;
         }
+        if (Selector.State == SelectorState.SetupRecipt)
+        {
+            DecideRecipe(Selector.AbilityId);
+        }
         if (GameMode.NeedDrawAbilityArea)
         {
             var ability = (GameMode.GetObjectById(Selector.UnitId) as IHasAbilities).GetAbilityById(Selector.AbilityId);
@@ -277,6 +281,35 @@ public partial class PlanetScene : Node2D
         ProceedInputData(tilePos.X, tilePos.Y, pos.X, pos.Y);
     }
 
+    private void BindButton(VBoxContainer vbox)
+    {
+        for (int i = 0; i < vbox.GetChildCount(); i++)
+        {
+            var child = vbox.GetChild(i);
+            if (child is AbilityButton button)
+            {
+                button.ApplyActionEvent += ApplyBuildingButton;
+                button.RequestAbilityInfo = AddInfoToBuildButton;
+            }
+        }
+    }
+    public void InitBuildButtons()
+    {
+        var vbox = GetNode<VBoxContainer>("EnergyBPanel");
+        BindButton(vbox);
+        vbox = GetNode<VBoxContainer>("SocialBPanel");
+        BindButton(vbox);
+        vbox = GetNode<VBoxContainer>("MiningBPanel");
+        BindButton(vbox);
+        vbox = GetNode<VBoxContainer>("RefineBPanel");
+        BindButton(vbox);
+        vbox = GetNode<VBoxContainer>("TransferBPanel");
+        BindButton(vbox);
+        vbox = GetNode<VBoxContainer>("PlatformBPanel");
+        BindButton(vbox);
+        vbox = GetNode<VBoxContainer>("SpecialBPanel");
+        BindButton(vbox);
+    }
     public void InitHarvesterStartGame()
     {
         var harvesters = new List<Harvester>();
@@ -516,7 +549,7 @@ public partial class PlanetScene : Node2D
         GameMode.ActionManager.ApplyActionsFromJson(json);
         if (GameMode.State == GameState.Deploy && !LandingSelected.Visible)
         {
-            ExcludeOccuiedRegionsIds();
+            ExcludeOccupiedRegionsIds();
             LandingSelected.Visible = true;
             tileMap.ClearLayer(5);
             for (int i = 0; i < Map.Horizontal; i++)
@@ -530,6 +563,10 @@ public partial class PlanetScene : Node2D
         }
     }
 
+    public void ApplyBuildingButton(int id)
+    {
+        GameMode.Logic.PressBuildingButton(Selector, id);
+    }
     private void InitResFieldsFromMap(MapField map)
     {
         resFields = new SimpleField[map.Horizontal, map.Vertical];
@@ -695,6 +732,14 @@ public partial class PlanetScene : Node2D
         SelectReceptWindow.SetData(ability.Recipe, ability);
     }
 
+    public void AddInfoToBuildButton(object sender)
+    {
+        if (sender is AbilityButton button)
+        {
+            var company = GameMode.GetCompany(GameMode.Player);
+            button.AbilityInfo = company.Recepts[button.ActionId].Info;
+        }
+    }
     private void DecideNotInvariantRecipe(int id)
     {
         var unit = GameMode.GetObjectById(Selector.UnitId) as IHasAbilities;
@@ -712,7 +757,7 @@ public partial class PlanetScene : Node2D
         SelectRecept2Window.SetData(ability.Recipe, ability);
     }
 
-    private void ExcludeOccuiedRegionsIds()
+    private void ExcludeOccupiedRegionsIds()
     {
         for (int i = LandingSelected.ItemCount - 1; i >= 0; i--)
             LandingSelected.RemoveItem(i);

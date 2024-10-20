@@ -27,7 +27,7 @@ public partial class HarvesterUI : Control
         for (int i = 0; i < 30 ; i++)
         {
             texture[i] = new TextureRect();
-            texture[i].Texture = ImageTexture.CreateFromImage(Image.LoadFromFile("uid://dmr7tdysvnclf"));
+            texture[i].Texture = ImageTexture.CreateFromImage(Image.LoadFromFile("res://source/Assets/EnergyCell.png"));
         }
         energyStack = GetNode<VBoxContainer>("MainGrid/EnergyStack");
     }

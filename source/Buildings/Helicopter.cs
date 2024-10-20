@@ -2,7 +2,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq; 
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,6 +24,8 @@ namespace DesertPlanet.source.Buildings
         public HelicopterRecipe(Player player) : base(13)
         {
             Resources.Add(new PlanetResource(ResourceType.Aliminium, player.Id));
+            Info.Name = "Build Helicopter";
+            Info.Recipe = Resources;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace DesertPlanet.source.Interfaces
     {
         public List<AbilityPresset> Abilities { get; }
 
+        public bool CanBuild { get; }
         public AbilityPresset GetAbilityById(int id);
 
         public ActionCounter Counter { get; }

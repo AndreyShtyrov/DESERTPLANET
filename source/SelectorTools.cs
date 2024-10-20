@@ -15,6 +15,7 @@ namespace DesertPlanet.source
         SetupAbilityPars = 3,
         SpecifyPars = 4,
         AwaitDialog = 5,
+        SetupRecipt = 6
     }
     public class SelectorTools
     {

@@ -23,6 +23,8 @@ namespace DesertPlanet.source.Buildings
         public FloatPlatformReceipt(Player player) : base(5)
         {
             Resources.Add(new PlanetResource(ResourceType.Plastic, ResourceType.None, player.Id));
+            Info.Name = "Build Platform";
+            Info.Recipe = Resources;
         }
     }
 

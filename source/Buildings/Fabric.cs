@@ -17,6 +17,7 @@ namespace DesertPlanet.source.Buildings
             var company = mode.GetCompany(owner.Id);
             Abilities.Add(new ConstructFloatingPlatfrom(company.Recepts[5], this, 0));
             Abilities.Add(new ConstructHarvester(company.Recepts[10], this, 1));
+            CanBuild = true;
         }
 
         public override Vector2I TileShift => new Vector2I(0, 3);
@@ -29,6 +30,8 @@ namespace DesertPlanet.source.Buildings
             Resources.Add(new PlanetResource(ResourceType.Iron, ResourceType.None, player.Id));
             Resources.Add(new PlanetResource(ResourceType.Iron, ResourceType.Plastic, player.Id));
             Resources.Add(new PlanetResource(ResourceType.Iron, ResourceType.Plastic, player.Id));
+            Info.Name = "Build Fabric";
+            Info.Recipe = Resources;
         }
     }
 }

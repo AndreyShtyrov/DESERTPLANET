@@ -12,6 +12,11 @@ namespace DesertPlanet.source.Buildings
         {
             Resources.Add(new PlanetResource(ResourceType.Glass, ResourceType.None, player.Id));
             Resources.Add(new PlanetResource(ResourceType.Iron, ResourceType.None, player.Id));
+
+            Info.Name = "Build Harvester";
+            Info.Description = "";
+            Info.Recipe = Resources;
         }
+
     }
 }

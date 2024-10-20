@@ -221,5 +221,25 @@ namespace DesertPlanet.source
             }
             return result;
         }
+
+        public void PressBuildingButton(SelectorTools selector, int id)
+        {
+            if (Game.State == GameState.AwaitSytem)
+                return;
+            var company = Game.GetCompany(Game.Player);
+            var unit = Game.GetObjectById(selector.UnitId) as IHasAbilities;
+            if (unit == null)
+                return;
+            if (unit.CanBuild)
+            {
+                if (unit is ICanBuilding constructor)
+                {
+                    var recipt = company.Recepts[id];
+                    var ability = constructor.GetAbilityByRecipt(recipt);
+                    selector.AbilityId = ability.Id;
+                    selector.State = SelectorState.SetupRecipt;
+                }
+            }
+        }
     }
 }

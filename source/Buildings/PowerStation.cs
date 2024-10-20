@@ -36,6 +36,8 @@ namespace DesertPlanet.source.Buildings
             Resources.Add(new PlanetResource(ResourceType.Plastic, player.Id));
             Resources.Add(new PlanetResource(ResourceType.Plastic, player.Id));
             Resources.Add(new PlanetResource(ResourceType.Cement, player.Id));
+            Info.Name = "Build PowerStation";
+            Info.Recipe = Resources;
         }
     }
 }

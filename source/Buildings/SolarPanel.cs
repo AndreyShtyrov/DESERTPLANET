@@ -31,6 +31,8 @@ namespace DesertPlanet.source.Buildings
         {
             Resources.Add(new PlanetResource(ResourceType.Glass, ResourceType.None, player.Id));
             Resources.Add(new PlanetResource(ResourceType.Iron, ResourceType.Plastic, player.Id));
+            Info.Name = "Build SolarPanel";
+            Info.Recipe = Resources;
         }
     }
 }

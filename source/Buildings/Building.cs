@@ -14,6 +14,7 @@ namespace DesertPlanet.source.Buildings
         public string Name { get; }
         public string Description { get; set; }
 
+        public bool CanBuild { get; internal set; }
         public int Id { get; }
         public int X { get; set; }
 
@@ -31,6 +32,7 @@ namespace DesertPlanet.source.Buildings
         public Building(string name, int x, int y, int layerId, int id, Player owner )
         {
             Owner = owner;
+            CanBuild = false;
             Name = name;
             Abilities = new List<AbilityPresset>();
             Counter = new ActionCounter(1, 1);

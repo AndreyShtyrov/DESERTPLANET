@@ -24,6 +24,8 @@ namespace DesertPlanet.source.Ability
         public string Name;
         public string Description;
         public AbilityType AbilityType;
+
+        public AbilityInfo Info { get; set; }
         public bool NeedSelecTarget { get; }
         public IOwnedTokenWithAbilites Unit { get; set; }
         public int Id { get; set; }
@@ -77,11 +79,13 @@ namespace DesertPlanet.source.Ability
         {
             Id = id;
             NeedSelecTarget = needSelectTarget;
+            Info = new AbilityInfo();
         }
 
         public AbilityPresset(int id)
         {
             Id = id;
+            Info = new AbilityInfo();
         }
     }
 }
