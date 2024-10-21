@@ -199,9 +199,9 @@ namespace DesertPlanet.source
             RebuildElectrisityTask.Wait();
             return Electrosity.GetEnergy(token);
         }
-        public List<IOwnedToken> GetTokensByPos(int X, int Y)
+        public List<IHasAbilities> GetTokensByPos(int X, int Y)
         {
-            var result = new List<IOwnedToken>();
+            var result = new List<IHasAbilities>();
             foreach (var harvester in Harvesters.Values)
             {
                 if (harvester.X == X && harvester.Y == Y && Player.Id == harvester.Owner.Id)

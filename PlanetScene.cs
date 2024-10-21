@@ -220,7 +220,8 @@ public partial class PlanetScene : Node2D
         }
         if (DebugFlagShowArea)
             DrawArea(GameMode.Area(tilePos.X, tilePos.Y, 2));
-
+        if (Selector.State != SelectorState.SelectAbility && Path.Visible)
+            Path.Visible = false;
         if (GameMode.State != GameState.ChooseStartResource)
         {
             if (StartGameResourceMoverWindow.Visible)
@@ -228,10 +229,6 @@ public partial class PlanetScene : Node2D
                 StartGameResourceMoverWindow.Visible = false;
                 tileMap.ClearLayer(4);
             } 
-        }
-        if (Path.Visible && Selector.State != SelectorState.SelectTarget)
-        {
-            Path.Visible = false;
         }
         if (GameMode.NeedApplyTurnStartActions)
         {
@@ -349,6 +346,7 @@ public partial class PlanetScene : Node2D
         {
             Selector.State = SelectorState.SelectUnit;
             Selector.DeselectUnit();
+            Path.Visible = false;
         }
         if (GameMode.State == GameState.ChooseStartResource) { 
             return;
@@ -394,16 +392,22 @@ public partial class PlanetScene : Node2D
             if (Input.IsActionJustReleased("mb_left"))
             {
                 if (Selector.State == SelectorState.SelectAbility)
-                    return;
+                {
+                    var unit = GameMode.GetObjectById(Selector.UnitId);
+                    if (unit is IHasAbilities hasAbilities)
+                    {
+                        if (!hasAbilities.CanMoving)
+                            return;
+                        GameMode.Logic.UseAbility(hasAbilities.Abilities[0], new Vector2I(X, Y));
+                    }
+                }
                 if (Selector.State == SelectorState.SelectUnit)
                 {
                     var units = GameMode.GetTokensByPos(X, Y);
-                    if (units.Count > 0)
-                    {
-                        Selector.UnitId = units[0].Id;
-                        Selector.State = SelectorState.SelectAbility;
-                        return;
-                    }
+                    Selector.UnitId = units[0].Id;
+                    if (units[0].CanMoving)
+                        Path.SetData(GameMode.GetObjectById(Selector.UnitId));
+                    Selector.State = SelectorState.SelectAbility;
                 }
                 if (Selector.State == SelectorState.SelectTarget)
                 {

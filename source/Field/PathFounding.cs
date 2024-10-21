@@ -19,6 +19,7 @@ namespace DesertPlanet.source.Field
         public PathFounding(GameMode gameMode)
         {
             this.gameMode = gameMode;
+            pathFields = new Dictionary<int, PathNode[,]>();
         }
         public void BuildPathRoots(int objectId)
         {
@@ -99,6 +100,7 @@ namespace DesertPlanet.source.Field
         {
             if (pathFields.ContainsKey(id))
                 return pathFields[id];
+            UpdatePath();
             PostSelectProcessingTask.Wait();
             return pathFields[id];
         }

@@ -377,10 +377,10 @@ selecting_enabled = false
 deselect_on_focus_loss_enabled = false
 
 [node name="Button" type="Button" parent="."]
-offset_left = 1632.0
-offset_top = 786.0
-offset_right = 1710.0
-offset_bottom = 817.0
+offset_left = 1619.0
+offset_top = 901.0
+offset_right = 1697.0
+offset_bottom = 932.0
 text = "End Turn"
 
 [node name="Window" type="Window" parent="."]
@@ -1160,10 +1160,10 @@ text = "Confirm
 "
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 1591.0
-offset_top = 742.0
-offset_right = 1726.0
-offset_bottom = 773.0
+offset_left = 1588.0
+offset_top = 859.0
+offset_right = 1723.0
+offset_bottom = 890.0
 text = "Switch Resource
 "
 
@@ -2151,6 +2151,42 @@ layout_mode = 2
 [node name="HarvesterUI4" parent="GridContainer" instance=ExtResource("69_2lm3s")]
 layout_mode = 2
 
+[node name="Actions" type="VBoxContainer" parent="."]
+offset_left = 1415.0
+offset_top = 630.0
+offset_right = 1455.0
+offset_bottom = 670.0
+
+[node name="AbilityButton" parent="Actions" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="AbilityButton2" parent="Actions" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="AbilityButton3" parent="Actions" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="AbilityButton4" parent="Actions" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="AbilityButton5" parent="Actions" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="AbilityButton6" parent="Actions" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="AbilityButton7" parent="Actions" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="AbilityButton8" parent="Actions" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="AbilityButton9" parent="Actions" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
+[node name="AbilityButton10" parent="Actions" instance=ExtResource("2_1487e")]
+layout_mode = 2
+
 [connection signal="pressed" from="Button" to="." method="OnEndTurn"]
 [connection signal="pressed" from="MoveResource/Button4" to="MoveResource" method="OnCancel"]
 [connection signal="pressed" from="MoveResource/Button3" to="MoveResource" method="OnConfirm"]
@@ -2189,3 +2225,13 @@ layout_mode = 2
 [editable path="TransferBPanel/AbilityButton3"]
 [editable path="PlatformBPanel/AbilityButton"]
 [editable path="PlatformBPanel/AbilityButton2"]
+[editable path="Actions/AbilityButton"]
+[editable path="Actions/AbilityButton2"]
+[editable path="Actions/AbilityButton3"]
+[editable path="Actions/AbilityButton4"]
+[editable path="Actions/AbilityButton5"]
+[editable path="Actions/AbilityButton6"]
+[editable path="Actions/AbilityButton7"]
+[editable path="Actions/AbilityButton8"]
+[editable path="Actions/AbilityButton9"]
+[editable path="Actions/AbilityButton10"]
