@@ -3,9 +3,9 @@ using Godot;
 using System;
 using System.Linq;
 
-public partial class HarvesterUI : Control
+public partial class HarvesterUI : PanelContainer
 {
-    public Harvester Harvester { get; set; }
+    public Harvester Harvester { get; set; } = null;
     private GameMode GameMode { get; set; }
 
     private TextureRect[] texture;
@@ -30,6 +30,7 @@ public partial class HarvesterUI : Control
             texture[i].Texture = ImageTexture.CreateFromImage(Image.LoadFromFile("res://source/Assets/EnergyCell.png"));
         }
         energyStack = GetNode<VBoxContainer>("MainGrid/EnergyStack");
+        InitResBar();
     }
     public void InitResBar()
     {
@@ -62,14 +63,14 @@ public partial class HarvesterUI : Control
         BaskitText.Text = Resources.Baskit.ToString();
         CementText.Text = Resources.Cement.ToString();
         LimeText.Text = Resources.Lime.ToString();
-        for (int i = energyStack.GetChildCount() - 1; i >= 0; i--)
-            energyStack.RemoveChild(energyStack.GetChild(i));
-        for (int i = 0; i < Resources.Energy; i++)
-            if (i < 30)
-                energyStack.AddChild(texture[i]);
-            else
-                energyStack.AddChild(new TextureRect() 
-                { Texture = ImageTexture.CreateFromImage(Image.LoadFromFile("uid://dmr7tdysvnclf")) });
+        //for (int i = energyStack.GetChildCount() - 1; i >= 0; i--)
+        //    energyStack.RemoveChild(energyStack.GetChild(i));
+        //for (int i = 0; i < Resources.Energy; i++)
+        //    if (i < 30)
+        //        energyStack.AddChild(texture[i]);
+        //    else
+        //        energyStack.AddChild(new TextureRect() 
+        //        { Texture = ImageTexture.CreateFromImage(Image.LoadFromFile("uid://dmr7tdysvnclf")) });
     }
 
     public void SetData(Harvester harvester, GameMode gameMode)

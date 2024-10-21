@@ -31,6 +31,7 @@ public partial class PlanetScene : Node2D
 
     private OptionButton LandingSelected { get; set; }
 
+    private event ActionHandler UpdateHarvestersUI;
     public SelectorTools Selector { get; set; }
     public GameMode GameMode { get; set; }
 
@@ -53,14 +54,10 @@ public partial class PlanetScene : Node2D
 
     private PathLine Path { get; set; }
     private SelectTarget SelectWindow { get; set; }
-
     private DecideRecipe SelectReceptWindow { get; set; }
-
     private DecideNotInvariantRecipe SelectRecept2Window { get; set; }
     private MoveResource MoveResourceWindow { get; set; }
-
     private StartGameResourceMover StartGameResourceMoverWindow { get; set; }
-
     private TransportResource TransportResourceWindow { get; set; }
 
     private ProjectMarket ProjectMarketWindow { get; set; }
@@ -82,6 +79,10 @@ public partial class PlanetScene : Node2D
         LandingSelected = GetNode<OptionButton>("MenuBar/Landing/SelectLanding");
         InitBuildButtons();
         InitMap(ProjectSettings.GlobalizePath("res://Maps/") + "/map1.json");
+        UpdateHarvestersUI += GetNode<HarvesterUI>("GridContainer/HarvesterUI").UpdateResourceContainers;
+        UpdateHarvestersUI += GetNode<HarvesterUI>("GridContainer/HarvesterUI2").UpdateResourceContainers;
+        UpdateHarvestersUI += GetNode<HarvesterUI>("GridContainer/HarvesterUI3").UpdateResourceContainers;
+        UpdateHarvestersUI += GetNode<HarvesterUI>("GridContainer/HarvesterUI4").UpdateResourceContainers;
         SetResBarOut();
         IsInit = true;
         IsReady = true;
@@ -236,6 +237,8 @@ public partial class PlanetScene : Node2D
         {
             GameMode.ActionManager.ApplyActions(GameMode.GetStartTurnActionForPlayer(GameMode.Player));
         }
+        if (GameMode.NeedUpdatePaths)
+            GameMode.UpdatePath();
         if (GameMode.Map.InBound(tilePos))
         {
             if (Selector.UnitId == -1)
@@ -256,7 +259,7 @@ public partial class PlanetScene : Node2D
             }
 
         }
-        
+        UpdateHarvestersUI?.Invoke();
         UpdateResourceBar();
         if (Selector.State == SelectorState.SelectUnit && GameMode.NeedDrawAbilityArea)
         {
@@ -376,6 +379,7 @@ public partial class PlanetScene : Node2D
                     if (GameMode.Player.AmountStartHarvesters == 0)
                     {
                         actions = new List<IAction>();
+                        UpdateHarvesterBinding();
                         actions.Add(new ChangeGameState(GameMode.Player.Id, GameMode.State, GameState.ChooseStartResource));
                         GameMode.ActionManager.ApplyActions(actions);
                         return;
@@ -459,6 +463,26 @@ public partial class PlanetScene : Node2D
                 }
             }
         }
+    }
+
+    public void UpdateHarvesterBinding()
+    {
+        List<Harvester> units = new List<Harvester>();
+        var ids = GameMode.Harvesters.Keys.ToList();
+        ids.Sort();
+        foreach (var id in ids)
+        {
+            if (GameMode.Harvesters[id].Owner == GameMode.Player)
+            {
+                units.Add(GameMode.Harvesters[id]);
+            }
+        }
+        var grid = GetNode<GridContainer>("GridContainer");
+        for (int i = 0 ; i < units.Count; i++)
+        {
+            if (grid.GetChild(i) is HarvesterUI harvesterUI)
+                harvesterUI.SetData(units[i], GameMode);
+        }    
     }
 
     public void InitMap(string path)

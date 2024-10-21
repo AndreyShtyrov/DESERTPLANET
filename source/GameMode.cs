@@ -32,7 +32,6 @@ namespace DesertPlanet.source
     {
         public Player ActivePlayer { get; set; } = null;
         public Player Player { get; }
-
         public List<int> OccupiedLandings { get; } = new List<int>();
         public int PreviosLandingSubSector { get; set; } = -1;
         public int LandingRegion { get; set; } = -1;
@@ -46,35 +45,28 @@ namespace DesertPlanet.source
             } }
         public Dictionary<int, Building> Buildings { get; }
         public List<Player> PlayerList { get; }
-
         public ElectrosityGraph Electrosity { get; }
         public GameState State { get; set; }
         public Dictionary<int, Harvester> Harvesters { get; }
         public MapField Map { get; }
-
         private MapField StartMap { get; }
         public ResourceContainer[,] Resources { get; }
         public int UnitId { get; set; }
         public ActionManager ActionManager { get; }
         public Dictionary<int, Company> Companies { get; }
         public GameLogic Logic { get; }
-        public bool NeedRedraw { get; set; }
-
         private Task RebuildElectrisityTask = null;
-
         private Task RebuildContainersTask = null;
-
-        private Task PostSelectProcessingTask = null;
-
-        private Dictionary<int, PathNode[,]> pathFields;
+        private PathFounding PathFounding;
+        public bool NeedRedraw { get; set; } = false;
+        public bool NeedRebuildContainers { get; set; } = false;
+        public bool NeedRebuildElectrisity { get; set; } = false;
         public bool NeedDrawAbilityArea { get; set; } = false;
         public bool NeedLoadAbilityGUI { get; set; } = false;
-
         public bool NeedApplyTurnStartActions { get; set; } = false;
-
+        public bool NeedUpdatePaths { get; set; } = false;
         public CubeHexalTools HexalTools { get; set; }
         public List<int> UpdateAbilitiesGuiTargets { get; }
-
         public GameMode(List<Player> players, Dictionary<int, string> companies, Player currentPlayer, string path) {
             Player = currentPlayer;
             State = GameState.AwaitSytem;
@@ -98,10 +90,9 @@ namespace DesertPlanet.source
             foreach (var player in players)
                 Companies.Add(player.Id, Company.CreateFromName(companies[player.Id], player, this));
             HexalTools = new CubeHexalTools();
-            pathFields = new Dictionary<int, PathNode[,]>();
             StartMap = Map.Copy();
+            PathFounding = new PathFounding(this);
         }
-
         public GameMode(List<Player> players, Dictionary<int, string> companies, Player currentPlayer, MapField map)
         {
             Player = currentPlayer;
@@ -126,20 +117,16 @@ namespace DesertPlanet.source
             foreach (var player in players)   
                Companies.Add(player.Id, Company.CreateFromName("base", player, this));
             HexalTools = new CubeHexalTools();
-            pathFields = new Dictionary<int, PathNode[,]>();
+            PathFounding = new PathFounding(this);
             StartMap = Map.Copy();
         }
-
         public int LastSendedAction = -1;
-
         public event System.Action SendLastActions;
-
         public void RebuildElectrisity()
         {
             RebuildElectrisityTask = new Task(() => { Electrosity.Rebuild(); });
             RebuildElectrisityTask.Start();
         }
-
         public void RebuildContainers()
         {
             if (RebuildContainersTask != null)
@@ -147,7 +134,6 @@ namespace DesertPlanet.source
             RebuildContainersTask = new Task(() => { UpdateContainers(); });
             RebuildContainersTask.Start();
         }
-
         private void UpdateContainers()
         {
             if (RebuildElectrisityTask == null)
@@ -171,15 +157,20 @@ namespace DesertPlanet.source
                         units[unit.X, unit.Y].Add(hasResource);
                 }
             }
-
+            Player.Resources.Clean();
             for (int i = 0; i < Map.Horizontal; i++)
-                for (int j = 0;  j < Map.Vertical; j++)
+                for (int j = 0;  j < Map.Vertical; j++) 
                 {
                     
                     try
                     {
                         Resources[i, j].Clean();
-                        Resources[i, j].AddRange(Map[i, j].Resources);
+                        foreach (var res in Map[i, j].Resources)
+                            if (res.OwnerId == Player.Id)
+                            {
+                                Player.Resources.Add(res);
+                                Resources[i, j].Add(res);
+                            }
                     }
                     catch
                     {
@@ -189,10 +180,16 @@ namespace DesertPlanet.source
                     if (units[i, j] == null)
                         continue;
                     foreach (var resource in units[i, j])
-                        Resources[i, j].AddRange(resource.Resources);
+                    {
+                        foreach (var res in resource.Resources)
+                            if (res.OwnerId == Player.Id)
+                            {
+                                Player.Resources.Add(res);
+                                Resources[i, j].Add(res);
+                            }
+                    }
                 }
         }
-
         public List<IHasResource> GetEnergy(IOwnedToken token)
         {
             if (RebuildElectrisityTask == null)
@@ -227,12 +224,10 @@ namespace DesertPlanet.source
                     return Buildings[id];
             return null;
         }
-
         public Company GetCompany(int id)
         {
             return Companies[id];
         }
-
         public Company GetCompany(Player player)
         {
             return GetCompany(player.Id);
@@ -243,18 +238,6 @@ namespace DesertPlanet.source
                 if (player.Id == id)
                     return player;
             throw(new Exception("!! Error Player with id "+ id + " hasn't found"));
-        }
-
-        public List<PlanetResource> GetResourcesPos(int X, int Y)
-        {
-            var result = new List<PlanetResource>();
-            foreach (var token in GetTokensByPos(X, Y))
-                if (token is Harvester harvester)
-                    foreach(var resource in  harvester.Resources)
-                        result.Add(resource);
-            foreach(var resource in Map[X, Y].Resources)
-                result.Add(resource);
-            return result;
         }
         public void EndTurn()
         {
@@ -284,101 +267,12 @@ namespace DesertPlanet.source
             }
             ActionManager.ApplyActions(actions);
         }
-
-        public async void MakeSelectionPostProcessing(int objectId)
-        {
-            if (GetObjectById(objectId) is IHasAbilities unit)
-            {
-                if (!unit.CanMoving)
-                    return;
-                var company = GetCompany(Player);
-                var moveOnWater = company.CanHarvestorMoveOnWater;
-                if (PostSelectProcessingTask != null)
-                    await PostSelectProcessingTask;
-                PostSelectProcessingTask = new Task(() =>
-                {
-                    if (unit is Harvester)
-                    {
-                        pathFields[objectId] = BuildPathField(unit.Position, moveOnWater, false);
-                    }
-                    else
-                    {
-                        pathFields[objectId] = BuildPathField(unit.Position, moveOnWater, true);
-                    }
-                    PostSelectProcessingTask = null;
-                });
-                PostSelectProcessingTask.Start();
-            }
-        }
-
-        private PathNode[,] BuildPathField(Vector2I start, bool canMoveOnWater, bool canMoveOnlyOnWater)
-        {
-            var result = new PathNode[Map.Horizontal, Map.Vertical];
-            for (int i = 0; i < Map.Horizontal; i++)
-                for (int j = 0; j < Map.Vertical; j++)
-                    result[i, j] = new PathNode();
-            var bypassedTiles = new List<Vector2I>();
-            var newShell = new List<FieldToken>() { Map[start] };
-            int ActionCount = 0;
-            bypassedTiles.Add(start);
-            while (newShell.Count > 0)
-            {
-                var prevShell = newShell;
-                newShell = new List<FieldToken>();
-                foreach (var field in prevShell)
-                {
-                    foreach (var pos in field.ConnectedFields)
-                    {
-                        if (!Map.InBound(pos)) 
-                            continue;
-                        if (Map[pos] is Empty)
-                        {
-                            bypassedTiles.Add(pos);
-                            continue;
-                        }
-                        if (Map[pos] is Water && Map[pos] is WaterOil && canMoveOnWater && !canMoveOnlyOnWater)
-                        {
-                            bypassedTiles.Add(pos);
-                            continue;
-                        }
-                        if (Map[pos] is Water && Map[pos] is WaterOil && canMoveOnlyOnWater)
-                        {
-                            var buildings = GetTokensByPos(pos.X, pos.Y);
-                            foreach(var building in buildings)
-                                if (building is Building)
-                                {
-                                    bypassedTiles.Add(pos);
-                                    continue;
-                                }
-                            result[pos.X, pos.Y] = new PathNode(new Vector2I(field.X, field.Y), ActionCount + 1);
-                            newShell.Add(Map[pos]);
-                            continue;
-                        }
-                        if (bypassedTiles.Contains(pos))
-                            continue;
-                        result[pos.X, pos.Y] = new PathNode(new Vector2I(field.X, field.Y), ActionCount + 1);
-                        newShell.Add(Map[pos]);
-                    }
-                }
-                foreach (var field in newShell)
-                    bypassedTiles.Add(new Vector2I(field.X, field.Y));
-                ActionCount++;
-            }
-            return result;
-        }
-
         public PathNode[,] GetPaths(int id)
         {
-            if (pathFields.ContainsKey(id))
-                return pathFields[id];
-            PostSelectProcessingTask.Wait();
-            return pathFields[id];
+            return PathFounding.GetPaths(id);
         }
-
-        public void CleanPaths()
-        {
-            pathFields.Clear();
-        }
+        public void CleanPaths() => PathFounding.Clear();
+        public void UpdatePath() => PathFounding.UpdatePath();
         public List<Vector2I> Area(int x0, int y0, int radius, bool isFill = true)
         {
             var result = new List<Vector2I>();
@@ -430,7 +324,6 @@ namespace DesertPlanet.source
             result.Add(new CloseStartActions(player));
             return result;
         }
-
         public void Save(string file)
         {
             var saveGame = new SaveGame();
@@ -455,7 +348,6 @@ namespace DesertPlanet.source
             using (StreamWriter fw = new StreamWriter(file))
                 fw.WriteLine(json);
         }
-
         public static GameMode Load(string file)
         {
             string jsonLine = "";
@@ -488,7 +380,6 @@ namespace DesertPlanet.source
             result.ActionManager.ApplyActions(data.Actions);
             return result;
         }
-
         public void TriggerUpdateActions()
         {
             SendLastActions?.Invoke();

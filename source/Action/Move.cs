@@ -27,6 +27,7 @@ namespace DesertPlanet.source.Action
             unit.Y = Y1;
             Map.NeedRedraw = true;
             Map.CleanPaths();
+            Map.NeedUpdatePaths = true;
         }
 
         [JsonConstructor]

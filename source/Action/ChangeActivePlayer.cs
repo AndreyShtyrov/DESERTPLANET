@@ -23,7 +23,9 @@ namespace DesertPlanet.source.Action
             Map.ActivePlayer = Map.GetPlayer(NextPlayer);
             if (Map.PlayerList.Count != 1 && Map.ActivePlayer == Map.Player)
             {
+                Map.CleanPaths();
                 Map.NeedApplyTurnStartActions = true;
+                Map.NeedUpdatePaths = true;
             }
         }
         [JsonConstructor]

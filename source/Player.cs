@@ -14,6 +14,7 @@ namespace DesertPlanet.source
         public string Name { get; set; }
         public List<Building> Buildings { get; }
 
+        public ResourceContainer Resources { get; }
         public int Id { get; }
 
         public int Repos { get; set; }
@@ -25,12 +26,14 @@ namespace DesertPlanet.source
         {
             Projects = new List<CompanyProject>();
             Id = id;
+            Resources = new ResourceContainer();
         }
 
         public Player(string name, int id)
         {
             Projects = new List<CompanyProject>();
             Id = id;
+            Resources = new ResourceContainer();
         }
 
         public override bool Equals(object obj)

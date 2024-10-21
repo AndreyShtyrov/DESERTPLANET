@@ -3,10 +3,10 @@ using DesertPlanet.source.Companies.Projects;
 using Godot;
 using System;
 
-public partial class ProjectFile : PanelContainer
+public partial class ProjectFile : Control
 {
 	// Called when the node enters the scene tree for the first time.
-
+	
 	public event ActionOnId BuyProject;
 
 	public Button BuyButton { get; set; }

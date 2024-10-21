@@ -42,7 +42,7 @@ namespace DesertPlanet.source.Action
                 var secondId = actions[0].Idx;
                 if (firstId != secondId + 1)
                 {
-                    GD.Print("Some actions is missed, mangear need load missed from FullActions" + firstId + " " + secondId);
+                    GD.Print("Some actions is missed, manager need load missed actions from FullActions" + firstId + " " + secondId);
                     foreach (var action in actions)
                     {
                         if (action.Idx > firstId && action.Idx < secondId)
