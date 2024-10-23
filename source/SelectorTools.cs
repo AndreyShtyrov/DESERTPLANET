@@ -21,6 +21,8 @@ namespace DesertPlanet.source
     {
         public SelectorState State { get; set; }
 
+        public event ActionHandler UnitSelectedEvent;
+
         private int _unitId = -1;
         public int UnitId {
             get
@@ -30,6 +32,7 @@ namespace DesertPlanet.source
             set
             {
                 _unitId = value;
+                UnitSelectedEvent?.Invoke();
             }
         }
 

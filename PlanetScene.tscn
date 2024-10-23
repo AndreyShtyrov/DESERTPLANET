@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://jugyy6wgr5cs"]
+[gd_scene load_steps=112 format=3 uid="uid://jugyy6wgr5cs"]
 
 [ext_resource type="Script" path="res://PlanetScene.cs" id="1_qgbts"]
 [ext_resource type="PackedScene" uid="uid://dkoyjt3n4lmnc" path="res://AbilityButton.tscn" id="2_1487e"]
@@ -70,6 +70,7 @@
 [ext_resource type="Texture2D" uid="uid://dcgrav6siu5rx" path="res://source/Assets/ReceptIcons/P.png" id="67_qvuhi"]
 [ext_resource type="Texture2D" uid="uid://7w65trxkwlof" path="res://source/Assets/BuildIcons/FloatingPlatform.png" id="68_gio28"]
 [ext_resource type="PackedScene" uid="uid://buupqhgh7jf6s" path="res://HarvesterUi.tscn" id="69_2lm3s"]
+[ext_resource type="Texture2D" uid="uid://copiklho5o845" path="res://source/Assets/AbilityIcons/Dig.png" id="71_qk070"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3pyf"]
 texture = ExtResource("2_tb7yq")
@@ -2158,33 +2159,47 @@ offset_right = 1455.0
 offset_bottom = 670.0
 
 [node name="AbilityButton" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
 layout_mode = 2
+ActionId = 31
+
+[node name="Button" parent="Actions/AbilityButton" index="1"]
+texture_normal = ExtResource("71_qk070")
 
 [node name="AbilityButton2" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
 layout_mode = 2
 
 [node name="AbilityButton3" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
 layout_mode = 2
 
 [node name="AbilityButton4" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
 layout_mode = 2
 
 [node name="AbilityButton5" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
 layout_mode = 2
 
 [node name="AbilityButton6" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
 layout_mode = 2
 
 [node name="AbilityButton7" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
 layout_mode = 2
 
 [node name="AbilityButton8" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
 layout_mode = 2
 
 [node name="AbilityButton9" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
 layout_mode = 2
 
 [node name="AbilityButton10" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
 layout_mode = 2
 
 [connection signal="pressed" from="Button" to="." method="OnEndTurn"]

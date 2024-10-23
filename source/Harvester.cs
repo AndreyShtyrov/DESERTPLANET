@@ -38,7 +38,7 @@ namespace DesertPlanet.source
             Abilities = new List<AbilityPresset>();
             Counter = new ActionCounter(1, 1);
             Abilities.Add(new MoveUnit(this, 0));
-            Abilities.Add(new Dig(this, 1));
+            Abilities.Add(new Dig(this, 31));
             var company = gameMode.GetCompany(owner.Id);
             Abilities.AddRange(company.GetCounstructAbility(this, 1));
             int countHarvesters = 0;
@@ -83,6 +83,15 @@ namespace DesertPlanet.source
                 }
             }
             throw new IndexOutOfRangeException("Cannot found Ability with this Recipe");
+        }
+
+        public bool HasAbility(int id)
+        {
+            foreach (var ability in Abilities)
+            {
+                if (ability.Id == id) { return true; }
+            }
+            return false;
         }
     }
 }

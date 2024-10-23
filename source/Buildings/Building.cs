@@ -50,6 +50,14 @@ namespace DesertPlanet.source.Buildings
             return null;
         }
 
+        public bool HasAbility(int id)
+        {
+            foreach (var ability in Abilities)
+                if (ability.Id == id)
+                    return true;
+            return false;
+        }
+
         public virtual Vector2I TileShift => new Vector2I(-1, -1);
 
         public virtual bool CanMoving => false;

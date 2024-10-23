@@ -14,6 +14,7 @@ namespace DesertPlanet.source.Interfaces
         public bool CanBuild { get; }
         public AbilityPresset GetAbilityById(int id);
 
+        public bool HasAbility(int id);
         public ActionCounter Counter { get; }
 
         public bool CanMoving { get; }

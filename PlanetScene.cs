@@ -52,6 +52,7 @@ public partial class PlanetScene : Node2D
     private TextEdit LimeText;
     private TextEdit RepoAmount;
 
+    private VBoxContainer AbilityContainer { get; set; }
     private PathLine Path { get; set; }
     private SelectTarget SelectWindow { get; set; }
     private DecideRecipe SelectReceptWindow { get; set; }
@@ -74,6 +75,7 @@ public partial class PlanetScene : Node2D
         SelectRecept2Window = GetNode<DecideNotInvariantRecipe>("DecideNotInvariantRecipe");
         StartGameResourceMoverWindow = GetNode<StartGameResourceMover>("StartGameResourceMover");
         TransportResourceWindow = GetNode<TransportResource>("TransportResource");
+        AbilityContainer = GetNode<VBoxContainer>("Actions");
         Path = GetNode<PathLine>("PathLine");
         ProjectMarketWindow = GetNode<ProjectMarket>("ProjectMarket");
         LandingSelected = GetNode<OptionButton>("MenuBar/Landing/SelectLanding");
@@ -309,6 +311,8 @@ public partial class PlanetScene : Node2D
         BindButton(vbox);
         vbox = GetNode<VBoxContainer>("SpecialBPanel");
         BindButton(vbox);
+        vbox = GetNode<VBoxContainer>("Actions");
+        BindButton(vbox);
     }
     public void InitHarvesterStartGame()
     {
@@ -469,6 +473,45 @@ public partial class PlanetScene : Node2D
         }
     }
 
+    public void UpdateAvaliableActions()
+    {
+        if (Selector.UnitId < 0)
+        {
+            for (int i = 0; i < AbilityContainer.GetChildCount() - 1; i++)
+            {
+                var button = AbilityContainer.GetChild<AbilityButton>(i);
+                button.Visible = false;
+            }
+            return;
+        }
+        var unit = GameMode.GetObjectById(Selector.UnitId);
+        if (unit == null) return;
+        if (unit is IHasAbilities hasAbilities)
+        {
+            for (int i = 0; i < AbilityContainer.GetChildCount() - 1; i++)
+            {
+                var button = AbilityContainer.GetChild<AbilityButton>(i);
+                if (button.Visible)
+                {
+                    if (!hasAbilities.HasAbility(button.ActionId))
+                        button.Visible = false;
+                }
+                else
+                {
+                    if (hasAbilities.HasAbility(button.ActionId))
+                        button.Visible = true;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < AbilityContainer.GetChildCount() - 1; i++)
+            {
+                var button = AbilityContainer.GetChild<AbilityButton>(i);
+                button.Visible = false;
+            }
+        }
+    }
     public void UpdateHarvesterBinding()
     {
         List<Harvester> units = new List<Harvester>();
@@ -530,6 +573,7 @@ public partial class PlanetScene : Node2D
             LandingSelected.AddItem((i + 1).ToString());
         }
         LandingSelected.Select(GameMode.LandingRegion);
+        Selector.UnitSelectedEvent += UpdateAvaliableActions;
     }
 
     private void ShowAdditionUI(string Name)

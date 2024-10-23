@@ -53,5 +53,10 @@ namespace DesertPlanet.source.Buildings
         {
             throw new NotImplementedException();
         }
+
+        public bool HasAbility(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
