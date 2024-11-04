@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://jugyy6wgr5cs"]
+[gd_scene load_steps=113 format=3 uid="uid://jugyy6wgr5cs"]
 
 [ext_resource type="Script" path="res://PlanetScene.cs" id="1_qgbts"]
 [ext_resource type="PackedScene" uid="uid://dkoyjt3n4lmnc" path="res://AbilityButton.tscn" id="2_1487e"]
@@ -47,6 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://cnp45tn02b0ej" path="res://source/Assets/ReceptIcons/UUPPFeC.png" id="45_r43eb"]
 [ext_resource type="Texture2D" uid="uid://bpjxc75eq5d17" path="res://source/Assets/BuildIcons/AtomicPlant.png" id="46_d8qdc"]
 [ext_resource type="Texture2D" uid="uid://x3lsvwr4mr77" path="res://source/Assets/BuildIcons/House.png" id="47_ped6y"]
+[ext_resource type="Texture2D" uid="uid://barsqtpclyam2" path="res://source/Assets/BuildIcons/TidalPlant.png" id="48_rgu5a"]
 [ext_resource type="Texture2D" uid="uid://cofoyousr8l1i" path="res://source/Assets/ReceptIcons/CCC.png" id="48_vcdwa"]
 [ext_resource type="Texture2D" uid="uid://b27db73hmdo5h" path="res://source/Assets/BuildIcons/Park.png" id="49_618sy"]
 [ext_resource type="Texture2D" uid="uid://bvs83mkuyhvdc" path="res://source/Assets/ReceptIcons/CGPPAl3.png" id="50_l0vv3"]
@@ -1915,7 +1916,7 @@ size_flags_horizontal = 4
 [node name="AbilityButton" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
-ActionId = 0
+ActionId = 14
 
 [node name="Reciept" parent="EnergyBPanel/AbilityButton" index="0"]
 clip_contents = true
@@ -1959,6 +1960,17 @@ texture = ExtResource("45_r43eb")
 [node name="Button" parent="EnergyBPanel/AbilityButton4" index="1"]
 texture_normal = ExtResource("46_d8qdc")
 
+[node name="AbilityButton5" parent="EnergyBPanel" instance=ExtResource("2_1487e")]
+layout_mode = 2
+ActionId = 20
+
+[node name="Reciept" parent="EnergyBPanel/AbilityButton5" index="0"]
+size_flags_horizontal = 1
+texture = ExtResource("57_otgmh")
+
+[node name="Button" parent="EnergyBPanel/AbilityButton5" index="1"]
+texture_normal = ExtResource("48_rgu5a")
+
 [node name="SocialBPanel" type="VBoxContainer" parent="."]
 offset_left = 1744.0
 offset_top = 626.0
@@ -1968,6 +1980,7 @@ offset_bottom = 958.0
 [node name="AbilityButton" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
+ActionId = 16
 
 [node name="Reciept" parent="SocialBPanel/AbilityButton" index="0"]
 texture = ExtResource("41_kd3l5")
@@ -1978,6 +1991,7 @@ texture_normal = ExtResource("47_ped6y")
 [node name="AbilityButton2" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
+ActionId = 17
 
 [node name="Reciept" parent="SocialBPanel/AbilityButton2" index="0"]
 texture = ExtResource("48_vcdwa")
@@ -1987,6 +2001,7 @@ texture_normal = ExtResource("49_618sy")
 
 [node name="AbilityButton3" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
+ActionId = 18
 
 [node name="Reciept" parent="SocialBPanel/AbilityButton3" index="0"]
 custom_minimum_size = Vector2(50, 80)
@@ -1997,6 +2012,7 @@ texture_normal = ExtResource("51_p8140")
 
 [node name="AbilityButton4" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
+ActionId = 19
 
 [node name="Reciept" parent="SocialBPanel/AbilityButton4" index="0"]
 texture = ExtResource("52_0oc8m")
@@ -2067,10 +2083,10 @@ texture = ExtResource("57_otgmh")
 texture_normal = ExtResource("58_tke0f")
 
 [node name="TransferBPanel" type="VBoxContainer" parent="."]
-offset_left = 1605.0
-offset_top = 366.0
-offset_right = 1729.0
-offset_bottom = 614.0
+offset_left = 1601.0
+offset_top = 439.0
+offset_right = 1725.0
+offset_bottom = 687.0
 
 [node name="AbilityButton" parent="TransferBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
@@ -2094,6 +2110,7 @@ texture_normal = ExtResource("64_626wp")
 
 [node name="AbilityButton3" parent="TransferBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
+ActionId = 17
 
 [node name="Reciept" parent="TransferBPanel/AbilityButton3" index="0"]
 texture = ExtResource("63_hpm4x")
@@ -2226,6 +2243,7 @@ layout_mode = 2
 [editable path="EnergyBPanel/AbilityButton2"]
 [editable path="EnergyBPanel/AbilityButton3"]
 [editable path="EnergyBPanel/AbilityButton4"]
+[editable path="EnergyBPanel/AbilityButton5"]
 [editable path="SocialBPanel/AbilityButton"]
 [editable path="SocialBPanel/AbilityButton2"]
 [editable path="SocialBPanel/AbilityButton3"]

@@ -50,6 +50,7 @@ namespace DesertPlanet.source
             {
                 result.AddRange(ability.Use(Game, resources));
             }
+            result.Add(new ForceUpdateUI(true, false));
             return result;
         }
 

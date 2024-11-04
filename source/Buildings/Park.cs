@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Godot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace DesertPlanet.source.Buildings
         public Park(int x, int y, int layerId, int id, Player owner) : base("Park", x, y, layerId, id, owner)
         {
         }
+
+        public override Vector2I TileShift => new Vector2I(3, 1);
     }
 
     public class ParkRecipe : BuildingRecipe

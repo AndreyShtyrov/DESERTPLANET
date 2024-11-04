@@ -156,7 +156,7 @@ namespace DesertPlanet.source.Companies
             startId++;
             result.Add(new ConstructDrill(Recepts[2], unit, 2));
             startId++;
-            result.Add(new ConstructTidalStation(Recepts[3], unit, 16));
+            result.Add(new ConstructTidalStation(Recepts[3], unit, 20));
             startId++;
             result.Add(new ConstructFloatingPlatfrom(Recepts[5], unit, 5));
             startId++;

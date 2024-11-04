@@ -53,7 +53,6 @@ namespace DesertPlanet.source.Ability
                 }
             }
             result.Add(new IncreaseActionCount(Unit.Id, 1));
-            result.Add(new ForceUpdateUI(true, false));
             return result;
         }
 

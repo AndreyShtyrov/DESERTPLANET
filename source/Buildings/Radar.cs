@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Godot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace DesertPlanet.source.Buildings
         public Radar(int x, int y, int layerId, int id, Player owner) : base("Radar", x, y, layerId, id, owner)
         {
         }
+
+        public override Vector2I TileShift => new Vector2I(1, 0);
     }
 
     public class RadarBuildingRecipe : BuildingRecipe

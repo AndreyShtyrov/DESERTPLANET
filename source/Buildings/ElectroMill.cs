@@ -12,7 +12,8 @@ namespace DesertPlanet.source.Buildings
     public class ElectroMill : Building, IHasStartTurnAction
     {
 
-        public ElectroMill(int x, int y, int layerId, int id, Player owner ) : base("ElectroMill", x, y, layerId, id, owner) {
+        public ElectroMill(int x, int y, int layerId, int id, Player owner ) 
+            : base("ElectroMill", x, y, layerId, id, owner) {
             
         }
 

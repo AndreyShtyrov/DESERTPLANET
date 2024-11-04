@@ -146,8 +146,11 @@ public partial class PlanetScene : Node2D
         foreach (var building in GameMode.Buildings.Values)
         {
             tileMap.SetCell(1, new Vector2I(building.X, building.Y), building.SourceLevel, building.TileShift);
+            GD.Print("Draw Building " + building.X + " , " + building.Y + " ; " + building.SourceLevel + " ; " + building.TileShift.X + " , " + building.TileShift.Y);
+
         }
         GameMode.NeedRedraw = false;
+        //GameMode.UpdatePath();
     }
 
     public void DrawResourceUI()

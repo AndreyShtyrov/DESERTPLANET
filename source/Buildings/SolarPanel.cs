@@ -11,7 +11,7 @@ namespace DesertPlanet.source.Buildings
 {
     public class SolarPanel : Building, IHasStartTurnAction
     {
-        public SolarPanel(int x, int y, int layerId, int id, Player owner) : base("SolarPanel", id, layerId, x, y, owner)
+        public SolarPanel(int x, int y, int layerId, int id, Player owner) : base("SolarPanel", x, y, layerId, id, owner)
         {
         }
 
