@@ -230,14 +230,27 @@ namespace DesertPlanet.source
             var unit = Game.GetObjectById(selector.UnitId) as IHasAbilities;
             if (unit == null)
                 return;
-            if (unit.CanBuild)
+            if (unit is IHasAbilities hasAbilities)
             {
-                if (unit is ICanBuilding constructor)
+                var ability = hasAbilities.GetAbilityById(id);
+                if ( ability == null)
+                    return;
+                selector.AbilityId = ability.Id;
+                if (ability is ConstructBuilding || ability is MakeRecipe)
                 {
-                    var recipt = company.Recepts[id];
-                    var ability = constructor.GetAbilityByRecipt(recipt);
-                    selector.AbilityId = ability.Id;
                     selector.State = SelectorState.SetupRecipt;
+                }
+                else
+                {
+                    if (ability.NeedSelecTarget)
+                    {
+                        Game.NeedDrawAbilityArea = true;
+                    }
+                    else
+                    {
+                        UseAbility(ability, hasAbilities.Position);
+                        selector.DeselectUnit();
+                    }
                 }
             }
         }

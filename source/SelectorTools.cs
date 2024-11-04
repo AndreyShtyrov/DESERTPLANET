@@ -136,7 +136,7 @@ namespace DesertPlanet.source
 
         public void DeselectUnit()
         {
-            _unitId = -1;
+            UnitId = -1;
             AbilityId = -1;
             State = SelectorState.SelectUnit;
             FirstTarget = new Vector2I(-1, -1);

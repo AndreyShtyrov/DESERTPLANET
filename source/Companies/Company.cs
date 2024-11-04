@@ -105,6 +105,11 @@ namespace DesertPlanet.source.Companies
             Recepts.Add(12, new ThermalPowerPlantRecept(Player));
             Recepts.Add(13, new HelicopterRecipe(Player));
             Recepts.Add(14, new ManipulatorRecipe(Player));
+            Recepts.Add(15, new RadarBuildingRecipe(Player));
+            Recepts.Add(16, new HouseRecipe(Player));
+            Recepts.Add(17, new ParkRecipe(Player));
+            Recepts.Add(18, new CompanyOfficeRecipe(Player));
+            Recepts.Add(19, new HydroponicFermRecipe(Player));
 
             AbilityRecepts.Add("RefineOil", new RefineOilRecept(Player));
             AbilityRecepts.Add("RefineAliminium", new RefineAliminiumRecept(Player));
@@ -132,39 +137,54 @@ namespace DesertPlanet.source.Companies
                 case 12: return new ThermalPowerPlant(x, y, BuildingLevel, unitId, player, Mode);
                 case 13: return new Helicopter(x, y, BuildingLevel, unitId, player);
                 case 14: return new Manipulator(x, y, BuildingLevel, unitId, player, Mode);
+                case 15: return new Radar(x, y, BuildingLevel, unitId, player);
+                case 16: return new House(x, y, BuildingLevel, unitId, player);
+                case 17: return new Park(x, y, BuildingLevel, unitId, player);
+                case 18: return new CompanyOffice(x, y, BuildingLevel, unitId, player);
+                case 19: return new HydroponicFerm(x, y, BuildingLevel, unitId, player);
             }
             throw new NotImplementedException();
         }
 
-        public List<ConstructBuilding> GetCounstructAbility(IOwnedTokenWithAbilites unit, int startId)
+        public virtual List<ConstructBuilding> GetCounstructAbility(IOwnedTokenWithAbilites unit, int startId)
         {
             var result = new List<ConstructBuilding>();
             startId++;
-            result.Add(new ConstuctMill(Recepts[0], unit, startId));
+            result.Add(new ConstuctMill(Recepts[0], unit, 14));
             startId++;
-            result.Add(new ConstructSolidPlatform(Recepts[1], unit, startId));
+            result.Add(new ConstructSolidPlatform(Recepts[1], unit, 1));
             startId++;
-            result.Add(new ConstructDrill(Recepts[2], unit, startId));
+            result.Add(new ConstructDrill(Recepts[2], unit, 2));
             startId++;
-            result.Add(new ConstructTidalStation(Recepts[3], unit, startId));
+            result.Add(new ConstructTidalStation(Recepts[3], unit, 16));
             startId++;
-            result.Add(new ConstructFloatingPlatfrom(Recepts[5], unit, startId));
+            result.Add(new ConstructFloatingPlatfrom(Recepts[5], unit, 5));
             startId++;
-            result.Add(new ConstructConversionFabric(Recepts[6], unit, startId));
+            result.Add(new ConstructConversionFabric(Recepts[6], unit, 6));
             startId++;
-            result.Add(new ConstructFabric(Recepts[7], unit, startId));
+            result.Add(new ConstructFabric(Recepts[7], unit, 7));
             startId++;
-            result.Add(new ConstructSolarPanel(Recepts[8], unit, startId));
+            result.Add(new ConstructSolarPanel(Recepts[8], unit, 8));
             startId++;
-            result.Add(new ConstructMeltingFurnace(Recepts[9], unit, startId));
+            result.Add(new ConstructMeltingFurnace(Recepts[9], unit, 9));
             startId++;
-            result.Add(new ConstructPowerStation(Recepts[11], unit, startId));
+            result.Add(new ConstructPowerStation(Recepts[11], unit, 11));
             startId++;
-            result.Add(new ConstructThermalPowerPlant(Recepts[12], unit, startId));
+            result.Add(new ConstructThermalPowerPlant(Recepts[12], unit, 12));
             startId++;
-            result.Add(new ConstructHelicopter(Recepts[13], unit, startId));
+            result.Add(new ConstructHelicopter(Recepts[13], unit, 14));
             startId++;
-            result.Add(new ConstructManipulator(Recepts[14], unit, startId));
+            result.Add(new ConstructManipulator(Recepts[14], unit, 17));
+            startId++;
+            result.Add(new ConstructRadar(Recepts[15], unit, 13));
+            startId++;
+            result.Add(new ConstructHouse(Recepts[16], unit, 16));
+            startId++;
+            result.Add(new ConstructPark(Recepts[17], unit, 17));
+            startId++;
+            result.Add(new ConstructCompanyOffice(Recepts[18], unit, 18));
+            startId++;
+            result.Add(new ConstructHydroponicFerm(Recepts[19], unit, 19));
             return result;
         }
 
