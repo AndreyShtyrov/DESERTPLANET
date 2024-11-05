@@ -36,7 +36,7 @@ namespace DesertPlanet.source
             Resources = new ResourceContainer();
             Owner = owner;
             Abilities = new List<AbilityPresset>();
-            Counter = new ActionCounter(1, 1);
+            Counter = new ActionCounter(1, 1, owner, true);
             Abilities.Add(new MoveUnit(this, 0));
             Abilities.Add(new Dig(this, 31));
             var company = gameMode.GetCompany(owner.Id);
@@ -50,8 +50,6 @@ namespace DesertPlanet.source
             TileShift = new Vector2I(countHarvesters, company.VerticalShiftForHarvesterTile);
         }
         public Vector2I TileShift { get; }
-
-        public int EndTurnEnergyCotainer { get; set; }
 
         public bool HasStartTurnAction => true;
 

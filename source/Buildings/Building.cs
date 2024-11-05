@@ -35,7 +35,7 @@ namespace DesertPlanet.source.Buildings
             CanBuild = false;
             Name = name;
             Abilities = new List<AbilityPresset>();
-            Counter = new ActionCounter(1, 1);
+            Counter = new ActionCounter(1, 1, owner, false);
             Id = id;
             SourceLevel = layerId;
             X = x;

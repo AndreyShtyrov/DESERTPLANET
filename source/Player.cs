@@ -14,6 +14,9 @@ namespace DesertPlanet.source
         public string Name { get; set; }
         public List<Building> Buildings { get; }
 
+        public bool IsOffice { get; set; } = false;
+
+        public bool IsHydroponic { get; set; } = false;
         public ResourceContainer Resources { get; }
         public int Id { get; }
 

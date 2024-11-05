@@ -32,10 +32,10 @@ namespace DesertPlanet.source.Buildings
 
         public bool CanBuild { get; internal set; }
 
-        public ComplexBuildings(int id) { 
+        public ComplexBuildings(int id, Player player) { 
             Id = id;
             Positions = new List<Vector2I>();
-            Counter = new ActionCounter(0, 1);
+            Counter = new ActionCounter(0, 1, player, false);
             Abilities = new List<AbilityPresset>();
             CanBuild = false;
         }

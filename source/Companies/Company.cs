@@ -18,10 +18,6 @@ namespace DesertPlanet.source.Companies
 
         public GameMode Mode { get; }
 
-        public bool HasHydroponic { get; set; } = false;
-
-        public bool IsOffice { get; set; } = false;
-
         public static List<string> Avalialve = new List<string> { "base", "ExTerra" };
         public virtual bool CanHarvestorMoveOnWater => false;
         public string Description { get; }

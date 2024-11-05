@@ -20,23 +20,22 @@ namespace DesertPlanet.source.Action
         public int PlayerId { get; set; }
         public override void Backward()
         {
-            var company = Map.GetCompany(PlayerId);
-            company.IsOffice = PrevIsOffice;
-            company.HasHydroponic = PrevIsHydroponic;
+            var player = Map.GetPlayer(PlayerId);
+            player.IsOffice = PrevIsOffice;
+            player.IsHydroponic = PrevIsHydroponic;
         }
 
         public override void Forward()
         {
-            var company = Map.GetCompany(PlayerId);
-            company.IsOffice = IsOffice;
-            company.HasHydroponic = IsHydroponic;
+            var player = Map.GetPlayer(PlayerId);
+            player.IsOffice = IsOffice;
+            player.IsHydroponic = IsHydroponic;
         }
 
         public ChangeAccessToSpecialBuildings(bool isHydroponic, bool isOffice, Player player) : base()
         {
-            var company = Map.GetCompany(player.Id);
-            PrevIsHydroponic = company.HasHydroponic;
-            PrevIsOffice = company.IsOffice;
+            PrevIsHydroponic = player.IsHydroponic;
+            PrevIsOffice = player.IsOffice;
             IsHydroponic = isHydroponic;
             IsOffice = isOffice;
         }

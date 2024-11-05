@@ -114,7 +114,7 @@ public partial class PlanetScene : Node2D
         LimeText = GetNode<TextEdit>("RBar/I10/TextEdit");
         RepoAmount = GetNode<TextEdit>("RepoTolbar/I1/TextEdit");
     }
-     
+    
     public void DrawArea(List<Vector2I> area)
     {
         tileMap.ClearLayer(5);
@@ -338,15 +338,15 @@ public partial class PlanetScene : Node2D
         if (Selector == null)
             return;
         EnergyText.Text = Selector.Energy.ToString();
-        IronText.Text = Selector.Iron.ToString();
-        PlasticText.Text = Selector.Plastic.ToString();
-        AliminiumText.Text = Selector.Alinium.ToString();
-        GlassText.Text = Selector.Glass.ToString();
-        UranText.Text = Selector.Uran.ToString();
-        OilText.Text = Selector.Oil.ToString();
-        BaskitText.Text = Selector.Baskit.ToString();
-        CementText.Text = Selector.Cement.ToString();
-        LimeText.Text = Selector.Lime.ToString();
+        IronText.Text = GameMode.Player.Resources.Iron.ToString();
+        PlasticText.Text = GameMode.Player.Resources.Plastic.ToString();
+        AliminiumText.Text = GameMode.Player.Resources.Alinium.ToString();
+        GlassText.Text = GameMode.Player.Resources.Glass.ToString();
+        UranText.Text = GameMode.Player.Resources.Uran.ToString();
+        OilText.Text = GameMode.Player.Resources.Oil.ToString();
+        BaskitText.Text = GameMode.Player.Resources.Baskit.ToString();
+        CementText.Text = GameMode.Player.Resources.Cement.ToString();
+        LimeText.Text = GameMode.Player.Resources.Lime.ToString();
         RepoAmount.Text = GameMode.Player.Repos.ToString();
     }
     public void ProceedInputData(int X, int Y, float globalX, float globalY)
