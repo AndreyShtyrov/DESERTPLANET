@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://jugyy6wgr5cs"]
+[gd_scene load_steps=119 format=3 uid="uid://jugyy6wgr5cs"]
 
 [ext_resource type="Script" path="res://PlanetScene.cs" id="1_qgbts"]
 [ext_resource type="PackedScene" uid="uid://dkoyjt3n4lmnc" path="res://AbilityButton.tscn" id="2_1487e"]
@@ -72,6 +72,12 @@
 [ext_resource type="Texture2D" uid="uid://7w65trxkwlof" path="res://source/Assets/BuildIcons/FloatingPlatform.png" id="68_gio28"]
 [ext_resource type="PackedScene" uid="uid://buupqhgh7jf6s" path="res://HarvesterUi.tscn" id="69_2lm3s"]
 [ext_resource type="Texture2D" uid="uid://copiklho5o845" path="res://source/Assets/AbilityIcons/Dig.png" id="71_qk070"]
+[ext_resource type="Texture2D" uid="uid://gjl1i2upwgtd" path="res://source/Assets/AbilityIcons/BurnOil.png" id="73_iqa8w"]
+[ext_resource type="Texture2D" uid="uid://c23a0ddq0jevo" path="res://source/Assets/AbilityIcons/ConvertIntoPlastic.png" id="74_ymdi6"]
+[ext_resource type="Texture2D" uid="uid://bssrsvcwn61cw" path="res://source/Assets/AbilityIcons/ConvertIntoCement.png" id="75_o060h"]
+[ext_resource type="Texture2D" uid="uid://eicqrtsb6pq4" path="res://source/Assets/AbilityIcons/ConvertIntoGlass.png" id="76_2mnyy"]
+[ext_resource type="Texture2D" uid="uid://dhhenfd1afv42" path="res://source/Assets/AbilityIcons/ConvertIntoAluminium.png" id="77_220l6"]
+[ext_resource type="Texture2D" uid="uid://d30w4a1axpt42" path="res://source/Assets/AbilityIcons/ConvertIntoCementFromBaskit.png" id="78_sqsy5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3pyf"]
 texture = ExtResource("2_tb7yq")
@@ -2186,26 +2192,50 @@ texture_normal = ExtResource("71_qk070")
 [node name="AbilityButton2" parent="Actions" instance=ExtResource("2_1487e")]
 visible = false
 layout_mode = 2
+ActionId = 32
+
+[node name="Button" parent="Actions/AbilityButton2" index="1"]
+texture_normal = ExtResource("73_iqa8w")
 
 [node name="AbilityButton3" parent="Actions" instance=ExtResource("2_1487e")]
 visible = false
 layout_mode = 2
+ActionId = 33
+
+[node name="Button" parent="Actions/AbilityButton3" index="1"]
+texture_normal = ExtResource("74_ymdi6")
 
 [node name="AbilityButton4" parent="Actions" instance=ExtResource("2_1487e")]
 visible = false
 layout_mode = 2
+ActionId = 34
+
+[node name="Button" parent="Actions/AbilityButton4" index="1"]
+texture_normal = ExtResource("75_o060h")
 
 [node name="AbilityButton5" parent="Actions" instance=ExtResource("2_1487e")]
 visible = false
 layout_mode = 2
+ActionId = 35
+
+[node name="Button" parent="Actions/AbilityButton5" index="1"]
+texture_normal = ExtResource("76_2mnyy")
 
 [node name="AbilityButton6" parent="Actions" instance=ExtResource("2_1487e")]
 visible = false
 layout_mode = 2
+ActionId = 36
+
+[node name="Button" parent="Actions/AbilityButton6" index="1"]
+texture_normal = ExtResource("77_220l6")
 
 [node name="AbilityButton7" parent="Actions" instance=ExtResource("2_1487e")]
 visible = false
 layout_mode = 2
+ActionId = 37
+
+[node name="Button" parent="Actions/AbilityButton7" index="1"]
+texture_normal = ExtResource("78_sqsy5")
 
 [node name="AbilityButton8" parent="Actions" instance=ExtResource("2_1487e")]
 visible = false

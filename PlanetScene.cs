@@ -273,7 +273,8 @@ public partial class PlanetScene : Node2D
         }
         if (Selector.State == SelectorState.SetupRecipt)
         {
-            DecideRecipe(Selector.AbilityId);
+            if (!(SelectRecept2Window.Visible || SelectReceptWindow.Visible))
+                DecideRecipe(Selector.AbilityId);
         }
         if (GameMode.NeedDrawAbilityArea)
         {
@@ -426,9 +427,10 @@ public partial class PlanetScene : Node2D
                     var units = GameMode.GetTokensByPos(X, Y);
                     foreach (var unit in units)
                     {
-                        if (unit is Building && unit is FloatPlatform)
+                        if (unit is Building && !(unit is FloatPlatform))
                         {
                             Selector.UnitId = unit.Id;
+                            Selector.State = SelectorState.SelectAbility;
                             continue;
                         }
                         if (unit is FloatPlatform)
@@ -436,7 +438,7 @@ public partial class PlanetScene : Node2D
                             Path.SetData(unit);
                         }
                     }   
-                    Selector.State = SelectorState.SelectAbility;
+                    
                 }
                 if (Selector.State == SelectorState.SelectTarget)
                 {
@@ -829,8 +831,17 @@ public partial class PlanetScene : Node2D
         var ability = unit.GetAbilityById(id) as ConstructBuilding;
         if (ability == null)
         {
-            Selector.DeselectUnit();
-            return;
+            var ability1 = unit.GetAbilityById(id) as MakeRecipe;
+            if (ability1 == null)
+            {
+                Selector.DeselectUnit();
+                return;
+            }
+            else
+            {
+                SelectRecept2Window.SetData(ability1.Recipe, ability1);
+                return;
+            }
         }
         SelectReceptWindow.SetData(ability.Recipe, ability);
     }
@@ -842,22 +853,6 @@ public partial class PlanetScene : Node2D
             var company = GameMode.GetCompany(GameMode.Player);
             button.AbilityInfo = company.Recepts[button.ActionId].Info;
         }
-    }
-    private void DecideNotInvariantRecipe(int id)
-    {
-        var unit = GameMode.GetObjectById(Selector.UnitId) as IHasAbilities;
-        if (unit == null)
-        {
-            Selector.DeselectUnit();
-            return;
-        }
-        var ability = unit.GetAbilityById(id) as MakeRecipe;
-        if (ability == null)
-        {
-            Selector.DeselectUnit();
-            return;
-        }
-        SelectRecept2Window.SetData(ability.Recipe, ability);
     }
 
     private void ExcludeOccupiedRegionsIds()

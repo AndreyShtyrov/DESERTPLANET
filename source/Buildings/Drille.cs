@@ -12,7 +12,7 @@ namespace DesertPlanet.source.Buildings
     {
         public Drille(int x, int y, int layerId, int id, Player owner ) : base("Drille", x, y, layerId, id, owner)
         {
-            Abilities.Add(new DrillAction(this, 0));
+            Abilities.Add(new DrillAction(this, 31));
         }
 
         public override Vector2I TileShift => new Vector2I(0, 1);

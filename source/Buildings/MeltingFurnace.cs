@@ -14,8 +14,8 @@ namespace DesertPlanet.source.Buildings
             : base("MeltingFurnace", x, y, layerId, id, owner)
         {
             var company = mode.GetCompany(owner.Id);
-            Abilities.Add(new RefineGlass(company.AbilityRecepts["RefineGlass"], this, 0));
-            Abilities.Add(new RefineAliminium(company.AbilityRecepts["RefineAliminium"], this, 1));
+            Abilities.Add(new RefineGlass(company.AbilityRecepts["RefineGlass"], this, 35));
+            Abilities.Add(new RefineAliminium(company.AbilityRecepts["RefineAliminium"], this, 36));
         }
 
         public override Vector2I TileShift => new Vector2I(1, 3);

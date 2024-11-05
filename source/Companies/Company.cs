@@ -77,6 +77,7 @@ namespace DesertPlanet.source.Companies
             StartResources.Add(new PlanetResource(ResourceType.Aliminium, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Uran, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Uran, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Lime, Player.Id));
 
             Projects.Add(new ManipulatorDrill());
         }

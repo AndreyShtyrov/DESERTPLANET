@@ -14,9 +14,9 @@ namespace DesertPlanet.source.Buildings
             : base("ConversionFabric", x, y, layerId, id, owner)
         {
             var company = mode.GetCompany(owner.Id);
-            Abilities.Add(new RefineOil(company.AbilityRecepts["RefineOil"], this, 0));
-            Abilities.Add(new RefineCement(company.AbilityRecepts["RefineCement"], this, 1));
-            Abilities.Add(new RefineCementFromBaskit(company.AbilityRecepts["RefineCementFromBaskit"], this, 2));
+            Abilities.Add(new RefineOil(company.AbilityRecepts["RefineOil"], this, 33));
+            Abilities.Add(new RefineCement(company.AbilityRecepts["RefineCement"], this, 34));
+            Abilities.Add(new RefineCementFromBaskit(company.AbilityRecepts["RefineCementFromBaskit"], this, 37));
         }
 
         public override Vector2I TileShift => new Vector2I(1, 1);
