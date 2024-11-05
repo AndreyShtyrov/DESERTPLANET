@@ -19,7 +19,7 @@ namespace DesertPlanet.source
 
         public Vector2I Position { get {return new Vector2I(X, Y); } }
 
-        public string Name { get; } = "Harvester";
+        public string Name { get; set; } = "Harvester";
 
         public ActionCounter Counter { get; }
 

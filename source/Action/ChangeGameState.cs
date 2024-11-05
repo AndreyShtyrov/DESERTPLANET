@@ -34,7 +34,7 @@ namespace DesertPlanet.source.Action
 
         [JsonConstructor]
         public ChangeGameState() { }
-        public ChangeGameState(int playreId, GameState prevState, GameState nextState):base()
+        public ChangeGameState(int playreId, GameState prevState, GameState nextState): base()
         {
             PlayerId = playreId;
             PrevState = prevState;

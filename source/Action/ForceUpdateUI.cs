@@ -27,7 +27,7 @@ namespace DesertPlanet.source.Action
                 Map.RebuildElectrisity();
         }
 
-        public ForceUpdateUI(bool updateContainers, bool updateElectrisity)
+        public ForceUpdateUI(bool updateContainers, bool updateElectrisity) : base()
         {
             Containers = updateContainers;
             Electrisity = updateElectrisity;

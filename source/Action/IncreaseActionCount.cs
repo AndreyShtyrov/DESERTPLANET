@@ -27,7 +27,7 @@ namespace DesertPlanet.source.Action
         [JsonConstructor]
         public IncreaseActionCount() { }
 
-        public IncreaseActionCount(int unitId, int count)
+        public IncreaseActionCount(int unitId, int count) : base()
         {
             UnitId = unitId;
             Count = count;

@@ -24,7 +24,7 @@ namespace DesertPlanet.source.Action
 
         [JsonConstructor]
         public CloseStartActions() { }
-        public CloseStartActions(Player player)
+        public CloseStartActions(Player player) : base()
         {
             PlayerId = player.Id;
         }

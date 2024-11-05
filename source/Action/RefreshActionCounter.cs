@@ -26,7 +26,7 @@ namespace DesertPlanet.source.Action
 
         [JsonConstructor]
         public RefreshActionCounter() { }
-        public RefreshActionCounter(IOwnedTokenWithAbilites unit)
+        public RefreshActionCounter(IOwnedTokenWithAbilites unit) : base()
         {
             UnitId = unit.Id;
             Count = unit.Counter.Count;

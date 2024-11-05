@@ -61,6 +61,8 @@ namespace DesertPlanet.source.Electosity
 
         public void Rebuild()
         {
+            if (Mode.State == GameState.Deploy)
+                return;
             Lines.Clear();
             List<IOwnedToken> units = Buildings.Values.ToList<IOwnedToken>();
             units.AddRange(Harvesters.Values.ToList());

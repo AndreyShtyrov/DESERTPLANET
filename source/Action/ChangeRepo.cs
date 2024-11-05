@@ -28,7 +28,7 @@ namespace DesertPlanet.source.Action
         [JsonConstructor]
         public ChangeRepo() { }
 
-        public ChangeRepo(int PlayerId, int RepoChange)
+        public ChangeRepo(int PlayerId, int RepoChange) : base()
         {
             Player = PlayerId;
             Repo = RepoChange;

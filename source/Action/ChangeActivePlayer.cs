@@ -31,7 +31,7 @@ namespace DesertPlanet.source.Action
         [JsonConstructor]
         public ChangeActivePlayer() { }
 
-        public ChangeActivePlayer(Player previousPlayer, Player nextPlayer)
+        public ChangeActivePlayer(Player previousPlayer, Player nextPlayer): base()
         {
             PreviousPlayer = previousPlayer.Id;
             NextPlayer = nextPlayer.Id;

@@ -66,7 +66,6 @@ namespace DesertPlanet.source
         public bool NeedApplyTurnStartActions { get; set; } = false;
         public bool NeedUpdatePaths { get; set; } = false;
         public CubeHexalTools HexalTools { get; set; }
-        public List<int> UpdateAbilitiesGuiTargets { get; }
         public GameMode(List<Player> players, Dictionary<int, string> companies, Player currentPlayer, string path) {
             Player = currentPlayer;
             State = GameState.AwaitSytem;
@@ -78,7 +77,6 @@ namespace DesertPlanet.source
             UnitId = 0;
             NeedRedraw = false;
             Electrosity = new ElectrosityGraph(this);
-            UpdateAbilitiesGuiTargets = new List<int>();
             Resources = new ResourceContainer[Map.Horizontal, Map.Vertical];
             for (int i = 0; i < Map.Horizontal; i++)
                 for (int j = 0; j < Map.Vertical; j++)
@@ -105,7 +103,6 @@ namespace DesertPlanet.source
             UnitId = 0;
             NeedRedraw = false;
             Electrosity = new ElectrosityGraph(this);
-            UpdateAbilitiesGuiTargets = new List<int>();
             Resources = new ResourceContainer[Map.Horizontal, Map.Vertical];
             for (int i = 0; i < Map.Horizontal; i++)
                 for (int j = 0; j < Map.Vertical; j++)
@@ -136,6 +133,8 @@ namespace DesertPlanet.source
         }
         private void UpdateContainers()
         {
+            if (State == GameState.Deploy)
+                return;
             if (RebuildElectrisityTask == null)
                 RebuildElectrisity();
             RebuildElectrisityTask.Wait();

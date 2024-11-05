@@ -29,7 +29,7 @@ namespace DesertPlanet.source.Action
         [JsonConstructor]
         public BuyProject() { }
 
-        public BuyProject(int PlayerId, int ProjectId)
+        public BuyProject(int PlayerId, int ProjectId): base()
         {
             Player = PlayerId; Project = ProjectId;
         }

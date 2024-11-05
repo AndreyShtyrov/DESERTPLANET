@@ -31,7 +31,6 @@ namespace DesertPlanet.source.Action
             Map.Buildings.Add(building.Id, building);
             Map.NeedRedraw = true;
             Map.NeedLoadAbilityGUI = true;
-            Map.UpdateAbilitiesGuiTargets.Add(building.Id);
         }
 
         [JsonConstructor]

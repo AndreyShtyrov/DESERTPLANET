@@ -39,7 +39,7 @@ namespace DesertPlanet.source.Action
         }
         [JsonConstructor]
         public ApplySpecificProjectSettings() { }
-        public ApplySpecificProjectSettings(Player player, CompanyProject project)
+        public ApplySpecificProjectSettings(Player player, CompanyProject project) : base()
         {
             PlayerId = player.Id;
             ProjectId = project.Id;

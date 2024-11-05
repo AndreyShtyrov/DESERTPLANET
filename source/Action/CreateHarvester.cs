@@ -21,11 +21,36 @@ namespace DesertPlanet.source.Action
         public override void Forward()
         {
             var player = Map.GetPlayer(PlayerId);
-            Map.Harvesters.Add(HarvesterId, new Harvester(HarvesterId, X, Y, player, Map));
+            int count = 0;
+            foreach (var harvester in Map.Harvesters.Values)
+                if (harvester.Owner == player)
+                    count++;
+            var harvester1 = new Harvester(HarvesterId, X, Y, player, Map);
+            Map.Harvesters.Add(HarvesterId, harvester1);
+            switch (count)
+            {
+                case 0:
+                    {
+                        harvester1.Name = harvester1.Name + " A";
+                        break;
+                    }
+                case 1:
+                    {
+                        harvester1.Name = harvester1.Name + " B";
+                        break;
+                    }
+                case 3:
+                    {
+                        harvester1.Name = harvester1.Name + " C";
+                        break;
+                    }
+                case 4:
+                    {
+                        harvester1.Name = harvester1.Name + " D";
+                        break;
+                    }
+            }
             Map.NeedRedraw = true;
-            Map.NeedLoadAbilityGUI = true;
-            Map.NeedLoadAbilityGUI = true;
-            Map.UpdateAbilitiesGuiTargets.Add(HarvesterId);
             Map.UnitId = HarvesterId + 1;
         }
 

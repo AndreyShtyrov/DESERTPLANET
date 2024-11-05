@@ -85,6 +85,10 @@ public partial class PlanetScene : Node2D
         UpdateHarvestersUI += GetNode<HarvesterUI>("GridContainer/HarvesterUI2").UpdateResourceContainers;
         UpdateHarvestersUI += GetNode<HarvesterUI>("GridContainer/HarvesterUI3").UpdateResourceContainers;
         UpdateHarvestersUI += GetNode<HarvesterUI>("GridContainer/HarvesterUI4").UpdateResourceContainers;
+        GetNode<HarvesterUI>("GridContainer/HarvesterUI").HarvestorClicked += SelectHarvestor;
+        GetNode<HarvesterUI>("GridContainer/HarvesterUI2").HarvestorClicked += SelectHarvestor;
+        GetNode<HarvesterUI>("GridContainer/HarvesterUI3").HarvestorClicked += SelectHarvestor;
+        GetNode<HarvesterUI>("GridContainer/HarvesterUI4").HarvestorClicked += SelectHarvestor;
         SetResBarOut();
         IsInit = true;
         IsReady = true;
@@ -403,7 +407,16 @@ public partial class PlanetScene : Node2D
                     var unit = GameMode.GetObjectById(Selector.UnitId);
                     if (unit is IHasAbilities hasAbilities)
                     {
-                        if (!hasAbilities.CanMoving)
+                        bool canMove = false;
+                        if (unit is Harvester)
+                            canMove = true;
+                        foreach (var _unit in GameMode.GetTokensByPos(unit.X, unit.Y))
+                            if (_unit.CanMoving)
+                            {
+                                canMove = true;
+                                break;
+                            }
+                        if (!canMove)
                             return;
                         GameMode.Logic.UseAbility(hasAbilities.Abilities[0], new Vector2I(X, Y));
                     }
@@ -411,9 +424,18 @@ public partial class PlanetScene : Node2D
                 if (Selector.State == SelectorState.SelectUnit)
                 {
                     var units = GameMode.GetTokensByPos(X, Y);
-                    Selector.UnitId = units[0].Id;
-                    if (units[0].CanMoving)
-                        Path.SetData(GameMode.GetObjectById(Selector.UnitId));
+                    foreach (var unit in units)
+                    {
+                        if (unit is Building && unit is FloatPlatform)
+                        {
+                            Selector.UnitId = unit.Id;
+                            continue;
+                        }
+                        if (unit is FloatPlatform)
+                        {
+                            Path.SetData(unit);
+                        }
+                    }   
                     Selector.State = SelectorState.SelectAbility;
                 }
                 if (Selector.State == SelectorState.SelectTarget)
@@ -476,6 +498,12 @@ public partial class PlanetScene : Node2D
         }
     }
 
+    public void SelectHarvestor(int id)
+    {
+        Selector.UnitId = id;
+        Path.SetData(GameMode.GetObjectById(id));
+        Selector.State = SelectorState.SelectAbility;
+    }
     public void UpdateAvaliableActions()
     {
         if (Selector.UnitId < 0)

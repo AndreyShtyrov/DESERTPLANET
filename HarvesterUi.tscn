@@ -87,19 +87,18 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MainGrid"]
 layout_mode = 2
 
-[node name="HarvesterName" type="TextEdit" parent="MainGrid/VBoxContainer"]
+[node name="HarvesterName" type="LineEdit" parent="MainGrid/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 mouse_filter = 1
 editable = false
 context_menu_enabled = false
+virtual_keyboard_enabled = false
 shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
 selecting_enabled = false
 deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-virtual_keyboard_enabled = false
-middle_mouse_paste_enabled = false
 
 [node name="RBar" type="GridContainer" parent="MainGrid/VBoxContainer"]
 layout_mode = 2

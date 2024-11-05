@@ -36,7 +36,7 @@ namespace DesertPlanet.source.Action
             PlayerId = Map.GetObjectById(UnitId).Owner.Id;
         }
 
-        public IncomeResource(object unit, ResourceType type1, ResourceType type2, Player player)
+        public IncomeResource(object unit, ResourceType type1, ResourceType type2, Player player) : base()
         {
             if (unit is Harvester token)
             {

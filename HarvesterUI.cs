@@ -45,6 +45,7 @@ public partial class HarvesterUI : PanelContainer
         LimeText = GetNode<TextEdit>("MainGrid/VBoxContainer/RBar/I10/TextEdit");
     }
 
+    public event ActionOnId HarvestorClicked;
     public void UpdateResourceContainers()
     {
         if (Harvester == null)
@@ -73,6 +74,25 @@ public partial class HarvesterUI : PanelContainer
         //        { Texture = ImageTexture.CreateFromImage(Image.LoadFromFile("uid://dmr7tdysvnclf")) });
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+        if (Harvester == null)
+            return;
+        if (@event is InputEventMouseButton mouseEvent)
+        {
+            if (mouseEvent.IsActionReleased("mb_left"))
+            {
+                var pos = GetLocalMousePosition();
+                GD.Print(Harvester.Name + " pos: " + pos.X + ", " + pos.Y);
+                var rect = new Rect2(Vector2.Zero, Size);
+                if (rect.HasPoint(pos))
+                {
+                      HarvestorClicked?.Invoke(Harvester.Id);
+                }
+            }
+        }
+    }
     public void SetData(Harvester harvester, GameMode gameMode)
     {
         if (harvester == null)
@@ -82,7 +102,7 @@ public partial class HarvesterUI : PanelContainer
         Visible = true;
         GameMode = gameMode;
         Harvester = harvester;
-        GetNode<TextEdit>("MainGrid/VBoxContainer/HarvesterName").Text = harvester.Name;
+        GetNode<LineEdit>("MainGrid/VBoxContainer/HarvesterName").Text = harvester.Name;
         UpdateResourceContainers();
     }
 }
