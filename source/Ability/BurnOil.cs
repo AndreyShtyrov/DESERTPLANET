@@ -22,15 +22,30 @@ namespace DesertPlanet.source.Ability
             var company = mode.GetCompany(Unit.Owner.Id);
             var result = new List<IAction>();
             var res = company.GetAlignResource(ResourceType.Oil);
-            result.Add(new SpendResource(Unit, res.Type, res.Alternative, Unit.Owner));
+            var field = mode.Map[Unit.X, Unit.Y];
+            bool isSpendResource = false;
+            if (field.Resources.Contains(res))
+            {
+                isSpendResource = true;
+                result.Add(new SpendResource(field, res.Type, res.Alternative, Unit.Owner));
+            }
+
             IOwnedToken token = Unit;
             foreach (var unit in mode.GetTokensByPos(Unit.X, Unit.Y))
             {
                 if (unit is Harvester harvester)
                 {
                     token = harvester;
-                    break;
+                    if (harvester.Resources.ContainsCheckPlayer(res))
+                        break;
                 }
+            }
+            if (!isSpendResource)
+            {
+                if ((token as Harvester).Resources.ContainsCheckPlayer(res))
+                    result.Add(new SpendResource(token, res.Type, res.Alternative, Unit.Owner));
+                else
+                    return new List<IAction>();
             }
             result.Add(new IncreaseEnergy(Unit.Id, 6));
             result.Add(new ForceUpdateUI(true, false));

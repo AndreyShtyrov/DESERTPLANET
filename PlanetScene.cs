@@ -245,7 +245,11 @@ public partial class PlanetScene : Node2D
             GameMode.ActionManager.ApplyActions(GameMode.GetStartTurnActionForPlayer(GameMode.Player));
         }
         if (GameMode.NeedUpdatePaths)
+        {
             GameMode.UpdatePath();
+            Path.SetData(GameMode.GetObjectById(Selector.UnitId));
+        }
+            
         if (GameMode.Map.InBound(tilePos))
         {
             if (Selector.UnitId == -1)
@@ -288,6 +292,11 @@ public partial class PlanetScene : Node2D
             DrawArea(ability.Area(GameMode));
             GameMode.NeedDrawAbilityArea = false;
             return;
+        }
+        if (GameMode.NeedUpdateHarvetersList)
+        {
+            UpdateHarvesterBinding();
+            GameMode.NeedUpdateHarvetersList = false;
         }
         
         if (GameMode.NeedRedraw)
@@ -421,14 +430,14 @@ public partial class PlanetScene : Node2D
                         if (unit is Harvester)
                             canMove = true;
                         foreach (var _unit in GameMode.GetTokensByPos(unit.X, unit.Y))
-                            if (_unit.CanMoving)
+                            if (_unit.CanMoving && !(_unit is Harvester))
                             {
                                 canMove = true;
                                 break;
                             }
                         if (!canMove)
                             return;
-                        GameMode.Logic.UseAbility(hasAbilities.Abilities[0], new Vector2I(X, Y));
+                        GameMode.Logic.UseAbility(hasAbilities.GetAbilityById(0), new Vector2I(X, Y));
                     }
                 }
                 if (Selector.State == SelectorState.SelectUnit)

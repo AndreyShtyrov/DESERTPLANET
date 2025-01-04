@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using DesertPlanet.source.Ability;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace DesertPlanet.source.Buildings
         public FloatPlatform(int x, int y, int layerId, int id, Player owner) 
             : base("FloatPlatform", x, y, layerId, id, owner)
         {
-
+            Abilities.Add(new MoveFloatingPlatform(this, 0));
         }
         public override bool CanMoving => true;
         public override Vector2I TileShift => new Vector2I(0, 2);

@@ -63,6 +63,8 @@ namespace DesertPlanet.source
         public bool NeedRebuildElectrisity { get; set; } = false;
         public bool NeedDrawAbilityArea { get; set; } = false;
 
+        public bool NeedUpdateHarvetersList { get; set; } = false;
+
         public bool CleanArea { get; set; } = false;
         public bool NeedLoadAbilityGUI { get; set; } = false;
         public bool NeedApplyTurnStartActions { get; set; } = false;

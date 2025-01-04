@@ -39,12 +39,12 @@ namespace DesertPlanet.source.Action
                         harvester1.Name = harvester1.Name + " B";
                         break;
                     }
-                case 3:
+                case 2:
                     {
                         harvester1.Name = harvester1.Name + " C";
                         break;
                     }
-                case 4:
+                case 3:
                     {
                         harvester1.Name = harvester1.Name + " D";
                         break;
@@ -52,6 +52,7 @@ namespace DesertPlanet.source.Action
             }
             Map.NeedRedraw = true;
             Map.UnitId = HarvesterId + 1;
+            Map.NeedUpdateHarvetersList = true;
         }
 
         [JsonConstructor]

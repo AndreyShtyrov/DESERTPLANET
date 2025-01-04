@@ -150,6 +150,16 @@ namespace DesertPlanet.source
             SetResource();
         }
 
+        public PlanetResource Popup(PlanetResource resource)
+        {
+            if (!resources.Contains(resource))
+                throw new KeyNotFoundException("Cannot find resource " + resource.Type);
+            var res = resources[resources.IndexOf(resource)];
+            resources.Remove(resource);
+            SetResource();
+            return res;
+        }
+
         public void Clean()
         {
             resources.Clear();
@@ -285,6 +295,13 @@ namespace DesertPlanet.source
            foreach( var value in resources )
                 if (value == resource) return true;
            return false;
+        }
+
+        public bool ContainsCheckPlayer(PlanetResource resource)
+        {
+            foreach (var value in resources)
+                if (value == resource && value.OwnerId == resource.OwnerId) return true;
+            return false;
         }
 
         [JsonIgnore]

@@ -22,22 +22,38 @@ namespace DesertPlanet.source.Ability
             var company = mode.GetCompany(Unit.Owner.Id);
             var result = new List<IAction>();
             var res = company.GetAlignResource(ResourceType.Baksits);
-            result.Add(new SpendResource(Unit, res.Type, res.Alternative, Unit.Owner));
+            var field = mode.Map[Unit.X, Unit.Y];
+            bool isSpendResource = false;
+            if (field.Resources.ContainsCheckPlayer(res))
+            {
+                isSpendResource = true;
+                result.Add(new SpendResource(field, res.Type, res.Alternative, Unit.Owner));
+            }
+
             IOwnedToken token = Unit;
             foreach (var unit in mode.GetTokensByPos(Unit.X, Unit.Y))
             {
                 if (unit is Harvester harvester)
                 {
                     token = harvester;
+                    if (harvester.Resources.ContainsCheckPlayer(res))
+                        break;
                 }
+            }
+            if (!isSpendResource)
+            {
+                if ((token as Harvester).Resources.Contains(res))
+                    result.Add(new SpendResource(token, res.Type, res.Alternative, Unit.Owner));
+                else
+                    return new List<IAction>();
             }
             res = company.GetAlignResource(ResourceType.Cement);
             result.Add(new IncomeResource(token, res.Type, res.Alternative, Unit.Owner));
             var area = mode.Area(Unit.X, Unit.Y, 1, false);
             bool isNearFactory = false;
             int ConversionFabric = 0;
-            foreach (var field in area)
-                foreach (var building in mode.GetTokensByPos(field.X, field.Y))
+            foreach (var tile in area)
+                foreach (var building in mode.GetTokensByPos(tile.X, tile.Y))
                 {
                     if (building is Fabric)
                         isNearFactory = true;

@@ -127,13 +127,40 @@ namespace DesertPlanet.source.Ability
         public List<IAction> Use(GameMode mode, List<PlanetResource> resources)
         {
             var result = new List<IAction>();
-            if (!Recipe.Resources.HasSubSeqByTypes(resources))
-                return new List<IAction>();
             result.AddRange(base.Use(mode, new Vector2I(Unit.X, Unit.Y)));
+            var units = new List<IHasResource>() { mode.Map[Unit.X, Unit.Y] };
+            foreach (var unit in mode.GetTokensByPos(Unit.X, Unit.Y))
+            {
+                if (unit is IHasResource hasResource)
+                    units.Add(hasResource);
+            }
             foreach (var res in resources)
             {
                 var rs = mode.GetCompany(Unit.Owner.Id).GetAlignResource(res.Type);
-                result.Add(new SpendResource(Unit.Id, Unit.X, Unit.Y, rs.Type, rs.Alternative));
+                bool dontFoundRes = true;
+                foreach (var unit in units)
+                {
+                    if (unit.Resources.ContainsCheckPlayer(res))
+                    {
+                        dontFoundRes = false;
+                        break;
+                    }
+                }
+                if (dontFoundRes)
+                    return result;
+            }
+            foreach (var res in resources)
+            {
+                var rs = mode.GetCompany(Unit.Owner.Id).GetAlignResource(res.Type);
+                foreach (var unit in units)
+                {
+                    if (unit.Resources.ContainsCheckPlayer(res))
+                    {
+                        result.Add(new SpendResource(unit, rs.Type, rs.Alternative, Unit.Owner));
+                        break;
+                    } 
+                }
+                
             }
             result.AddRange(Use(mode, new Vector2I(Unit.X, Unit.Y)));
             
@@ -145,13 +172,41 @@ namespace DesertPlanet.source.Ability
             var result = new List<IAction>();
             if (!Area(mode).Contains(target))
                 return new List<IAction>();
-            if (!Recipe.Resources.HasSubSeqByTypes(resources))
-                return new List<IAction>();
+            var units = new List<IHasResource>() { mode.Map[Unit.X, Unit.Y] };
+            foreach (var unit in mode.GetTokensByPos(Unit.X, Unit.Y))
+            {
+                if (unit is IHasResource hasResource)
+                    units.Add(hasResource);
+            }
             foreach (var res in resources)
             {
                 var rs = mode.GetCompany(Unit.Owner.Id).GetAlignResource(res.Type);
-                result.Add(new SpendResource(Unit.Id, Unit.X, Unit.Y, rs.Type, rs.Alternative));
+                bool dontFoundRes = true;
+                foreach (var unit in units)
+                {
+                    if (unit.Resources.ContainsCheckPlayer(res))
+                    {
+                        dontFoundRes = false;
+                        break;
+                    }
+                }
+                if (dontFoundRes)
+                    return result;
             }
+            foreach (var res in resources)
+            {
+                var rs = mode.GetCompany(Unit.Owner.Id).GetAlignResource(res.Type);
+                foreach (var unit in units)
+                {
+                    if (unit.Resources.ContainsCheckPlayer(res))
+                    {
+                        result.Add(new SpendResource(unit, rs.Type, rs.Alternative, Unit.Owner));
+                        break;
+                    }
+                }
+
+            }
+            result.AddRange(Use(mode, new Vector2I(target.X, target.Y)));
             return result;
         }
     }

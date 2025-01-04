@@ -13,7 +13,7 @@ namespace DesertPlanet.source.Buildings
         {
         }
 
-        public override Vector2I TileShift => new Vector2I(1, 0);
+        public override Vector2I TileShift => new Vector2I(2, 3);
     }
 
     public class RadarBuildingRecipe : BuildingRecipe

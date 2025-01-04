@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://jugyy6wgr5cs"]
+[gd_scene load_steps=123 format=3 uid="uid://jugyy6wgr5cs"]
 
 [ext_resource type="Script" path="res://PlanetScene.cs" id="1_qgbts"]
 [ext_resource type="PackedScene" uid="uid://dkoyjt3n4lmnc" path="res://AbilityButton.tscn" id="2_1487e"]
@@ -81,6 +81,7 @@
 [ext_resource type="Texture2D" uid="uid://dmemteufiee2r" path="res://source/Assets/AbilityIcons/FloatingPlatform.png" id="79_x6jg4"]
 [ext_resource type="Texture2D" uid="uid://828rn2gxg5ip" path="res://source/Assets/AbilityIcons/BuildHarvestor.png" id="80_iprbs"]
 [ext_resource type="Texture2D" uid="uid://51n41aw0y77y" path="res://source/Assets/AbilityIcons/Hellicopter.png" id="81_splwp"]
+[ext_resource type="Texture2D" uid="uid://c3dsvu2kwyvbg" path="res://source/Assets/AbilityIcons/DrillM.png" id="82_783xx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3pyf"]
 texture = ExtResource("2_tb7yq")
@@ -2267,6 +2268,18 @@ texture_normal = ExtResource("81_splwp")
 [node name="AbilityButton11" parent="Actions" instance=ExtResource("2_1487e")]
 visible = false
 layout_mode = 2
+ActionId = 41
+
+[node name="Button" parent="Actions/AbilityButton11" index="1"]
+texture_normal = ExtResource("82_783xx")
+
+[node name="AbilityButton12" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
+layout_mode = 2
+ActionId = 42
+
+[node name="Button" parent="Actions/AbilityButton12" index="1"]
+texture_normal = ExtResource("82_783xx")
 
 [connection signal="pressed" from="Button" to="." method="OnEndTurn"]
 [connection signal="pressed" from="MoveResource/Button4" to="MoveResource" method="OnCancel"]
@@ -2317,3 +2330,5 @@ layout_mode = 2
 [editable path="Actions/AbilityButton8"]
 [editable path="Actions/AbilityButton9"]
 [editable path="Actions/AbilityButton10"]
+[editable path="Actions/AbilityButton11"]
+[editable path="Actions/AbilityButton12"]

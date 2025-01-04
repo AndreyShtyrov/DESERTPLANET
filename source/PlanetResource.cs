@@ -52,7 +52,7 @@ namespace DesertPlanet.source
 
         public static bool operator ==(PlanetResource left, PlanetResource right)
         {
-            if (left.Type == right.Type || left.Alternative == right.Type || left.Type == right.Alternative || left.Alternative == right.Alternative)
+            if (left.Type == right.Type || left.Alternative == right.Type || left.Type == right.Alternative || (left.Alternative == right.Alternative && left.Alternative != ResourceType.None))
                 if (left.OwnerId == right.OwnerId)
                     return true;
             return false;

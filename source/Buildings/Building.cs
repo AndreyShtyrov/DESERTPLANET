@@ -33,6 +33,7 @@ namespace DesertPlanet.source.Buildings
         {
             Owner = owner;
             CanBuild = false;
+            
             Name = name;
             Abilities = new List<AbilityPresset>();
             Counter = new ActionCounter(1, 1, owner, false);

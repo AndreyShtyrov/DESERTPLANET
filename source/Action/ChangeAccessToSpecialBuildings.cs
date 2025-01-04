@@ -38,6 +38,7 @@ namespace DesertPlanet.source.Action
             PrevIsOffice = player.IsOffice;
             IsHydroponic = isHydroponic;
             IsOffice = isOffice;
+            PlayerId = player.Id;
         }
 
         [JsonConstructor]

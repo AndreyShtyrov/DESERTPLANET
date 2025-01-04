@@ -2,6 +2,7 @@
 using DesertPlanet.source.Buildings;
 using DesertPlanet.source.Field;
 using DesertPlanet.source.Interfaces;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,10 @@ namespace DesertPlanet.source.Action
                 if (unit is IHasResource harvester)
                 {
                     harvester.Resources.Remove(new PlanetResource(Type1, Type2, PlayerId));
+                }
+                else
+                {
+                    GD.Print(" Cannot spend resource from " + unit.Id);
                 }
             }
             else

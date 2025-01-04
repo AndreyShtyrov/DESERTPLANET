@@ -27,8 +27,6 @@ namespace DesertPlanet.source.Field
         {
             get
             {
-                if (neighbors != null)
-                    return neighbors;
                 var result = new List<Vector2I>();
                 if (X % 2 == 0)
                 {

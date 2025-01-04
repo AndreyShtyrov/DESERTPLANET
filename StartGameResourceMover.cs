@@ -67,7 +67,7 @@ public partial class StartGameResourceMover : Window
 		{
 			if (!hasResourceTypes.Contains(resource.Type))
 				hasResourceTypes.Add(resource.Type);
-			Stack.Add(resource);
+            Stack.Add(resource);
 		}
 		int source = 0;
 		source = 0;
@@ -105,7 +105,16 @@ public partial class StartGameResourceMover : Window
             visual.TextValue.Text = "0";
 			SecondVisual[resource] = visual;
         }
-		if (harvesters.Count != 3)
+        foreach (var resource in Stack)
+        {
+            FirstHarvester.Add(resource);
+        }
+        foreach (var resource in FirstHarvester)
+        {
+            Stack.PopupByType(resource.Type);
+        }
+		UpdateVisual();
+        if (harvesters.Count != 3)
 			return;
         foreach (var resource in hasResourceTypes)
         {

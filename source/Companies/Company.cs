@@ -69,15 +69,30 @@ namespace DesertPlanet.source.Companies
             StartResources.Add(new PlanetResource(ResourceType.Iron, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Iron, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Iron, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Iron, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Iron, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Plastic, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Plastic, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Plastic, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Plastic, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Cement, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Glass, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Glass, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Glass, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Glass, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Glass, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Glass, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Aliminium, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Aliminium, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Aliminium, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Uran, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Uran, Player.Id));
             StartResources.Add(new PlanetResource(ResourceType.Lime, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Lime, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Baksits, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Baksits, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Oil, Player.Id));
+            StartResources.Add(new PlanetResource(ResourceType.Oil, Player.Id));
 
             Projects.Add(new ManipulatorDrill());
         }
