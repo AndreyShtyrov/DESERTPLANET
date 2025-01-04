@@ -36,6 +36,7 @@ namespace DesertPlanet.source.Ability.Constructs
             if (!(mode.Map[target.X, target.Y] is Water || mode.Map[target.X, target.Y] is WaterOil))
                 return new List<IAction>();
             var result = base.Use(mode, resources);
+
             result.AddRange(mode.Logic.CreateBuilding(Recipe.Code + 1, target.X, target.Y, Unit.Owner));
             return result; 
         }

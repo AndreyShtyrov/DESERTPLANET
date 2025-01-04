@@ -14,28 +14,48 @@ namespace DesertPlanet.source.Ability.Constructs
 {
     public class ConstructHydroponicFerm : ConstructBuilding
     {
-        public override List<Vector2I> Area(GameMode mode)
+
+        private bool CheckTileReadyToBuild(Vector2I pos, GameMode mode)
         {
-            var areas = new List<Vector2I>();
-            bool canBuild = false;
             foreach (var unit in mode.GetTokensByPos(Unit.X, Unit.Y))
                 if (!(unit is FloatPlatform || unit is SolidPlatform || unit is Harvester))
-                    return new List<Vector2I>();
-            foreach (var unit in mode.GetTokensByPos(Unit.X, Unit.Y))
-                if (unit is FloatPlatform || unit is SolidPlatform)
-                    canBuild = true;
-            if (mode.Map[Unit.X, Unit.Y] is Stone)
-                canBuild = true;
-            if (!canBuild)
-                return new List<Vector2I>();
-            foreach (var area in mode.Area(Unit.X, Unit.Y, 1, false))
-                if (mode.Map[area.X, area.Y] is Stone)
-                    areas.Add(area);
-            foreach (var area in mode.Area(Unit.X, Unit.Y, 1, false))
-                foreach (var unit in mode.GetTokensByPos(area.X, area.Y))
-                    if (unit is FloatPlatform && unit is SolidPlatform)
-                        areas.Add(area);
-            return areas;
+                    return false;
+            if (mode.Map[pos.X, pos.Y] is Stone)
+                return true;
+            if (mode.Map[pos.X, pos.Y] is Water)
+            {
+                bool canBuild = false;
+                foreach (var unit in mode.GetTokensByPos(Unit.X, Unit.Y))
+                    if (unit is FloatPlatform)
+                        canBuild = true;
+                if (canBuild)
+                    return true;
+                else
+                    return false;
+            }
+            if (mode.Map[pos.X, pos.Y] is Sand)
+            {
+                bool canBuild = false;
+                foreach (var unit in mode.GetTokensByPos(Unit.X, Unit.Y))
+                    if (unit is SolidPlatform)
+                        canBuild = true;
+                if (canBuild)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        }
+        public override List<Vector2I> Area(GameMode mode)
+        {
+            var result = new List<Vector2I>();
+            if (!(CheckTileReadyToBuild(Unit.Position, mode)))
+                return result;
+            var area = mode.Map[Unit.X, Unit.Y].Neighbors;
+            foreach (var field in area)
+                if (CheckTileReadyToBuild(field, mode))
+                    result.Add(field);
+            return result;
         }
         public ConstructHydroponicFerm(BuildingRecipe recept, IOwnedTokenWithAbilites token, int id) : base(recept, token, id, true)
         {

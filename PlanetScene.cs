@@ -62,6 +62,8 @@ public partial class PlanetScene : Node2D
     private StartGameResourceMover StartGameResourceMoverWindow { get; set; }
     private TransportResource TransportResourceWindow { get; set; }
 
+    public int countSteps = 0;
+
     private ProjectMarket ProjectMarketWindow { get; set; }
     public override void _Ready()
 	{
@@ -191,6 +193,7 @@ public partial class PlanetScene : Node2D
 
     public override void _Process(double delta)
 	{
+
         if (!IsReady)
             return;
         if (Map == null)
@@ -200,7 +203,7 @@ public partial class PlanetScene : Node2D
             IsInit = false;
             return;
         }
-            
+        ProceedMoving();
         var pos = tileMap.GetLocalMousePosition();
         var tilePos = tileMap.LocalToMap(pos);
         
@@ -306,6 +309,26 @@ public partial class PlanetScene : Node2D
         ProceedInputData(tilePos.X, tilePos.Y, pos.X, pos.Y);
     }
 
+
+    public void ProceedMoving()
+    {
+        if (Input.IsActionPressed("w_b"))
+        {
+            tileMap.Position = tileMap.Position + new Vector2(0, 1f);
+        }
+        if (Input.IsActionPressed("d_b"))
+        {
+            tileMap.Position = tileMap.Position + new Vector2(1f, 0);
+        }
+        if (Input.IsActionPressed("a_b"))
+        {
+            tileMap.Position = tileMap.Position + new Vector2(-1f, 0);
+        }
+        if (Input.IsActionPressed("s_b"))
+        {
+            tileMap.Position = tileMap.Position + new Vector2(0, -1f);
+        }
+    }
     private void BindButton(VBoxContainer vbox)
     {
         for (int i = 0; i < vbox.GetChildCount(); i++)
