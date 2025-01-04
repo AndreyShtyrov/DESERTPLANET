@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://jugyy6wgr5cs"]
+[gd_scene load_steps=122 format=3 uid="uid://jugyy6wgr5cs"]
 
 [ext_resource type="Script" path="res://PlanetScene.cs" id="1_qgbts"]
 [ext_resource type="PackedScene" uid="uid://dkoyjt3n4lmnc" path="res://AbilityButton.tscn" id="2_1487e"]
@@ -78,6 +78,9 @@
 [ext_resource type="Texture2D" uid="uid://eicqrtsb6pq4" path="res://source/Assets/AbilityIcons/ConvertIntoGlass.png" id="76_2mnyy"]
 [ext_resource type="Texture2D" uid="uid://dhhenfd1afv42" path="res://source/Assets/AbilityIcons/ConvertIntoAluminium.png" id="77_220l6"]
 [ext_resource type="Texture2D" uid="uid://d30w4a1axpt42" path="res://source/Assets/AbilityIcons/ConvertIntoCementFromBaskit.png" id="78_sqsy5"]
+[ext_resource type="Texture2D" uid="uid://dmemteufiee2r" path="res://source/Assets/AbilityIcons/FloatingPlatform.png" id="79_x6jg4"]
+[ext_resource type="Texture2D" uid="uid://828rn2gxg5ip" path="res://source/Assets/AbilityIcons/BuildHarvestor.png" id="80_iprbs"]
+[ext_resource type="Texture2D" uid="uid://51n41aw0y77y" path="res://source/Assets/AbilityIcons/Hellicopter.png" id="81_splwp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3pyf"]
 texture = ExtResource("2_tb7yq")
@@ -1997,7 +2000,7 @@ texture_normal = ExtResource("47_ped6y")
 [node name="AbilityButton2" parent="SocialBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
 size_flags_horizontal = 4
-ActionId = 17
+ActionId = 22
 
 [node name="Reciept" parent="SocialBPanel/AbilityButton2" index="0"]
 texture = ExtResource("48_vcdwa")
@@ -2096,7 +2099,7 @@ offset_bottom = 687.0
 
 [node name="AbilityButton" parent="TransferBPanel" instance=ExtResource("2_1487e")]
 layout_mode = 2
-ActionId = 14
+ActionId = 21
 
 [node name="Reciept" parent="TransferBPanel/AbilityButton" index="0"]
 texture = ExtResource("59_8gwjt")
@@ -2240,12 +2243,28 @@ texture_normal = ExtResource("78_sqsy5")
 [node name="AbilityButton8" parent="Actions" instance=ExtResource("2_1487e")]
 visible = false
 layout_mode = 2
+ActionId = 38
+
+[node name="Button" parent="Actions/AbilityButton8" index="1"]
+texture_normal = ExtResource("79_x6jg4")
 
 [node name="AbilityButton9" parent="Actions" instance=ExtResource("2_1487e")]
 visible = false
 layout_mode = 2
+ActionId = 39
+
+[node name="Button" parent="Actions/AbilityButton9" index="1"]
+texture_normal = ExtResource("80_iprbs")
 
 [node name="AbilityButton10" parent="Actions" instance=ExtResource("2_1487e")]
+visible = false
+layout_mode = 2
+ActionId = 40
+
+[node name="Button" parent="Actions/AbilityButton10" index="1"]
+texture_normal = ExtResource("81_splwp")
+
+[node name="AbilityButton11" parent="Actions" instance=ExtResource("2_1487e")]
 visible = false
 layout_mode = 2
 

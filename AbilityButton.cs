@@ -63,9 +63,4 @@ public partial class AbilityButton : HBoxContainer
 		AbilityNameText.Visible = true;
 	}
 
-	public void OnPressButton()
-	{
-		if (ActionId == -1)
-			return;
-	}
 }

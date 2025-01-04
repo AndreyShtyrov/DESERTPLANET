@@ -15,8 +15,8 @@ namespace DesertPlanet.source.Buildings
             : base("Fabric", x, y, layerId, id, owner)
         {
             var company = mode.GetCompany(owner.Id);
-            Abilities.Add(new ConstructFloatingPlatfrom(company.Recepts[5], this, 0));
-            Abilities.Add(new ConstructHarvester(company.Recepts[10], this, 1));
+            Abilities.Add(new ConstructFloatingPlatfrom(company.Recepts[5], this, 38));
+            Abilities.Add(new ConstructHarvester(company.Recepts[10], this, 39));
             CanBuild = true;
         }
 

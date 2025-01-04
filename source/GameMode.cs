@@ -62,6 +62,8 @@ namespace DesertPlanet.source
         public bool NeedRebuildContainers { get; set; } = false;
         public bool NeedRebuildElectrisity { get; set; } = false;
         public bool NeedDrawAbilityArea { get; set; } = false;
+
+        public bool CleanArea { get; set; } = false;
         public bool NeedLoadAbilityGUI { get; set; } = false;
         public bool NeedApplyTurnStartActions { get; set; } = false;
         public bool NeedUpdatePaths { get; set; } = false;

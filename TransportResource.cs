@@ -216,10 +216,10 @@ public partial class TransportResource : Window
     {
         var actions = GameMode.Logic.MoveResource(First, Last, firstTemporaryContainer);
         var n = 0;
-        foreach (var item in ResourceCount.Values)
-            n += Math.Abs(item);
-        for (int i = 0; i < n; i++)
-            GameMode.Logic.UseAbility(Ability);
+        //foreach (var item in ResourceCount.Values)
+        //    n += Math.Abs(item);
+        //for (int i = 0; i < n; i++)
+        //    GameMode.Logic.UseAbility(Ability);
         GameMode.ActionManager.ApplyActions(actions);
         Visible = false;
         lastTemporaryContainer = null;

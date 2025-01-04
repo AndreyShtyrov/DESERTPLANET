@@ -16,7 +16,7 @@ namespace DesertPlanet.source.Buildings
             : base("ThermalPowerPlant", x, y, layerId, id, owner)
         {
             var company = mode.GetCompany(owner.Id);
-            Abilities.Add(new BurnOil(company.AbilityRecepts["BurnOil"], this, 31));
+            Abilities.Add(new BurnOil(company.AbilityRecepts["BurnOil"], this, 32));
         }
 
         public bool HasStartTurnAction => true;

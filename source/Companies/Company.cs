@@ -173,7 +173,7 @@ namespace DesertPlanet.source.Companies
             startId++;
             result.Add(new ConstructThermalPowerPlant(Recepts[12], unit, 12));
             startId++;
-            result.Add(new ConstructHelicopter(Recepts[13], unit, 14));
+            result.Add(new ConstructHelicopter(Recepts[13], unit, 21));
             startId++;
             result.Add(new ConstructManipulator(Recepts[14], unit, 17));
             startId++;
@@ -181,7 +181,7 @@ namespace DesertPlanet.source.Companies
             startId++;
             result.Add(new ConstructHouse(Recepts[16], unit, 16));
             startId++;
-            result.Add(new ConstructPark(Recepts[17], unit, 17));
+            result.Add(new ConstructPark(Recepts[17], unit, 22));
             startId++;
             result.Add(new ConstructCompanyOffice(Recepts[18], unit, 18));
             startId++;

@@ -34,8 +34,10 @@ public partial class SelectTarget : Window
             HBox.RemoveChild(button);
             button.QueueFree();
         }
+        int j = -1;
         foreach(var token in tokens)
         {
+            j++;
             var button = new Button();
             button.Text = token.Name + " " + token.Id;
             button.Pressed += () => { SelectItem(token.Id); };

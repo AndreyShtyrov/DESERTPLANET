@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace DesertPlanet.source.Buildings
 {
-    public class Helicopter : Building
+    public class Helicopter : Building, IHasAbilities
     {
         public Helicopter(int x, int y, int layerId, int id, Player owner) 
             : base("Helicopter", x, y, layerId, id, owner)
         {
-            Abilities.Add(new Ability.TransportResource(this, 0));
+            Abilities.Add(new Ability.TransportResource(this, 40));
         }
 
         public override Vector2I TileShift => new Vector2I(2, 2);
@@ -24,6 +24,7 @@ namespace DesertPlanet.source.Buildings
         public HelicopterRecipe(Player player) : base(13)
         {
             Resources.Add(new PlanetResource(ResourceType.Aliminium, player.Id));
+            Resources.Add(new PlanetResource(ResourceType.Plastic, player.Id));
             Info.Name = "Build Helicopter";
             Info.Recipe = Resources;
         }

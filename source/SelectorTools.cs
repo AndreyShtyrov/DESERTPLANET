@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using DesertPlanet.source.Interfaces;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,10 @@ namespace DesertPlanet.source
         SelectAbility = 1,
         SelectTarget = 2,
         SetupAbilityPars = 3,
-        SpecifyPars = 4,
+        SelectFirstTarget = 4,
         AwaitDialog = 5,
-        SetupRecipt = 6
+        SetupRecipt = 6,
+        SelectSecondTarget = 7
     }
     public class SelectorTools
     {
@@ -37,6 +39,8 @@ namespace DesertPlanet.source
         }
 
         public Vector2I FirstTarget { get; set; } = new Vector2I(-1, -1);
+
+        public IHasResource FirstResourceTarget { get; set; } = null;
 
         private Vector2I _position = Vector2I.Zero;
         public Vector2I Position { 
@@ -140,7 +144,9 @@ namespace DesertPlanet.source
             AbilityId = -1;
             State = SelectorState.SelectUnit;
             FirstTarget = new Vector2I(-1, -1);
+            FirstResourceTarget = null;
             ClearRes();
+            mode.CleanArea = true;
             SelectedResources.Clear();
         }
 
@@ -165,7 +171,7 @@ namespace DesertPlanet.source
                         return " SP ";
                     case SelectorState.SelectUnit:
                         return " SU ";
-                    case SelectorState.SpecifyPars:
+                    case SelectorState.SelectFirstTarget:
                         return " PP ";
                     case SelectorState.AwaitDialog:
                         return "AD";

@@ -246,6 +246,9 @@ namespace DesertPlanet.source
                     if (ability.NeedSelecTarget)
                     {
                         Game.NeedDrawAbilityArea = true;
+                        selector.State = SelectorState.SelectTarget;
+                        if (ability is Ability.TransportResource)
+                            selector.State = SelectorState.SelectFirstTarget;
                     }
                     else
                     {

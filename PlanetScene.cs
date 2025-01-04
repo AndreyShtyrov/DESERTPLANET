@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 
 public partial class PlanetScene : Node2D
@@ -97,7 +98,7 @@ public partial class PlanetScene : Node2D
             LandingSelected.Visible = true;
         }
         
-        GetNode<Timer>("UpdateData").Start();
+        GetNode<Godot.Timer>("UpdateData").Start();
     }
 
     private void SetResBarOut()
@@ -276,6 +277,11 @@ public partial class PlanetScene : Node2D
             if (!(SelectRecept2Window.Visible || SelectReceptWindow.Visible))
                 DecideRecipe(Selector.AbilityId);
         }
+        if (GameMode.CleanArea)
+        {
+            DrawArea(new List<Vector2I>());
+            GameMode.CleanArea = false;
+        }
         if (GameMode.NeedDrawAbilityArea)
         {
             var ability = (GameMode.GetObjectById(Selector.UnitId) as IHasAbilities).GetAbilityById(Selector.AbilityId);
@@ -403,6 +409,9 @@ public partial class PlanetScene : Node2D
         {
             if (Input.IsActionJustReleased("mb_left"))
             {
+                var sel = Selector;
+                if (Selector.State == SelectorState.AwaitDialog)
+                    return;
                 if (Selector.State == SelectorState.SelectAbility)
                 {
                     var unit = GameMode.GetObjectById(Selector.UnitId);
@@ -496,10 +505,54 @@ public partial class PlanetScene : Node2D
                         return;
                     }
                 }
+                if (Selector.State == SelectorState.SelectSecondTarget)
+                {
+                    var first = GameMode.GetObjectById(Selector.UnitId);
+                    var ability = (first as IHasAbilities).GetAbilityById(Selector.AbilityId);
+                    Selector.State = SelectorState.AwaitDialog;
+                    var units2 = new List<IOwnedToken>() { first };
+                    foreach (var unit in GameMode.GetTokensByPos(X, Y))
+                        if (unit is IHasResource && unit.Id != first.Id)
+                            units2.Add(unit);
+                    SelectWindow.SetData(units2, (int i2) =>
+                    {
+                        IHasResource resource = null;
+                        if (i2 == -1)
+                            resource = GameMode.Map[X, Y];
+                        else
+                            resource = GameMode.GetObjectById(i2) as IHasResource;
+                        TransportResourceWindow.SetData(Selector.FirstResourceTarget, resource, first as IHasAbilities, ability);
+                    }, true);
+                }
+                if (Selector.State == SelectorState.SelectFirstTarget)
+                {
+                    var first = GameMode.GetObjectById(Selector.UnitId);
+                    var units = new List<IOwnedToken>() { first };
+                    Selector.FirstTarget = new Vector2I(X, Y);
+                    foreach (var unit in GameMode.GetTokensByPos(X, Y))
+                        if (unit is IHasResource && unit.Id != first.Id)
+                            units.Add(unit);
+                    Selector.FirstTarget = new Vector2I(X, Y);
+                    Selector.State = SelectorState.AwaitDialog;
+                    SelectWindow.SetData(units,
+                    FirstSelectResourceTarget, true);
+                }
             }
         }
     }
-
+    public void FirstSelectResourceTarget(int i)
+    {
+        var t = new Task(() =>
+        {
+            if (i == -1)
+                Selector.FirstResourceTarget = GameMode.Map[Selector.FirstTarget];
+            else
+                Selector.FirstResourceTarget = GameMode.GetObjectById(i) as IHasResource;
+            Task.Delay(100).Wait();
+            Selector.State = SelectorState.SelectSecondTarget;
+        });
+        t.Start();
+    }
     public void SelectHarvestor(int id)
     {
         Selector.UnitId = id;
